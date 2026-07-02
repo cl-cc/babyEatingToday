@@ -1,0 +1,191 @@
+<navigation-bar title="辅食排敏" back="{{false}}" color="#E85A7A" background="transparent"></navigation-bar>
+
+<view class="page-root">
+  <view class="summary-bar" wx:if="{{allergyCount || eatenCount}}">
+    <text class="summary-bar__icon">📋</text>
+    <text class="summary-bar__text" wx:if="{{eatenCount}}">已吃过 {{eatenCount}} 种</text>
+    <text class="summary-bar__sep" wx:if="{{allergyCount && eatenCount}}">·</text>
+    <text class="summary-bar__text" wx:if="{{allergyCount}}">过敏 {{allergyCount}} 种</text>
+  </view>
+
+  <view class="page-body">
+    <scroll-view class="sidebar" scroll-y type="list" show-scrollbar="{{false}}">
+      <view wx:for="{{categories}}" wx:key="id" class="side-item {{activeCat === item.id ? 'side-item--on' : ''}}" bindtap="onCategory" data-id="{{item.id}}">
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+
+    <view class="main-panel">
+      <view class="filter-row">
+        <view wx:for="{{filters}}" wx:key="id" class="filter-chip {{activeFilter === item.id ? 'filter-chip--on' : ''}}" bindtap="onFilter" data-id="{{item.id}}">
+          {{item.label}}
+        </view>
+      </view>
+
+      <scroll-view class="food-scroll" scroll-y type="list" show-scrollbar="{{false}}">
+        <view wx:for="{{foods}}" wx:key="name" class="food-card {{item.allergic ? 'food-card--allergic' : ''}} {{item.eaten ? 'food-card--eaten' : ''}}" bindtap="onFoodTap" data-name="{{item.name}}">
+          <view class="food-card__thumb">
+            <text class="food-card__emoji">{{item.emoji}}</text>
+          </view>
+          <view class="food-card__info">
+            <text class="food-card__name">{{item.name}}</text>
+            <text class="food-card__sub">{{item.subCategory}}</text>
+          </view>
+          <view class="food-card__right">
+            <text wx:if="{{item.eaten}}" class="food-card__tag food-card__tag--eaten">吃过</text>
+            <text wx:if="{{item.allergic}}" class="food-card__tag food-card__tag--allergic">过敏</text>
+            <text class="food-card__arrow">›</text>
+          </view>
+        </view>
+
+        <view wx:if="{{!foods.length}}" class="empty-tip">
+          <text class="empty-tip__emoji">🥗</text>
+          <text>{{emptyTip}}</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="sheet-mask" wx:if="{{sheetVisible}}" bindtap="closeSheet">
+  <view class="sheet-panel {{sheetSymptomOpen ? 'sheet-panel--expanded' : ''}}" catchtap="noop">
+    <view class="sheet-handle"></view>
+    <view class="sheet-head">
+      <view class="sheet-thumb">
+        <text class="sheet-emoji">{{sheetFood.emoji}}</text>
+      </view>
+      <view class="sheet-meta">
+        <text class="sheet-name">{{sheetFood.name}}</text>
+        <text class="sheet-sub">{{sheetFood.categoryName}} · {{sheetFood.subCategory}}</text>
+      </view>
+    </view>
+
+    <view class="sheet-row">
+      <view class="sheet-row__text">
+        <text class="sheet-row__title">是否吃过</text>
+        <text class="sheet-row__hint">记录宝宝已经尝试过的食材</text>
+      </view>
+      <switch checked="{{sheetFood.eaten}}" color="#5ECFB8" bindchange="onEatenSwitch" />
+    </view>
+    <view class="sheet-row sheet-row--last">
+      <view class="sheet-row__text">
+        <text class="sheet-row__title">是否过敏</text>
+        <text class="sheet-row__hint">标记后将在搭配、推荐中自动排除</text>
+      </view>
+      <switch checked="{{sheetFood.allergic}}" color="#FF6B6B" bindchange="onAllergySwitch" />
+    </view>
+
+    <view class="sheet-ai-btn {{sheetSymptomLoading ? 'sheet-ai-btn--loading' : ''}}" catch:tap="onSheetAiSymptom">
+      <text class="sheet-ai-btn__icon">✨</text>
+      <text class="sheet-ai-btn__text">{{sheetSymptomLoading ? 'AI 分析中…' : 'AI 查症状'}}</text>
+    </view>
+
+    <view class="sheet-symptom-wrap" wx:if="{{sheetSymptomOpen}}">
+      <view class="sheet-symptom-head">
+        <text class="sheet-symptom-head__title">过敏症状参考</text>
+        <text class="sheet-symptom-head__hint">AI 估算，仅供排敏观察</text>
+      </view>
+
+      <scroll-view class="sheet-symptom-scroll" scroll-y enhanced show-scrollbar="{{true}}">
+        <view wx:if="{{sheetSymptomLoading}}" class="symptom-loading">
+          <view class="symptom-loading__ring">
+            <text class="symptom-loading__ai">AI</text>
+          </view>
+          <text class="symptom-loading__title">正在分析过敏症状…</text>
+          <text class="symptom-loading__sub">结合宝宝月龄与食材特性查询中</text>
+        </view>
+
+        <view wx:elif="{{sheetSymptomError}}" class="symptom-error">
+          <text class="symptom-error__emoji">😔</text>
+          <text class="symptom-error__text">{{sheetSymptomError}}</text>
+          <view class="symptom-retry" catch:tap="onSheetAiSymptom">重新查询</view>
+        </view>
+
+        <block wx:elif="{{sheetSymptomResult}}">
+          <view class="symptom-visual">
+            <view class="symptom-visual__stats">
+              <view class="symptom-stat">
+                <text class="symptom-stat__num">{{sheetSymptomResult.totalSymptoms}}</text>
+                <text class="symptom-stat__label">常见症状</text>
+              </view>
+              <view class="symptom-stat">
+                <text class="symptom-stat__num">{{sheetSymptomResult.groupCount}}</text>
+                <text class="symptom-stat__label">表现类型</text>
+              </view>
+              <view class="symptom-stat">
+                <text class="symptom-stat__num symptom-stat__num--alert">{{sheetSymptomResult.severeCount}}</text>
+                <text class="symptom-stat__label">紧急信号</text>
+              </view>
+            </view>
+
+            <view class="symptom-risk">
+              <text class="symptom-risk__label">关注程度</text>
+              <view class="symptom-risk__bar">
+                <view class="symptom-risk__seg symptom-risk__seg--low {{sheetSymptomResult.riskLevel === 'low' ? 'symptom-risk__seg--on' : ''}}"></view>
+                <view class="symptom-risk__seg symptom-risk__seg--mid {{sheetSymptomResult.riskLevel === 'medium' ? 'symptom-risk__seg--on' : ''}}"></view>
+                <view class="symptom-risk__seg symptom-risk__seg--high {{sheetSymptomResult.riskLevel === 'high' ? 'symptom-risk__seg--on' : ''}}"></view>
+              </view>
+              <text class="symptom-risk__text">{{sheetSymptomResult.riskLabel}}</text>
+            </view>
+
+            <view class="symptom-bars" wx:if="{{sheetSymptomResult.visualGroups.length}}">
+              <view class="symptom-bar-item" wx:for="{{sheetSymptomResult.visualGroups}}" wx:key="title">
+                <view class="symptom-bar-item__head">
+                  <text class="symptom-bar-item__icon">{{item.icon}}</text>
+                  <text class="symptom-bar-item__title">{{item.title}}</text>
+                  <text class="symptom-bar-item__count">{{item.count}}项</text>
+                </view>
+                <view class="symptom-bar-item__track">
+                  <view class="symptom-bar-item__fill" style="width: {{item.percent}}%; background: {{item.color}};"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view class="symptom-summary">
+            <text class="symptom-summary__label">💡 简要说明</text>
+            <text class="symptom-summary__text">{{sheetSymptomResult.summary}}</text>
+          </view>
+
+          <view class="symptom-group" wx:for="{{sheetSymptomResult.symptomGroups}}" wx:key="title">
+            <view class="symptom-group__head">
+              <text class="symptom-group__icon">{{item.icon}}</text>
+              <text class="symptom-group__title">{{item.title}}</text>
+            </view>
+            <view class="symptom-tags">
+              <view class="symptom-tag" wx:for="{{item.items}}" wx:for-item="symptom" wx:key="*this">
+                <text>{{symptom}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="symptom-alert" wx:if="{{sheetSymptomResult.severeSigns.length}}">
+            <text class="symptom-alert__title">🚨 需立即就医信号</text>
+            <view class="symptom-alert__list">
+              <view class="symptom-alert__item" wx:for="{{sheetSymptomResult.severeSigns}}" wx:key="*this">
+                <text class="symptom-alert__dot">!</text>
+                <text class="symptom-alert__text">{{item}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="symptom-tips" wx:if="{{sheetSymptomResult.observeTips.length}}">
+            <text class="symptom-tips__title">📝 排敏观察建议</text>
+            <view class="symptom-tips__item" wx:for="{{sheetSymptomResult.observeTips}}" wx:key="*this">
+              <text class="symptom-tips__check">✓</text>
+              <text class="symptom-tips__text">{{item}}</text>
+            </view>
+          </view>
+
+          <view class="symptom-doctor" wx:if="{{sheetSymptomResult.whenToDoctor}}">
+            <text class="symptom-doctor__text">{{sheetSymptomResult.whenToDoctor}}</text>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+
+    <view class="sheet-close" bindtap="closeSheet">完成</view>
+  </view>
+</view>
+
+<tab-bar id="tabBar"></tab-bar>

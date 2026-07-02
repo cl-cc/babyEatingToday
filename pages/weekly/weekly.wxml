@@ -1,0 +1,140 @@
+<navigation-bar title="" back="{{false}}" color="#333333" background="transparent"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y>
+  <view class="page-wrap">
+    <view class="page-header">
+      <view class="page-header-emoji">
+        <image class="page-header-icon" src="/image/week-icon.png" mode="aspectFit" />
+      </view>
+      <text class="page-header-title">一周菜单</text>
+      <text class="page-header-sub">照着买、照着做，省心一整周</text>
+    </view>
+
+    <!-- <view class="bubble info-bubble">
+      <view class="info-row">
+        <text class="info-label">👶 宝宝</text>
+        <text>{{profile.name}} · {{profile.ageMonths}}个月</text>
+      </view>
+      <view class="info-row" wx:if="{{allergyText}}">
+        <text class="info-label">⚠️ 过敏</text>
+        <text>{{allergyText}}</text>
+      </view>
+      <view class="info-row" wx:if="{{fridgeText}}">
+        <text class="info-label">🧊 冰箱</text>
+        <text>{{fridgeText}}</text>
+      </view>
+    </view> -->
+
+    <beam-button ext-class="gen-btn" text="✨ 生成一周菜单" disabled="{{loading}}" bind:tap="onGenerate" />
+
+    <view wx:if="{{loading}}" class="loading-wrap">
+      <text class="loading-emoji">📅</text>
+      <text>正在规划一周食谱…</text>
+    </view>
+
+    <block wx:if="{{menu}}">
+      <template name="dayCard">
+        <view class="day-card">
+          <view class="day-card__head">
+            <text class="day-title">{{day.day}}</text>
+          </view>
+          <view class="meal-block" wx:for="{{day.meals}}" wx:for-item="meal" wx:key="key">
+            <view class="meal-block__head">
+              <text class="meal-block__icon">{{meal.icon}}</text>
+              <text class="meal-block__label">{{meal.label}}</text>
+            </view>
+            <view class="dish-list">
+              <view class="dish-item" wx:for="{{meal.dishes}}" wx:for-item="dish" wx:key="name">
+                <text class="dish-item__name">{{dish.name}}</text>
+                <view class="dish-item__details" wx:if="{{dish.details.length}}">
+                  <view class="dish-item__detail" wx:for="{{dish.details}}" wx:for-item="detail" wx:key="*this">
+                    <text class="dish-item__dot">·</text>
+                    <text class="dish-item__detail-text">{{detail}}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </template>
+
+      <view class="week-grid">
+        <view class="week-row" wx:for="{{menu.weekLayout.pairs}}" wx:key="key">
+          <view class="week-col">
+            <template wx:if="{{item.left}}" is="dayCard" data="{{day: item.left}}" />
+            <view wx:else class="day-card day-card--placeholder"></view>
+          </view>
+          <view class="week-col">
+            <template wx:if="{{item.right}}" is="dayCard" data="{{day: item.right}}" />
+            <view wx:else class="day-card day-card--placeholder"></view>
+          </view>
+        </view>
+
+        <view class="week-row week-row--single" wx:if="{{menu.weekLayout.lastRow.day}}">
+          <view class="week-col week-col--full">
+            <template is="dayCard" data="{{day: menu.weekLayout.lastRow.day}}" />
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{menu.nutritionAnalysis}}" class="charts-panel">
+        <view class="charts-panel__head">
+          <text class="charts-panel__title">📊 一周营养分析</text>
+          <text class="charts-panel__sub">基于本周菜单智能估算</text>
+        </view>
+
+        <view class="chart-block">
+          <text class="chart-block__title">食材分类占比</text>
+          <view class="chart-ec-wrap">
+            <ec-canvas id="weekly-pie" canvas-id="weekly-pie-chart" ec="{{ ecPie }}" class="chart-ec chart-ec--pie"></ec-canvas>
+          </view>
+        </view>
+
+        <view class="chart-block">
+          <text class="chart-block__title">每日营养评分</text>
+          <view class="chart-ec-wrap">
+            <ec-canvas id="weekly-bar" canvas-id="weekly-bar-chart" ec="{{ ecBar }}" class="chart-ec chart-ec--bar"></ec-canvas>
+          </view>
+        </view>
+      </view>
+
+      <view class="nutrition-card" wx:if="{{menu.nutrition.length}}">
+        <view class="nutrition-card__head">
+          <text class="nutrition-card__title">💪 营养亮点</text>
+        </view>
+        <view class="nutrition-tags">
+          <view wx:for="{{menu.nutrition}}" wx:key="*this" class="nutrition-tag">
+            <text class="nutrition-tag__check">✓</text>
+            <text class="nutrition-tag__text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="bubble shop-bubble" wx:if="{{menu.shoppingTotal}}">
+        <view class="shop-head">
+          <text class="bubble-title shop-head__title">🛒 采购清单</text>
+          <text class="shop-head__count">共 {{menu.shoppingTotal}} 项</text>
+        </view>
+        <view class="cute-divider"></view>
+        <view class="shop-group" wx:for="{{menu.shoppingCategories}}" wx:key="key">
+          <view class="shop-group__head">
+            <text class="shop-group__label">{{item.emoji}} {{item.label}}</text>
+            <text class="shop-group__count">{{item.items.length}} 项</text>
+          </view>
+          <view class="shop-grid">
+            <view wx:for="{{item.items}}" wx:for-item="food" wx:key="*this" class="shop-chip">
+              <text class="shop-chip__text">{{food}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+<!-- <view wx:if="{{menu}}" class="export-fab {{exporting ? 'export-fab--busy' : ''}}" bindtap="onExport">
+  <text class="export-fab__icon">{{exporting ? '⏳' : '📸'}}</text>
+  <text class="export-fab__text">{{exporting ? '导出中' : '导出'}}</text>
+</view> -->
+
+<canvas wx:if="{{showExportCanvas}}" type="2d" id="weeklyExportCanvas" class="export-canvas"></canvas>
+<tab-bar id="tabBar"></tab-bar>

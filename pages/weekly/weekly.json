@@ -1,0 +1,11 @@
+{
+  "navigationStyle": "custom",
+  "renderer": "webview",
+  "componentFramework": "exparser",
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "tab-bar": "/components/tab-bar/tab-bar",
+    "beam-button": "/components/beam-button/beam-button",
+    "ec-canvas": "/components/ec-canvas/ec-canvas"
+  }
+}

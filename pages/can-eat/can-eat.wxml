@@ -1,0 +1,124 @@
+<navigation-bar title="" back="{{false}}" color="#333333" background="transparent"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="page-wrap">
+    <view class="page-header">
+      <text class="page-header-emoji">
+        <image style="width: 80rpx;height: 80rpx;" src="/image/can-eat-icon.png" mode="" />
+      </text>
+      <text class="page-header-title">能不能吃,如何搭配?</text>
+      <text class="page-header-sub">参考 WHO / AAP 建议，放心给宝宝吃</text>
+      <view class="ref-tip" bindtap="onShowRefTip">
+        <text class="ref-tip-text">WHO=世界卫生组织 · AAP=美国儿科学会，点击查看说明</text>
+      </view>
+    </view>
+
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" type="text" placeholder="输入食材，如：虾、蜂蜜、鸡蛋…" value="{{query}}" bindinput="onInput" bindconfirm="onSearch" confirm-type="search" maxlength="20" adjust-position="{{true}}" cursor-spacing="24" />
+    </view>
+
+    <view class="age-row-mini">
+      <text class="age-hint">当前年龄：</text>
+      <picker mode="selector" range="{{ageLabels}}" value="{{ageIndex}}" bindchange="onAgeChange">
+        <view class="age-picker">{{ageLabels[ageIndex]}} ▾</view>
+      </picker>
+    </view>
+
+    <view class="hot-tags">
+      <view class="hot-head">
+        <text class="hot-label">热门查询</text>
+        <text wx:if="{{hotLoading}}" class="hot-hint">推荐更新中…</text>
+      </view>
+      <view class="hot-chip-list">
+        <view wx:for="{{hotList}}" wx:key="name" class="hot-chip" bindtap="onHotTap" data-q="{{item.name}}">
+          <text class="hot-chip__emoji">{{item.emoji}}</text>
+          <text class="hot-chip__name">{{item.name}}</text>
+          <text wx:if="{{item.type}}" class="hot-chip__type">{{item.type}}</text>
+        </view>
+      </view>
+    </view>
+
+    <beam-button ext-class="search-btn" text="{{loading ? '查询中…' : '查询'}}" disabled="{{loading}}" bind:tap="onSearch" />
+
+    <view wx:if="{{loading}}" class="bubble loading-block">
+      <view class="ai-loading ai-loading--compact">
+        <view class="ai-loading-ring ai-loading-ring--sm">
+          <view class="ai-loading-core">AI</view>
+        </view>
+        <text class="ai-loading-title">正在查询能不能吃</text>
+        <text class="ai-loading-sub">营养师正在分析食材…</text>
+        <view class="ai-loading-dots">
+          <view class="ai-loading-dot ai-loading-dot--1"></view>
+          <view class="ai-loading-dot ai-loading-dot--2"></view>
+          <view class="ai-loading-dot ai-loading-dot--3"></view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:elif="{{result}}" class="bubble result-block">
+      <block wx:if="{{!result.found}}">
+        <view class="bubble-title">🤔 暂未收录</view>
+        <text class="not-found-text">{{result.message}}</text>
+      </block>
+      <block wx:else>
+        <view class="result-header">
+          <text class="result-emoji">{{result.emoji}}</text>
+          <text class="result-name">{{result.name}}</text>
+        </view>
+        <view class="verdict verdict--{{result.can === true ? 'yes' : result.can === false ? 'no' : 'caution'}}">
+          <text wx:if="{{result.can === true}}">✔ 可以吃</text>
+          <text wx:elif="{{result.can === false}}">❌ 不建议</text>
+          <text wx:else>⚠️ 谨慎尝试</text>
+        </view>
+        <text class="result-note">{{result.note}}</text>
+
+        <view class="sub-section authority-section">
+          <text class="sub-title">📚 权威建议</text>
+          <view class="authority-card authority-card--who">
+            <text class="authority-label">WHO · 世界卫生组织</text>
+            <text class="authority-text">{{result.whoAdvice}}</text>
+          </view>
+          <view class="authority-card authority-card--aap">
+            <text class="authority-label">AAP · 美国儿科学会</text>
+            <text class="authority-text">{{result.aapAdvice}}</text>
+          </view>
+        </view>
+
+        <view wx:if="{{result.pairings.length}}" class="sub-section">
+          <text class="sub-title">🥕 搭配食材</text>
+          <view class="pairing-tags">
+            <view wx:for="{{result.pairings}}" wx:key="name" class="pairing-chip">
+              <text class="pairing-chip__emoji">{{item.emoji}}</text>
+              <text class="pairing-chip__name">{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view wx:if="{{result.seasonings.length}}" class="sub-section">
+          <text class="sub-title">🧂 搭配调料</text>
+          <view class="seasoning-block seasoning-block--result">
+            <view class="seasoning-item" wx:for="{{result.seasonings}}" wx:key="name">
+              <text class="seasoning-name">{{item.name}}</text>
+              <text class="seasoning-amount">{{item.amount}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view wx:if="{{result.methods.length}}" class="sub-section">
+          <text class="sub-title">👨‍🍳 推荐做法</text>
+          <view wx:for="{{result.methods}}" wx:key="*this" class="reason-item">
+            <text class="reason-check">✔</text><text>{{item}}</text>
+          </view>
+        </view>
+
+        <view wx:if="{{result.avoid.length}}" class="sub-section">
+          <text class="sub-title">不建议</text>
+          <view wx:for="{{result.avoid}}" wx:key="*this" class="reason-item avoid-item">
+            <text class="avoid-x">✗</text><text>{{item}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</scroll-view>
+<tab-bar id="tabBar"></tab-bar>

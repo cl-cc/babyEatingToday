@@ -1,0 +1,152 @@
+<navigation-bar title="" back="{{false}}" color="#333333" background="transparent"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="page-wrap">
+    <view class="page-header">
+      <text class="page-header-emoji">
+        <image style="width: 80rpx;height: 80rpx;" src="/image/combine-icon.png" mode="" />
+      </text>
+      <text class="page-header-title">食材搭配</text>
+      <text class="page-header-sub">勾选家里有的，智能帮你搭</text>
+    </view>
+
+    <!-- <view class="tab-switch">
+      <view class="tab-switch-item {{mode === 'pick' ? 'tab-switch-item--on' : ''}}" bindtap="setMode" data-mode="pick">✅ 自由组合</view>
+      <view class="tab-switch-item {{mode === 'fridge' ? 'tab-switch-item--on' : ''}}" bindtap="setMode" data-mode="fridge">🧊 冰箱有什么</view>
+    </view> -->
+
+    <scroll-view scroll-x class="cat-scroll">
+      <view wx:for="{{categories}}" wx:key="*this" class="cat-chip {{activeCategory === item ? 'cat-chip--on' : ''}}" bindtap="onCategory" data-cat="{{item}}">{{item}}</view>
+    </scroll-view>
+
+    <block wx:for="{{displayGroups}}" wx:key="category">
+      <view class="food-group">
+        <view class="food-group__head">
+          <text class="food-group__title">{{item.category}}</text>
+        </view>
+        <view class="food-grid">
+          <view wx:for="{{item.items}}" wx:for-item="food" wx:key="name" class="food-cell" bindtap="toggleIngredient" data-name="{{food.name}}">
+            <view class="food-chip {{food.selected ? 'food-chip--on' : ''}}">
+              <text class="food-chip__emoji">{{food.emoji}}</text>
+              <text class="food-chip__name">{{food.name}}</text>
+              <text wx:if="{{food.selected}}" class="food-chip__check">✓</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{customFoods.length}}" class="food-group">
+      <view class="food-group__head">
+        <text class="food-group__title">自定义</text>
+      </view>
+      <view class="food-grid">
+        <view wx:for="{{customFoods}}" wx:key="name" class="food-cell">
+          <view class="food-chip food-chip--custom {{item.selected ? 'food-chip--on' : ''}}" bindtap="toggleCustomFood" data-name="{{item.name}}">
+            <text class="food-chip__emoji">{{item.emoji}}</text>
+            <text class="food-chip__name">{{item.name}}</text>
+            <text wx:if="{{item.selected}}" class="food-chip__check">✓</text>
+            <view class="food-chip__delete" catchtap="removeCustomFood" data-name="{{item.name}}">×</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="food-grid food-grid--input">
+      <view class="food-cell food-cell--input">
+        <view class="food-chip food-chip--input">
+          <text class="food-chip__emoji">{{customInputEmoji}}</text>
+          <input class="food-chip__input" placeholder="输入菜名/水果" value="{{customInput}}" bindinput="onCustomInput" bindconfirm="addCustomFood" confirm-type="done" maxlength="12" />
+        </view>
+      </view>
+    </view>
+
+    <beam-button ext-class="action-btn" text="{{mode === 'pick' ? '🍳 智能搭配' : '🧊 帮我搭配'}}" disabled="{{loading}}" bind:tap="onSubmit" />
+
+    <view wx:if="{{result}}" class="bubble result-block" style="margin-top: 40rpx;">
+      <block wx:if="{{mode === 'pick'}}">
+        <view class="bubble-title">✨ 搭配方案</view>
+        <view class="cute-divider"></view>
+
+        <view class="dish-row" wx:for="{{result.dishes}}" wx:key="label">
+          <view class="dish-row__main">
+            <text class="dish-row__label">{{item.label}}</text>
+            <text class="dish-row__name">{{item.name}}</text>
+          </view>
+          <text class="dish-row__cal">{{item.calories}}大卡</text>
+        </view>
+
+        <view wx:if="{{result.totalCalories}}" class="total-cal-bar">
+          <text>合计约 </text>
+          <text>
+            <text class="total-cal-num">{{result.totalCalories}}</text>
+            <text> 大卡</text>
+          </text>
+        </view>
+
+        <view wx:if="{{result.seasonings.length}}" class="seasoning-block">
+          <text class="seasoning-title">🧂 搭配调料</text>
+          <view class="seasoning-item" wx:for="{{result.seasonings}}" wx:key="name">
+            <text class="seasoning-name">{{item.name}}</text>
+            <text class="seasoning-amount">{{item.amount}}</text>
+          </view>
+        </view>
+
+        <view wx:if="{{result.methods.length}}" class="method-block">
+          <text class="seasoning-title">👨‍🍳 菜品做法</text>
+          <view class="reason-list">
+            <view wx:for="{{result.methods}}" wx:key="*this" class="reason-item">
+              <text class="reason-check">✔</text><text>{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="cute-divider"></view>
+        <text class="why-title">为什么这么搭？</text>
+        <view class="reason-list">
+          <view wx:for="{{result.reasons}}" wx:key="*this" class="reason-item">
+            <text class="reason-check">✔</text><text>{{item}}</text>
+          </view>
+        </view>
+      </block>
+
+      <block wx:else>
+        <view class="bubble-title">🧊 冰箱搭配</view>
+        <view class="cute-divider"></view>
+
+        <view class="meal-result" wx:for="{{result.meals}}" wx:key="label">
+          <view class="meal-result__head">
+            <text class="meal-result__label">{{item.label}}</text>
+            <text class="meal-result__cal">{{item.calories}}大卡</text>
+          </view>
+          <text class="meal-result__name">{{item.name}}</text>
+          <view wx:if="{{item.seasonings.length}}" class="seasoning-block seasoning-block--meal">
+            <text class="seasoning-title">🧂 搭配调料</text>
+            <view class="seasoning-item" wx:for="{{item.seasonings}}" wx:for-item="sg" wx:key="name">
+              <text class="seasoning-name">{{sg.name}}</text>
+              <text class="seasoning-amount">{{sg.amount}}</text>
+            </view>
+          </view>
+          <view wx:if="{{item.methods.length}}" class="method-block method-block--meal">
+            <text class="seasoning-title">👨‍🍳 菜品做法</text>
+            <view class="reason-list">
+              <view wx:for="{{item.methods}}" wx:for-item="step" wx:key="*this" class="reason-item">
+                <text class="reason-check">✔</text><text>{{step}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view wx:if="{{result.totalCalories}}" class="total-cal-bar">
+          <text>三餐合计约 </text>
+          <text class="total-cal-num">{{result.totalCalories}}</text>
+          <text> 大卡</text>
+        </view>
+
+        <text wx:if="{{result.tips}}" class="tip-text">💡 {{result.tips}}</text>
+      </block>
+
+      <text wx:if="{{fromAI}}" class="ai-hint">食材搭配智能推荐</text>
+    </view>
+  </view>
+</scroll-view>
+<tab-bar id="tabBar"></tab-bar>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "tab-bar": "/components/tab-bar/tab-bar",
+    "beam-button": "/components/beam-button/beam-button"
+  },
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,180 @@
+<!--pages/index/index.wxml-->
+<navigation-bar title="" back="{{false}}" color="#FFF5F8" background="transparent"></navigation-bar>
+<view class="warm-tip {{warmTipVisible ? '' : 'warm-tip--hide'}}">{{warmTipText}}</view>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="page-wrap index-page">
+    <view class="gender-section" wx:if="{{!selectedGender || showGenderPicker}}">
+      <!-- <text class="section-label">宝宝性别</text> -->
+      <view class="gender-row">
+        <view class="gender-card" bindtap="onSelectGender" data-gender="boy">
+          <view class="gender-avatar-wrap">
+            <image class="gender-avatar" src="/image/man.png" mode="aspectFill" />
+          </view>
+          <text class="gender-label">男宝</text>
+        </view>
+        <view class="gender-card" bindtap="onSelectGender" data-gender="girl">
+          <view class="gender-avatar-wrap">
+            <image class="gender-avatar" src="/image/girl.png" mode="aspectFill" />
+          </view>
+          <text class="gender-label">女宝</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="index-header">
+      <image class="top-bg" src="/image/top-bg.png" mode="" />
+      <view class="index-header__left" wx:if="{{selectedGender && !showGenderPicker}}">
+        <image class="index-header__avatar" src="{{selectedGender === 'boy' ? '/image/man.png' : '/image/girl.png'}}" mode="aspectFill" bindtap="onEditGender" />
+      </view>
+
+      <view class="index-header__right">
+        <view wx:if="{{suggestionLoading}}" class="today-advice__loading">
+          <view class="today-advice__dot"></view>
+          <text class="today-advice__loading-text">正在生成建议…</text>
+        </view>
+
+        <text wx:elif="{{dailySuggestion}}" class="today-advice__line">{{dailySuggestion.line}}</text>
+        <text class="page-header-sub">每天点一下，营养搭配不用愁</text>
+      </view>
+    </view>
+
+    <view class="age-check-section {{ageExpanded ? 'age-expanded' : ''}}">
+      <view class="age-check-row">
+        <view class="age-summary" bindtap="toggleAgePicker" hover-class="age-summary--pressed">
+          <view class="age-summary__main">
+            <text class="age-summary__label">年龄</text>
+            <text class="age-summary__value">{{selectedAgeLabel}}</text>
+          </view>
+          <view class="age-summary__action">
+            <text class="age-summary__hint">{{ageExpanded ? '收起' : '修改'}}</text>
+            <view class="age-summary__arrow {{ageExpanded ? 'age-summary__arrow--open' : ''}}"></view>
+          </view>
+        </view>
+
+        <view class="checkin-card {{checkedInToday ? 'checkin-card--done' : ''}} {{checkInLoading ? 'checkin-card--loading' : ''}}" bindtap="onDailyCheckIn" hover-class="{{checkedInToday ? '' : 'checkin-card--pressed'}}">
+          <view class="checkin-card__confetti" wx:if="{{showCheckInConfetti}}">
+            <text class="checkin-confetti__item" wx:for="{{confettiPieces}}" wx:for-index="idx" wx:key="idx" style="{{item.style}}">{{item.emoji}}</text>
+          </view>
+          <text class="checkin-card__status">{{checkInLoading ? '打卡中…' : (checkedInToday ? '已打卡' : '点我打卡')}}</text>
+          <text class="checkin-card__count" wx:if="{{checkedInToday && checkInCount > 0}}">累计 {{checkInCount}} 天</text>
+        </view>
+      </view>
+
+      <view class="age-panel" style="height: {{agePanelHeight}}px;">
+        <view class="age-row" id="ageRow" wx:if="{{ageExpanded}}">
+          <view wx:for="{{ageGroups}}" wx:key="id" class="age-chip {{selectedAge === item.id ? 'age-chip--on' : ''}}" bindtap="onSelectAge" data-id="{{item.id}}">
+            <view class="check-icon {{selectedAge === item.id ? 'check-icon--on' : ''}}">
+              <text wx:if="{{selectedAge === item.id}}">✓</text>
+            </view>
+            <text>{{item.label}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bubble today-bubble" style="padding: 26rpx 22rpx;">
+      <view class="bubble-title bubble-title--pink">🌸 今日推荐</view>
+      <view class="cute-divider cute-divider--pink" style="margin: 18rpx 0;"></view>
+
+      <view wx:if="{{loading}}" class="ai-loading">
+        <view class="ai-loading-ring">
+          <view class="ai-loading-core">AI</view>
+        </view>
+        <text class="ai-loading-title">正在调用 AI 查询</text>
+        <text class="ai-loading-sub">营养师正在为你搭配食谱…</text>
+        <view class="ai-loading-dots">
+          <view class="ai-loading-dot ai-loading-dot--1"></view>
+          <view class="ai-loading-dot ai-loading-dot--2"></view>
+          <view class="ai-loading-dot ai-loading-dot--3"></view>
+        </view>
+      </view>
+
+      <block wx:else>
+        <view class="food-grid">
+          <view class="food-card" wx:for="{{foods}}" wx:key="name">
+            <view class="food-card__head">
+              <text class="food-card__emoji">{{item.emoji}}</text>
+              <text class="food-card__name">{{item.name}}</text>
+            </view>
+            <view class="food-card__amount">
+              <text class="food-card__amount-label">推荐</text>
+              <text class="food-card__amount-val">{{item.amount}}</text>
+            </view>
+            <view class="food-card__tags" wx:if="{{item.tags.length}}">
+              <text class="food-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="label">{{tag.emoji}} {{tag.label}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="nutri-section" wx:if="{{nutritionRings.length}}">
+          <text class="nutri-section__title">本餐营养</text>
+          <view class="nutri-rings">
+            <view class="nutri-ring-item" wx:for="{{nutritionRings}}" wx:key="label">
+              <view class="nutri-ring" style="{{item.ringStyle}}">
+                <view class="nutri-ring__inner">
+                  <text class="nutri-ring__pct">{{item.percent}}%</text>
+                </view>
+              </view>
+              <text class="nutri-ring__label">{{item.label}}</text>
+            </view>
+          </view>
+          <view class="meal-tags" wx:if="{{mealTags.length}}">
+            <text class="meal-tag" wx:for="{{mealTags}}" wx:key="label">{{item.emoji}} {{item.label}}</text>
+          </view>
+        </view>
+
+        <view wx:if="{{seasonings.length}}" class="seasoning-block">
+          <text class="seasoning-title">🧂 搭配调料</text>
+          <view class="seasoning-item" wx:for="{{seasonings}}" wx:key="name">
+            <text class="seasoning-name">{{item.name}}</text>
+            <text class="seasoning-amount">{{item.amount}}</text>
+          </view>
+        </view>
+
+        <text wx:if="{{tip}}" class="tip-text">💡 {{tip}}</text>
+      </block>
+
+      <beam-button ext-class="refresh-btn" text="🔄 换一组" variant="pink" disabled="{{loading}}" bind:tap="onRefresh" />
+    </view>
+
+    <view class="bubble random-bubble">
+      <view class="bubble-title bubble-title--pink">🎀 随机一天菜单</view>
+      <view class="cute-divider cute-divider--pink"></view>
+
+      <view wx:if="{{randomLoading}}" class="ai-loading ai-loading--compact">
+        <view class="ai-loading-ring ai-loading-ring--sm">
+          <view class="ai-loading-core">AI</view>
+        </view>
+        <text class="ai-loading-title">正在调用 AI 查询</text>
+        <view class="ai-loading-dots">
+          <view class="ai-loading-dot ai-loading-dot--1"></view>
+          <view class="ai-loading-dot ai-loading-dot--2"></view>
+          <view class="ai-loading-dot ai-loading-dot--3"></view>
+        </view>
+      </view>
+
+      <block wx:elif="{{mealList.length}}">
+        <view class="meal-block" wx:for="{{mealList}}" wx:key="key">
+          <view class="meal-head">
+            <text class="meal-title">{{item.label}}</text>
+            <text wx:if="{{item.totalCalories}}" class="meal-total-cal">{{item.totalCalories}}大卡</text>
+          </view>
+          <view class="meal-food-row" wx:for="{{item.foods}}" wx:for-item="food" wx:key="name">
+            <text class="meal-food-name">{{food.emoji}} {{food.name}}</text>
+            <text class="meal-food-cal">{{food.calories}}大卡</text>
+          </view>
+          <view wx:if="{{item.seasonings.length}}" class="seasoning-block seasoning-block--meal">
+            <text class="seasoning-title">🧂 搭配调料</text>
+            <view class="seasoning-item" wx:for="{{item.seasonings}}" wx:for-item="sg" wx:key="name">
+              <text class="seasoning-name">{{sg.name}}</text>
+              <text class="seasoning-amount">{{sg.amount}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <beam-button ext-class="random-btn" text="🎲 摇一摇" variant="outline" disabled="{{randomLoading}}" bind:tap="onRandomMenu" />
+    </view>
+  </view>
+</scroll-view>
+<tab-bar id="tabBar"></tab-bar>

@@ -1,0 +1,13 @@
+<view
+  class="beam-btn beam-btn--{{variant}} {{disabled ? 'beam-btn--disabled' : ''}}"
+  style="height: {{height}}rpx;"
+  bindtap="onTap"
+  hover-class="{{disabled ? '' : 'beam-btn--pressed'}}"
+>
+  <view class="beam-btn__palette"></view>
+  <view class="beam-btn__bloom" style="transform: translate(-50%, -50%) rotate({{beamDeg}}deg);"></view>
+  <view class="beam-btn__glow" style="transform: translate(-50%, -50%) rotate({{beamDeg}}deg);"></view>
+  <view class="beam-btn__inner">
+    <text class="beam-btn__text">{{text}}</text>
+  </view>
+</view>

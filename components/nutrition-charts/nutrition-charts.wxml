@@ -1,0 +1,20 @@
+<view class="charts-panel" wx:if="{{analysis}}">
+  <view class="charts-panel__head">
+    <text class="charts-panel__title">📊 一周营养分析</text>
+    <text class="charts-panel__sub">基于本周菜单智能估算</text>
+  </view>
+
+  <view class="chart-block">
+    <text class="chart-block__title">食材分类占比</text>
+    <view class="chart-ec-wrap">
+      <ec-canvas id="pie-chart" canvas-id="weekly-pie-chart" force-use-old-canvas="{{true}}" ec="{{ ecPie }}" class="chart-ec chart-ec--pie"></ec-canvas>
+    </view>
+  </view>
+
+  <view class="chart-block">
+    <text class="chart-block__title">每日营养评分</text>
+    <view class="chart-ec-wrap">
+      <ec-canvas id="bar-chart" canvas-id="weekly-bar-chart" force-use-old-canvas="{{true}}" ec="{{ ecBar }}" class="chart-ec chart-ec--bar"></ec-canvas>
+    </view>
+  </view>
+</view>

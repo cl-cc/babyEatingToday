@@ -1,0 +1,31 @@
+<view class="tab-bar">
+  <image class="tab-bar__bg" src="/image/tabbar-bg.png" mode="scaleToFill" />
+  <view class="tab-bar__safe">
+    <view class="tab-bar__inner">
+      <view
+        wx:for="{{list}}"
+        wx:key="pagePath"
+        class="tab-item {{item.center ? 'tab-item--center' : ''}} {{selected === index ? 'tab-item--active' : ''}}"
+        bindtap="switchTab"
+        data-index="{{index}}"
+      >
+        <view wx:if="{{item.center}}" class="tab-item__fab-wrap">
+          <view class="tab-item__fab {{selected === index ? 'tab-item__fab--active' : ''}}">
+            <view class="tab-fab__palette"></view>
+            <view class="tab-fab__bloom" style="transform: translate(-50%, -50%) rotate({{beamDeg}}deg);"></view>
+            <view class="tab-fab__glow" style="transform: translate(-50%, -50%) rotate({{beamDeg}}deg);"></view>
+            <view class="tab-fab__ring tab-fab__ring--1"></view>
+            <view class="tab-fab__ring tab-fab__ring--2"></view>
+            <view class="tab-item__fab-inner">
+              <image class="tab-item__fab-img" src="{{item.img}}" mode="aspectFit" />
+            </view>
+          </view>
+        </view>
+        <view wx:else class="tab-item__icon">
+          <text class="tab-emoji">{{item.emoji}}</text>
+        </view>
+        <text wx:if="{{item.text}}" class="tab-text {{item.center ? 'tab-text--center' : ''}}">{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+</view>
