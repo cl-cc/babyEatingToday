@@ -27,7 +27,9 @@
     <beam-button ext-class="gen-btn" text="✨ 生成一周菜单" disabled="{{loading}}" bind:tap="onGenerate" />
 
     <view wx:if="{{loading}}" class="loading-wrap">
-      <text class="loading-emoji">📅</text>
+      <view class="loading-emoji">
+        <image class="page-header-icon" src="/image/week-icon.png" mode="aspectFit" />
+      </view>
       <text>正在规划一周食谱…</text>
     </view>
 

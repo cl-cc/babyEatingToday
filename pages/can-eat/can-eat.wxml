@@ -2,9 +2,9 @@
 <scroll-view class="scrollarea" scroll-y type="list">
   <view class="page-wrap">
     <view class="page-header">
-      <text class="page-header-emoji">
-        <image style="width: 80rpx;height: 80rpx;" src="/image/can-eat-icon.png" mode="" />
-      </text>
+      <view class="page-header-emoji">
+        <image class="page-header-icon" src="/image/can-eat-icon.png" mode="aspectFit" />
+      </view>
       <text class="page-header-title">能不能吃,如何搭配?</text>
       <text class="page-header-sub">参考 WHO / AAP 建议，放心给宝宝吃</text>
       <view class="ref-tip" bindtap="onShowRefTip">
@@ -71,6 +71,21 @@
           <text wx:else>⚠️ 谨慎尝试</text>
         </view>
         <text class="result-note">{{result.note}}</text>
+
+        <view class="sub-section chart-section">
+          <view class="chart-head">
+            <text class="sub-title chart-title">📊 喂养评估图</text>
+            <text class="chart-head__hint">AI 将结论转成直观评分</text>
+          </view>
+          <view class="chart-card">
+            <ec-canvas
+              id="can-eat-radar"
+              canvas-id="can-eat-radar"
+              ec="{{ ecRadar }}"
+              class="chart-radar"
+            ></ec-canvas>
+          </view>
+        </view>
 
         <view class="sub-section authority-section">
           <text class="sub-title">📚 权威建议</text>

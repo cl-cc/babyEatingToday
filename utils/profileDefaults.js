@@ -3,6 +3,7 @@ const DEFAULT_PROFILE = {
   gender: '',
   ageId: '8-10',
   ageMonths: 9,
+  birthDate: '',
   dislikes: [],
   fridge: [],
   allergies: [],
@@ -15,6 +16,7 @@ const PROFILE_FIELDS = [
   'gender',
   'ageId',
   'ageMonths',
+  'birthDate',
   'dislikes',
   'fridge',
   'allergies',
@@ -83,6 +85,13 @@ function normalizeProfile(data) {
 
   if (Array.isArray(data.checkInDates)) {
     base.checkInDates = data.checkInDates.map(String).filter(Boolean)
+  }
+
+  if (base.ageId === '2+') {
+    base.ageId = '2-3'
+    if (!base.ageMonths || base.ageMonths === 30) {
+      base.ageMonths = 30
+    }
   }
 
   return base

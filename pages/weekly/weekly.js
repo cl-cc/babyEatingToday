@@ -70,11 +70,19 @@ Component({
 
     disposeCharts() {
       if (this.pieChart) {
-        this.pieChart.dispose()
+        try {
+          this.pieChart.clear()
+        } catch (err) {
+          console.warn('[weekly] clear pie fail:', err)
+        }
         this.pieChart = null
       }
       if (this.barChart) {
-        this.barChart.dispose()
+        try {
+          this.barChart.clear()
+        } catch (err) {
+          console.warn('[weekly] clear bar fail:', err)
+        }
         this.barChart = null
       }
     },

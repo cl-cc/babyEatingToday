@@ -4,5 +4,7 @@
     "tab-bar": "/components/tab-bar/tab-bar",
     "beam-button": "/components/beam-button/beam-button"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "renderer": "webview",
+  "componentFramework": "exparser"
 }

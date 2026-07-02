@@ -221,7 +221,14 @@ function getCanEatResult(query, ageId) {
       message: '暂未收录该食材，建议首次少量尝试并观察过敏反应',
     }
   }
-  const rule = food.rules[ageId] || food.rules['2+'] || food.rules['1-2'] || food.rules['8-10']
+  const fallbackAgeId =
+    ageId === '2-3' ? '1-2' : ageId === '4-5' || ageId === '6-7' ? '2+' : null
+  const rule =
+    food.rules[ageId] ||
+    (fallbackAgeId && food.rules[fallbackAgeId]) ||
+    food.rules['2+'] ||
+    food.rules['1-2'] ||
+    food.rules['8-10']
   return {
     found: true,
     emoji: food.emoji,

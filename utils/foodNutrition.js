@@ -10,7 +10,9 @@ const AMOUNT_BY_AGE = {
   '8-10': { meat: '15g', veg: '20g', fruit: '20g', grain: '25g', default: '20g' },
   '10-12': { meat: '20g', veg: '25g', fruit: '25g', grain: '30g', default: '25g' },
   '1-2': { meat: '25g', veg: '30g', fruit: '30g', grain: '35g', default: '30g' },
-  '2+': { meat: '30g', veg: '35g', fruit: '35g', grain: '40g', default: '35g' },
+  '2-3': { meat: '30g', veg: '35g', fruit: '35g', grain: '40g', default: '35g' },
+  '4-5': { meat: '40g', veg: '45g', fruit: '45g', grain: '50g', default: '45g' },
+  '6-7': { meat: '50g', veg: '55g', fruit: '55g', grain: '60g', default: '55g' },
 }
 
 const RING_COLORS = {
@@ -140,14 +142,14 @@ function buildTodayNutrition(foods, data) {
 }
 
 const SUGGESTION_POOL = [
-  { leadText: '今天推荐', actionText: '尝试', emoji: '🫑', food: '青椒', ages: ['10-12', '1-2', '2+'] },
-  { leadText: '今天试试', actionText: '', emoji: '🐟', food: '三文鱼', ages: ['8-10', '10-12', '1-2', '2+'] },
-  { leadText: '今天推荐', actionText: '尝试', emoji: '🥦', food: '西兰花', ages: ['6-8', '8-10', '10-12', '1-2', '2+'] },
-  { leadText: '今天试试', actionText: '', emoji: '🍠', food: '红薯', ages: ['6-8', '8-10', '10-12', '1-2', '2+'] },
-  { leadText: '今天推荐', actionText: '尝试', emoji: '🥩', food: '牛肉', ages: ['8-10', '10-12', '1-2', '2+'] },
-  { leadText: '今天试试', actionText: '', emoji: '🥑', food: '牛油果', ages: ['6-8', '8-10', '10-12', '1-2', '2+'] },
-  { leadText: '今天推荐', actionText: '尝试', emoji: '🎃', food: '南瓜', ages: ['6-8', '8-10', '10-12', '1-2', '2+'] },
-  { leadText: '今天试试', actionText: '', emoji: '🦐', food: '虾仁', ages: ['10-12', '1-2', '2+'] },
+  { leadText: '今天推荐', actionText: '尝试', emoji: '🫑', food: '青椒', ages: ['10-12', '1-2', '2-3', '4-5', '6-7'] },
+  { leadText: '今天试试', actionText: '', emoji: '🐟', food: '三文鱼', ages: ['8-10', '10-12', '1-2', '2-3', '4-5', '6-7'] },
+  { leadText: '今天推荐', actionText: '尝试', emoji: '🥦', food: '西兰花', ages: ['6-8', '8-10', '10-12', '1-2', '2-3', '4-5', '6-7'] },
+  { leadText: '今天试试', actionText: '', emoji: '🍠', food: '红薯', ages: ['6-8', '8-10', '10-12', '1-2', '2-3', '4-5', '6-7'] },
+  { leadText: '今天推荐', actionText: '尝试', emoji: '🥩', food: '牛肉', ages: ['8-10', '10-12', '1-2', '2-3', '4-5', '6-7'] },
+  { leadText: '今天试试', actionText: '', emoji: '🥑', food: '牛油果', ages: ['6-8', '8-10', '10-12', '1-2', '2-3', '4-5', '6-7'] },
+  { leadText: '今天推荐', actionText: '尝试', emoji: '🎃', food: '南瓜', ages: ['6-8', '8-10', '10-12', '1-2', '2-3', '4-5', '6-7'] },
+  { leadText: '今天试试', actionText: '', emoji: '🦐', food: '虾仁', ages: ['10-12', '1-2', '2-3', '4-5', '6-7'] },
 ]
 
 function formatSuggestionLine({ leadText, actionText, emoji, food }) {

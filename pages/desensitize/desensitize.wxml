@@ -1,12 +1,21 @@
 <navigation-bar title="辅食排敏" back="{{false}}" color="#E85A7A" background="transparent"></navigation-bar>
 
 <view class="page-root">
-  <view class="summary-bar" wx:if="{{allergyCount || eatenCount}}">
-    <text class="summary-bar__icon">📋</text>
-    <text class="summary-bar__text" wx:if="{{eatenCount}}">已吃过 {{eatenCount}} 种</text>
-    <text class="summary-bar__sep" wx:if="{{allergyCount && eatenCount}}">·</text>
-    <text class="summary-bar__text" wx:if="{{allergyCount}}">过敏 {{allergyCount}} 种</text>
-  </view>
+  <scroll-view class="summary-strip" wx:if="{{summaryCards.length}}" scroll-x show-scrollbar="{{false}}">
+    <view
+      wx:for="{{summaryCards}}"
+      wx:key="id"
+      class="summary-card {{activeCat === item.id ? 'summary-card--active' : ''}}"
+      bindtap="onCategory"
+      data-id="{{item.id}}"
+    >
+      <view class="summary-card__head">
+        <text class="summary-card__emoji">{{item.emoji}}</text>
+        <text class="summary-card__name">{{item.name}}</text>
+      </view>
+      <text class="summary-card__count">已吃 {{item.eatenCount}} 种</text>
+    </view>
+  </scroll-view>
 
   <view class="page-body">
     <scroll-view class="sidebar" scroll-y type="list" show-scrollbar="{{false}}">

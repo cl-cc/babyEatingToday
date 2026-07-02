@@ -341,7 +341,7 @@ page {
   color: #4A9B88;
   font-weight: 600;
   line-height: 1.35;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .shop-bubble {

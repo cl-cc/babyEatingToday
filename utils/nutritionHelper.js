@@ -19,10 +19,20 @@ const AGE_SEASONING_HINTS = {
     { name: '糖', amount: '极少量，约1克' },
     { name: '酱油', amount: '半勺，约3ml' },
   ],
-  '2+': [
+  '2-3': [
     { name: '盐', amount: '少许，约1克' },
+    { name: '糖', amount: '半茶匙以内，约1.5克' },
+    { name: '酱油', amount: '1勺以内，约4ml' },
+  ],
+  '4-5': [
+    { name: '盐', amount: '少许，约1.5克' },
     { name: '糖', amount: '半茶匙，约2克' },
     { name: '酱油', amount: '1勺，约5ml' },
+  ],
+  '6-7': [
+    { name: '盐', amount: '约2克以内' },
+    { name: '糖', amount: '半茶匙到1茶匙，约2-3克' },
+    { name: '酱油', amount: '1勺到1.5勺，约5-8ml' },
   ],
 }
 
@@ -71,6 +81,74 @@ function normalizeSeasonings(seasonings) {
     }))
 }
 
+function normalizeStringList(list) {
+  if (!Array.isArray(list)) return []
+  return list.map((item) => String(item).trim()).filter(Boolean)
+}
+
+function estimateCookMinutes(foods, seasonings) {
+  const list = foods || []
+  let minutes = 8
+
+  list.forEach((food) => {
+    const name = String(food.name || '')
+    if (/蒸蛋|蛋羹|炖/.test(name)) minutes += 6
+    else if (/牛肉|羊肉|排骨|鸡腿/.test(name)) minutes += 8
+    else if (/鱼|虾|鸡蛋|豆腐/.test(name)) minutes += 4
+    else if (/粥|面|馄饨|意面|米饭/.test(name)) minutes += 5
+    else minutes += 3
+  })
+
+  minutes += Math.min(4, (seasonings || []).length)
+  return Math.max(10, Math.min(35, Math.round(minutes)))
+}
+
+function estimateIngredientPrice(foods, seasonings) {
+  const priceMap = [
+    [/三文鱼|鳕鱼|虾|牛肉/, 9],
+    [/鸡肉|猪肉|羊肉|鱼|排骨/, 7],
+    [/鸡蛋|牛奶|酸奶|奶酪/, 4],
+    [/豆腐|豆类/, 3],
+    [/西兰花|菠菜|芦笋|菌|菇/, 3],
+    [/苹果|香蕉|猕猴桃|蓝莓|草莓|芒果/, 4],
+    [/米|面|粥|燕麦|土豆|红薯|南瓜/, 2],
+  ]
+
+  let total = 0
+  ;(foods || []).forEach((food) => {
+    const name = String(food.name || '')
+    let matched = 2.5
+    priceMap.some(([reg, value]) => {
+      if (reg.test(name)) {
+        matched = value
+        return true
+      }
+      return false
+    })
+    total += matched
+  })
+
+  total += Math.min(3, (seasonings || []).length * 0.6)
+  return Math.max(6, Math.round(total))
+}
+
+function buildTodayMethods(foods, ageId) {
+  const names = (foods || []).map((item) => String(item.name || '').trim()).filter(Boolean)
+  const joined = names.join('、')
+  const isSmallAge = ageId === '6-8' || ageId === '8-10'
+  const baseTexture = isSmallAge ? '压成细腻泥状或小颗粒' : '切碎做成软烂小块'
+
+  const protein = names.find((name) => /牛|猪|鸡|鱼|虾|蛋|豆腐/.test(name)) || names[0] || '主食材'
+  const vegs = names.filter((name) => /菜|萝卜|西兰花|南瓜|土豆|菠菜|番茄|玉米/.test(name))
+  const vegText = vegs.length ? vegs.join('、') : '配菜'
+
+  return [
+    `${protein}${isSmallAge ? '蒸熟后剁碎' : '焯熟后切碎'}，${vegText}处理干净后一并备好。`,
+    `${joined}加入少量清水${isSmallAge ? '蒸熟或炖软' : '翻炒后加水焖软'}，全程少油少盐。`,
+    `出锅前加入调料，整体${baseTexture}，放温后再给宝宝食用。`,
+  ]
+}
+
 function normalizeTodayRecommend(data, ageId) {
   const age = ageId || data.ageId || '8-10'
   const foods = enrichTodayFoods(data.foods || [], age)
@@ -83,18 +161,31 @@ function normalizeTodayRecommend(data, ageId) {
   return {
     foods,
     seasonings,
+    methods: normalizeStringList(data.methods).length
+      ? normalizeStringList(data.methods)
+      : buildTodayMethods(foods, age),
     mealTags: aggregateMealTags(foods),
     nutritionRings,
     tip: data.tip || '',
+    cookTimeText:
+      String(data.cookTimeText || data.cookTime || '').trim() ||
+      `约${estimateCookMinutes(foods, seasonings)}分钟`,
+    priceText:
+      String(data.priceText || data.estimatedPrice || '').trim() ||
+      `约${estimateIngredientPrice(foods, seasonings)}元`,
   }
 }
 
 function normalizeMeal(meal) {
-  const foods = enrichFoods(meal.foods || meal)
+  const ageId = meal.ageId || '8-10'
+  const foods = enrichTodayFoods(meal.foods || meal, ageId)
   return {
     foods,
     seasonings: normalizeSeasonings(meal.seasonings),
-    totalCalories: Number(meal.totalCalories) || calcTotalCalories(foods),
+    mealTags: normalizePairings(meal.mealTags || []).map((item) => ({
+      emoji: item.emoji,
+      label: item.name,
+    })).filter((item) => item.label),
   }
 }
 
@@ -104,13 +195,13 @@ function normalizeRandomMenu(data) {
   keys.forEach((key) => {
     const raw = data[key]
     if (!raw) {
-      result[key] = { foods: [], seasonings: [], totalCalories: 0 }
+      result[key] = { foods: [], seasonings: [], mealTags: [] }
       return
     }
     if (Array.isArray(raw)) {
-      result[key] = normalizeMeal({ foods: raw })
+      result[key] = normalizeMeal({ foods: raw, ageId: data.ageId })
     } else {
-      result[key] = normalizeMeal(raw)
+      result[key] = normalizeMeal(Object.assign({ ageId: data.ageId }, raw))
     }
   })
   return result
@@ -174,18 +265,15 @@ function normalizePairings(pairings) {
     .filter((item) => item.name)
 }
 
-function normalizeStringList(list) {
-  if (!Array.isArray(list)) return []
-  return list.map((item) => String(item).trim()).filter(Boolean)
-}
-
 function getAgeLabelForAdvice(ageId) {
   const map = {
     '6-8': '6-8个月',
     '8-10': '8-10个月',
     '10-12': '10-12个月',
     '1-2': '1-2岁',
-    '2+': '2岁以上',
+    '2-3': '2-3岁',
+    '4-5': '4-5岁',
+    '6-7': '6-7岁',
   }
   return map[ageId] || '该月龄'
 }

@@ -24,6 +24,16 @@ const EMPTY_TIPS = {
   uneaten: '该分类已全部吃过',
 }
 
+const CATEGORY_EMOJIS = {
+  grain: '🍚',
+  veg: '🥬',
+  fruit: '🍇',
+  meat: '🥩',
+  seafood: '🦐',
+  egg_dairy: '🥚',
+  bean: '🫘',
+}
+
 const GROUP_COLORS = ['#FF8FAB', '#FFB088', '#5ECFB8', '#B8E986', '#D4B8E8']
 
 const RISK_LABELS = {
@@ -88,6 +98,7 @@ Component({
     filters: FILTERS,
     activeCat: 'grain',
     activeFilter: 'all',
+    summaryCards: [],
     foods: [],
     emptyTip: '',
     allergyCount: 0,
@@ -148,6 +159,18 @@ Component({
         eatenNames
       )
       this.setData({
+        summaryCards: this.data.categories.map((category) => {
+          const count = eatenNames.filter((name) => {
+            const food = findFood(name)
+            return food && food.categoryId === category.id
+          }).length
+          return {
+            id: category.id,
+            name: category.name,
+            emoji: CATEGORY_EMOJIS[category.id] || '🥗',
+            eatenCount: count,
+          }
+        }),
         foods,
         emptyTip: EMPTY_TIPS[this.data.activeFilter] || '',
         allergyCount: allergyNames.length,

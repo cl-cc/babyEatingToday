@@ -3,6 +3,8 @@
 <view class="warm-tip {{warmTipVisible ? '' : 'warm-tip--hide'}}">{{warmTipText}}</view>
 <scroll-view class="scrollarea" scroll-y type="list">
   <view class="page-wrap index-page">
+    <view class="index-bg-shape index-bg-shape--left-top"></view>
+    <view class="index-bg-shape index-bg-shape--right-bottom"></view>
     <view class="gender-section" wx:if="{{!selectedGender || showGenderPicker}}">
       <!-- <text class="section-label">宝宝性别</text> -->
       <view class="gender-row">
@@ -11,12 +13,36 @@
             <image class="gender-avatar" src="/image/man.png" mode="aspectFill" />
           </view>
           <text class="gender-label">男宝</text>
+          <view class="gender-nickname-wrap" catchtap="noop">
+            <input
+              class="gender-nickname-input"
+              type="nickname"
+              placeholder="输入男宝小名"
+              value="{{nicknameInput}}"
+              bindinput="onNicknameInput"
+              bindblur="onNicknameBlur"
+              maxlength="12"
+              confirm-type="done"
+            />
+          </view>
         </view>
         <view class="gender-card" bindtap="onSelectGender" data-gender="girl">
           <view class="gender-avatar-wrap">
             <image class="gender-avatar" src="/image/girl.png" mode="aspectFill" />
           </view>
           <text class="gender-label">女宝</text>
+          <view class="gender-nickname-wrap" catchtap="noop">
+            <input
+              class="gender-nickname-input"
+              type="nickname"
+              placeholder="输入女宝小名"
+              value="{{nicknameInput}}"
+              bindinput="onNicknameInput"
+              bindblur="onNicknameBlur"
+              maxlength="12"
+              confirm-type="done"
+            />
+          </view>
         </view>
       </view>
     </view>
@@ -38,18 +64,28 @@
       </view>
     </view>
 
-    <view class="age-check-section {{ageExpanded ? 'age-expanded' : ''}}">
+    <view class="age-check-section">
       <view class="age-check-row">
-        <view class="age-summary" bindtap="toggleAgePicker" hover-class="age-summary--pressed">
-          <view class="age-summary__main">
-            <text class="age-summary__label">年龄</text>
-            <text class="age-summary__value">{{selectedAgeLabel}}</text>
+        <picker
+          class="age-summary-picker"
+          mode="date"
+          value="{{birthDate}}"
+          start="2015-01-01"
+          end="{{birthDateEnd}}"
+          bindchange="onBirthDateChange"
+        >
+          <view class="age-summary" hover-class="age-summary--pressed">
+            <view class="age-summary__main">
+              <text class="age-summary__name">{{displayName}}</text>
+              <text class="age-summary__label">{{birthDate ? '年龄' : '生日'}}</text>
+              <text class="age-summary__value">{{birthDate ? ageMonthsText : '点击选择出生日期'}}</text>
+            </view>
+            <view class="age-summary__action">
+              <text class="age-summary__hint">{{birthDate ? '修改' : '选择'}}</text>
+              <view class="age-summary__arrow"></view>
+            </view>
           </view>
-          <view class="age-summary__action">
-            <text class="age-summary__hint">{{ageExpanded ? '收起' : '修改'}}</text>
-            <view class="age-summary__arrow {{ageExpanded ? 'age-summary__arrow--open' : ''}}"></view>
-          </view>
-        </view>
+        </picker>
 
         <view class="checkin-card {{checkedInToday ? 'checkin-card--done' : ''}} {{checkInLoading ? 'checkin-card--loading' : ''}}" bindtap="onDailyCheckIn" hover-class="{{checkedInToday ? '' : 'checkin-card--pressed'}}">
           <view class="checkin-card__confetti" wx:if="{{showCheckInConfetti}}">
@@ -57,17 +93,6 @@
           </view>
           <text class="checkin-card__status">{{checkInLoading ? '打卡中…' : (checkedInToday ? '已打卡' : '点我打卡')}}</text>
           <text class="checkin-card__count" wx:if="{{checkedInToday && checkInCount > 0}}">累计 {{checkInCount}} 天</text>
-        </view>
-      </view>
-
-      <view class="age-panel" style="height: {{agePanelHeight}}px;">
-        <view class="age-row" id="ageRow" wx:if="{{ageExpanded}}">
-          <view wx:for="{{ageGroups}}" wx:key="id" class="age-chip {{selectedAge === item.id ? 'age-chip--on' : ''}}" bindtap="onSelectAge" data-id="{{item.id}}">
-            <view class="check-icon {{selectedAge === item.id ? 'check-icon--on' : ''}}">
-              <text wx:if="{{selectedAge === item.id}}">✓</text>
-            </view>
-            <text>{{item.label}}</text>
-          </view>
         </view>
       </view>
     </view>
@@ -106,6 +131,17 @@
           </view>
         </view>
 
+        <view wx:if="{{methods.length || cookTimeText}}" class="cook-section">
+          <view class="cook-section__head">
+            <text class="cook-section__title">🍳 推荐做法</text>
+            <text wx:if="{{cookTimeText}}" class="cook-section__time">⏱ {{cookTimeText}}</text>
+          </view>
+          <view class="cook-step" wx:for="{{methods}}" wx:key="*this">
+            <text class="cook-step__num">{{index + 1}}</text>
+            <text class="cook-step__text">{{item}}</text>
+          </view>
+        </view>
+
         <view class="nutri-section" wx:if="{{nutritionRings.length}}">
           <text class="nutri-section__title">本餐营养</text>
           <view class="nutri-rings">
@@ -131,7 +167,19 @@
           </view>
         </view>
 
-        <text wx:if="{{tip}}" class="tip-text">💡 {{tip}}</text>
+        <view wx:if="{{priceText || tip}}" class="meal-inline-info">
+          <view wx:if="{{priceText}}" class="meal-inline-info__price">
+            <text class="meal-inline-info__icon">💰</text>
+            <view class="meal-inline-info__price-body">
+              <text class="meal-inline-info__label">预计食材价格</text>
+              <text class="meal-inline-info__price-text">{{priceText}}</text>
+            </view>
+          </view>
+          <view wx:if="{{tip}}" class="meal-inline-info__tip">
+            <text class="meal-inline-info__icon meal-inline-info__icon--tip">💡</text>
+            <text class="meal-inline-info__tip-text">{{tip}}</text>
+          </view>
+        </view>
       </block>
 
       <beam-button ext-class="refresh-btn" text="🔄 换一组" variant="pink" disabled="{{loading}}" bind:tap="onRefresh" />
@@ -157,11 +205,18 @@
         <view class="meal-block" wx:for="{{mealList}}" wx:key="key">
           <view class="meal-head">
             <text class="meal-title">{{item.label}}</text>
-            <text wx:if="{{item.totalCalories}}" class="meal-total-cal">{{item.totalCalories}}大卡</text>
           </view>
           <view class="meal-food-row" wx:for="{{item.foods}}" wx:for-item="food" wx:key="name">
-            <text class="meal-food-name">{{food.emoji}} {{food.name}}</text>
-            <text class="meal-food-cal">{{food.calories}}大卡</text>
+            <view class="meal-food-main">
+              <text class="meal-food-name">{{food.emoji}} {{food.name}}</text>
+              <view class="meal-food-tags" wx:if="{{food.tags.length}}">
+                <text class="meal-food-tag" wx:for="{{food.tags}}" wx:for-item="tag" wx:key="label">{{tag.emoji}} {{tag.label}}</text>
+              </view>
+            </view>
+            <text class="meal-food-amount">{{food.amount}}</text>
+          </view>
+          <view class="meal-mini-tags" wx:if="{{item.mealTags.length}}">
+            <text class="meal-mini-tag" wx:for="{{item.mealTags}}" wx:key="label">{{item.emoji}} {{item.label}}</text>
           </view>
           <view wx:if="{{item.seasonings.length}}" class="seasoning-block seasoning-block--meal">
             <text class="seasoning-title">🧂 搭配调料</text>

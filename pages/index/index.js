@@ -1,4 +1,10 @@
-const { AGE_GROUPS, pickRandomSet, getAgeMonths } = require('../../utils/foodData')
+const {
+  AGE_GROUPS,
+  pickRandomSet,
+  getAgeMonths,
+  calcAgeMonths,
+  getAgeIdByMonths,
+} = require('../../utils/foodData')
 const { getProfile, saveProfile, getAllergies, getProfileReady } = require('../../utils/storage')
 const {
   isCheckedInToday,
@@ -32,16 +38,23 @@ Component({
     ageGroups: AGE_GROUPS,
     selectedAge: '8-10',
     selectedAgeLabel: '8-10个月',
-    ageExpanded: false,
-    agePanelHeight: 0,
+    displayName: '宝宝',
     selectedGender: '',
+    nicknameInput: '',
+    birthDate: '',
+    birthDateText: '',
+    ageMonthsText: '',
+    birthDateEnd: '',
     showGenderPicker: false,
     dailySuggestion: null,
     suggestionLoading: false,
     foods: [],
     seasonings: [],
+    methods: [],
     mealTags: [],
     nutritionRings: [],
+    cookTimeText: '',
+    priceText: '',
     tip: '',
     loading: false,
     randomLoading: false,
@@ -152,16 +165,60 @@ Component({
 
     applyProfileState() {
       const profile = getProfile()
-      const ageId = profile.ageId || '8-10'
+      const birthDate = profile.birthDate || ''
+      let ageId = profile.ageId || '8-10'
+      let ageMonths = 0
+      if (birthDate) {
+        ageMonths = calcAgeMonths(birthDate)
+        ageId = getAgeIdByMonths(ageMonths)
+      }
       const gender = profile.gender || ''
       this.setData({
         selectedAge: ageId,
         selectedAgeLabel: this.getAgeLabel(ageId),
         selectedGender: gender,
+        nicknameInput: profile.name || '',
+        displayName: profile.name || '宝宝',
+        birthDate,
+        birthDateText: birthDate || '',
+        ageMonthsText: birthDate ? this.formatAgeMonths(ageMonths) : '',
+        birthDateEnd: this.getTodayStr(),
         showGenderPicker: false,
         checkedInToday: isCheckedInToday(profile),
         checkInCount: getCheckInCount(profile),
       })
+    },
+
+    getTodayStr() {
+      const d = new Date()
+      const m = String(d.getMonth() + 1).padStart(2, '0')
+      const day = String(d.getDate()).padStart(2, '0')
+      return `${d.getFullYear()}-${m}-${day}`
+    },
+
+    formatAgeMonths(months) {
+      const m = Number(months) || 0
+      if (m < 12) return `${m}个月`
+      const years = Math.floor(m / 12)
+      const rest = m % 12
+      return rest ? `${years}岁${rest}个月` : `${years}岁`
+    },
+
+    onBirthDateChange(e) {
+      const birthDate = e.detail.value
+      if (!birthDate) return
+      const ageMonths = calcAgeMonths(birthDate)
+      const ageId = getAgeIdByMonths(ageMonths)
+      this.setData({
+        birthDate,
+        birthDateText: birthDate,
+        ageMonthsText: this.formatAgeMonths(ageMonths),
+        selectedAge: ageId,
+        selectedAgeLabel: this.getAgeLabel(ageId),
+      })
+      saveProfile({ birthDate, ageId, ageMonths })
+      this.showRecommendForAge(ageId)
+      this.loadDailySuggestion(ageId, true)
     },
 
     async onDailyCheckIn() {
@@ -216,42 +273,6 @@ Component({
     getAgeLabel(ageId) {
       const group = this.data.ageGroups.find((item) => item.id === ageId)
       return group ? group.label : '8-10个月'
-    },
-
-    toggleAgePicker() {
-      if (this.data.ageExpanded) {
-        this.collapseAgePicker()
-        return
-      }
-      this.expandAgePicker()
-    },
-
-    expandAgePicker() {
-      this.setData({ ageExpanded: true, agePanelHeight: 0 }, () => {
-        wx.nextTick(() => {
-          this.measureAgePanel()
-        })
-      })
-    },
-
-    measureAgePanel() {
-      this.createSelectorQuery()
-        .in(this)
-        .select('#ageRow')
-        .boundingClientRect((rect) => {
-          if (!rect || !rect.height) return
-          this.setData({ agePanelHeight: Math.ceil(rect.height) + 24 })
-        })
-        .exec()
-    },
-
-    collapseAgePicker() {
-      this.setData({ agePanelHeight: 0 })
-      if (this._ageCollapseTimer) clearTimeout(this._ageCollapseTimer)
-      this._ageCollapseTimer = setTimeout(() => {
-        this.setData({ ageExpanded: false })
-        this._ageCollapseTimer = null
-      }, 380)
     },
 
     getTabBar() {
@@ -321,8 +342,11 @@ Component({
       this.setData({
         foods: normalized.foods,
         seasonings: normalized.seasonings,
+        methods: normalized.methods || [],
         mealTags: normalized.mealTags,
         nutritionRings: normalized.nutritionRings,
+        cookTimeText: normalized.cookTimeText || '',
+        priceText: normalized.priceText || '',
         tip: normalized.tip,
         loading: false,
         hasRecommend: !!(normalized.foods && normalized.foods.length),
@@ -392,29 +416,32 @@ Component({
       this.applyRecommendData(local, ageId)
     },
 
-    onSelectAge(e) {
-      const ageId = e.currentTarget.dataset.id
-      if (ageId === this.data.selectedAge) {
-        this.collapseAgePicker()
-        return
-      }
-      this.setData({
-        selectedAge: ageId,
-        selectedAgeLabel: this.getAgeLabel(ageId),
-      })
-      saveProfile({ ageId, ageMonths: getAgeMonths(ageId) })
-      this.collapseAgePicker()
-      this.showRecommendForAge(ageId)
-      this.loadDailySuggestion(ageId, true)
-    },
-
     onSelectGender(e) {
       const gender = e.currentTarget.dataset.gender
       if (gender === this.data.selectedGender && !this.data.showGenderPicker) return
       this.setData({ selectedGender: gender, showGenderPicker: false })
-      saveProfile({ gender })
+      saveProfile({ gender, name: this.data.nicknameInput.trim() })
       this.loadDailySuggestion(this.data.selectedAge, true)
     },
+
+    onNicknameInput(e) {
+      const value = e.detail.value
+      this.setData({
+        nicknameInput: value,
+        displayName: String(value || '').trim() || '宝宝',
+      })
+    },
+
+    onNicknameBlur(e) {
+      const name = String(e.detail.value || '').trim()
+      this.setData({
+        nicknameInput: name,
+        displayName: name || '宝宝',
+      })
+      saveProfile({ name })
+    },
+
+    noop() {},
 
     onEditGender() {
       this.setData({ showGenderPicker: true })
@@ -432,7 +459,7 @@ Component({
         label: MEAL_LABELS[key],
         foods: menu[key].foods || [],
         seasonings: menu[key].seasonings || [],
-        totalCalories: menu[key].totalCalories || 0,
+        mealTags: menu[key].mealTags || [],
       }))
     },
 

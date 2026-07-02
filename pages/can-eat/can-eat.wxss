@@ -13,6 +13,38 @@ page {
   overflow-y: hidden;
 }
 
+.page-header {
+  text-align: center;
+  padding: 20rpx 0 40rpx;
+}
+
+.page-header-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12rpx;
+}
+
+.page-header-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.page-header-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 1rpx;
+}
+
+.page-header-sub {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-2);
+  margin-top: 12rpx;
+}
+
 .page-wrap--result {
   padding-top: 0;
 }
@@ -208,6 +240,42 @@ page {
   font-size: 26rpx;
   color: var(--text-2);
   margin-bottom: 20rpx;
+}
+
+.chart-section {
+  margin-top: 8rpx;
+  margin-bottom: 12rpx;
+}
+
+.chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+  margin-bottom: 12rpx;
+}
+
+.chart-title {
+  margin-bottom: 0;
+}
+
+.chart-head__hint {
+  font-size: 20rpx;
+  color: #D48BA0;
+  flex-shrink: 0;
+}
+
+.chart-card {
+  padding: 12rpx 8rpx 4rpx;
+  background: linear-gradient(160deg, #FFF8FB 0%, #FFFFFF 100%);
+  border-radius: 24rpx;
+  border: 1rpx solid #FFE3EC;
+}
+
+.chart-radar {
+  display: block;
+  width: 100%;
+  height: 480rpx;
 }
 
 .authority-section {

@@ -118,7 +118,7 @@ async function callAIJson(systemPrompt, userPrompt, options = {}) {
   return { success: true, data, fromAI: true }
 }
 
-const { getAgeLabel, getAgeMonths } = require('./foodData')
+const { getAgeLabel, getAgeMonths, calcAgeMonths } = require('./foodData')
 
 const SEASONING_JSON_GUIDE = `seasonings 数组要求（重要）：
 1. 根据本餐/所选食材智能推荐 2-6 种调料，不限于盐、糖、酱油
@@ -138,7 +138,9 @@ function getAgeSeasoningRules(ageId) {
     '8-10': '仍以原味为主，可加极少量植物油；不建议盐、糖、酱油。',
     '10-12': '可极少量盐或儿童酱油，可搭配葱姜去腥；不建议糖。',
     '1-2': '可少量盐、儿童酱油、葱姜、植物油、芝麻等，根据菜品灵活搭配，每种注明克数或勺数。',
-    '2+': '可正常少量调味，根据菜品搭配合适调料（如蚝油、香醋、番茄等），仍宜低盐低糖，注明具体用量。',
+    '2-3': '以幼儿餐为主：可少量盐、儿童酱油、葱姜、植物油等调味，口味仍宜清淡，注明具体克数或勺数。',
+    '4-5': '可参考儿童餐口味，允许少量盐、酱油、番茄、香醋等调味；避免辛辣重口，注明具体用量。',
+    '6-7': '接近学龄儿童，可做家庭餐简化版，少量盐和常见家常调味可用，但仍需控制油盐糖并注明具体用量。',
   }
   return rules[ageId] || rules['8-10']
 }
@@ -147,16 +149,23 @@ function buildBabyContext(profile, allergies) {
   const allergyNames = (allergies || []).map((a) => a.name).join('、') || '无'
   const dislikes = (profile.dislikes || []).join('、') || '无'
   const ageId = profile.ageId || '8-10'
-  const ageMonths = profile.ageMonths || getAgeMonths(ageId)
+  // 出生日期优先：用出生日期精确推算当前月龄
+  const birthMonths = profile.birthDate ? calcAgeMonths(profile.birthDate) : 0
+  const ageMonths = birthMonths || profile.ageMonths || getAgeMonths(ageId)
   const ageLabel = getAgeLabel(ageId)
+  const ageDesc =
+    ageMonths < 12
+      ? `${ageMonths}个月`
+      : `${Math.floor(ageMonths / 12)}岁${ageMonths % 12 ? (ageMonths % 12) + '个月' : ''}`
   const genderText =
     profile.gender === 'boy' ? '男宝' : profile.gender === 'girl' ? '女宝' : '未设置'
   return `孩子昵称：${profile.name || '宝宝'}
 宝宝性别：${genderText}
-当前年龄段：${ageLabel}（约${ageMonths}个月）
+当前月龄：${ageMonths}个月（${ageDesc}），所属年龄段：${ageLabel}
 过敏原：${allergyNames}
 不吃的食材：${dislikes}
-调味与质地要求：${getAgeSeasoningRules(ageId)}`
+调味与质地要求：${getAgeSeasoningRules(ageId)}
+请严格按「${ageMonths}个月」这一实际月龄来推荐食材形态、质地与用量，不要按成人或超出该月龄的标准。`
 }
 
 /** 智能搭配 */
@@ -332,16 +341,17 @@ async function todayRecommend(profile, allergies) {
 
 请为【${getAgeLabel(ageId)}】宝宝推荐今天的一餐（恰好4种食材），食材名称和形态必须符合该月龄（如小月龄用泥/糊，1岁+可用块状）。
 家长更关心推荐用量与营养特点，不要返回卡路里或评分星级。
+尽量避免总是重复「牛肉、西兰花、胡萝卜」这类常见组合；可在鱼类、鸡肉、蛋类、豆腐、南瓜、番茄、玉米、菠菜、山药、红薯、菌菇等食材中灵活变化。
 严格按以下 JSON 格式返回：
 {
   "foods": [
     {
-      "emoji": "🥩",
-      "name": "牛肉泥",
+      "emoji": "🐟",
+      "name": "鳕鱼泥",
       "amount": "25g",
       "tags": [
-        { "emoji": "🥩", "label": "高蛋白" },
-        { "emoji": "🩸", "label": "富铁" }
+        { "emoji": "🐟", "label": "优质蛋白" },
+        { "emoji": "🧠", "label": "DHA" }
       ]
     }
   ],
@@ -351,12 +361,23 @@ async function todayRecommend(profile, allergies) {
     { "label": "铁", "percent": 95 }
   ],
   "seasonings": [
-    { "name": "葱", "amount": "约2克" },
-    { "name": "植物油", "amount": "半茶匙，约2毫升" }
+    { "name": "植物油", "amount": "半茶匙，约2毫升" },
+    { "name": "姜", "amount": "1小片，去腥后取出" }
   ],
+  "methods": [
+    "鳕鱼蒸熟后去刺压碎备用",
+    "南瓜和土豆蒸软压成泥",
+    "将鳕鱼泥拌入南瓜土豆泥中，滴少量植物油后放温食用"
+  ],
+  "cookTimeText": "约15分钟",
+  "priceText": "约18元",
   "tip": "一句温馨小贴士"
 }
 ${SEASONING_JSON_GUIDE}
+补充要求：
+- methods 返回 2-4 条具体做法，能让家长看完就知道是蒸、煮、炖还是焖，步骤简洁清楚
+- cookTimeText 返回这顿辅食从准备到完成的大致耗时，如「约12分钟」「约20分钟」
+- priceText 返回本餐主要食材的大致成本，如「约12元」「约18元」
 注意：seasonings 须结合本餐推荐食材与【${getAgeLabel(ageId)}】年龄段智能搭配，不限于盐糖酱油。`
   )
 }
@@ -364,31 +385,61 @@ ${SEASONING_JSON_GUIDE}
 /** 随机一天菜单 */
 async function randomDayMenu(profile, allergies) {
   return callAIJson(
-    '你是一位专业的中国儿童营养师。每餐需标注每种食材大卡及调料用量。',
+    '你是一位专业的中国儿童营养师。每餐需标注推荐克重、营养特点和调料用量。',
     `${buildBabyContext(profile, allergies)}
 
 请随机生成一天的完整菜单，严格按以下 JSON 格式返回：
 {
   "breakfast": {
-    "foods": [{ "emoji": "🥚", "name": "鸡蛋", "calories": 70 }],
+    "foods": [
+      {
+        "emoji": "🥚",
+        "name": "鸡蛋",
+        "amount": "25g",
+        "tags": [
+          { "emoji": "🥩", "label": "高蛋白" },
+          { "emoji": "🦴", "label": "高钙" }
+        ]
+      }
+    ],
     "seasonings": [
       { "name": "亚麻籽油", "amount": "3滴，约0.5毫升" }
     ],
-    "totalCalories": 200
+    "mealTags": [
+      { "emoji": "🥩", "label": "高蛋白" },
+      { "emoji": "🦴", "label": "高钙" }
+    ]
   },
   "lunch": {
-    "foods": [{ "emoji": "🥩", "name": "牛肉", "calories": 95 }],
+    "foods": [
+      {
+        "emoji": "🥩",
+        "name": "牛肉",
+        "amount": "30g",
+        "tags": [
+          { "emoji": "🥩", "label": "高蛋白" },
+          { "emoji": "🩸", "label": "富铁" }
+        ]
+      }
+    ],
     "seasonings": [
       { "name": "姜", "amount": "1片，约2克" },
       { "name": "儿童酱油", "amount": "半勺，约3毫升" }
     ],
-    "totalCalories": 350
+    "mealTags": [
+      { "emoji": "🥩", "label": "高蛋白" },
+      { "emoji": "🩸", "label": "富铁" }
+    ]
   },
-  "dinner": { "foods": [], "seasonings": [], "totalCalories": 0 },
-  "snack": { "foods": [], "seasonings": [], "totalCalories": 0 }
+  "dinner": { "foods": [], "seasonings": [], "mealTags": [] },
+  "snack": { "foods": [], "seasonings": [], "mealTags": [] }
 }
 ${SEASONING_JSON_GUIDE}
-注意：每餐 seasonings 须结合该餐 foods 中的食材与宝宝年龄段智能搭配。`
+注意：
+- 每餐 foods 里的每种食材都要给出 amount（推荐克重）和 tags（1-2个营养特点）
+- mealTags 为本餐整体营养亮点，返回 1-3 个
+- 不要返回大卡、热量、卡路里、评分星级
+- 每餐 seasonings 须结合该餐 foods 中的食材与宝宝年龄段智能搭配。`
   )
 }
 
