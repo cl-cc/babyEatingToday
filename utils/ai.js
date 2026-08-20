@@ -21,6 +21,13 @@ function setAIConfig(config) {
   Object.assign(AI_CONFIG, config)
 }
 
+const {
+  QUOTA_TOAST,
+  isAIQuotaExceeded,
+  consumeAIQuota,
+  showAIQuotaTip,
+} = require('./aiQuota')
+
 function isAIReady() {
   return !!(AI_CONFIG.apiKey && AI_CONFIG.apiKey.startsWith('sk-'))
 }
@@ -42,6 +49,17 @@ async function callAI(messages, options = {}) {
   if (!isAIReady()) {
     return { success: false, error: 'API Key 未配置', needConfig: true }
   }
+
+  if (isAIQuotaExceeded()) {
+    showAIQuotaTip()
+    return {
+      success: false,
+      error: QUOTA_TOAST,
+      quotaExceeded: true,
+      fromAI: false,
+    }
+  }
+  consumeAIQuota()
 
   const payload = {
     model: options.model || AI_CONFIG.model,
@@ -107,7 +125,13 @@ async function callAIJson(systemPrompt, userPrompt, options = {}) {
   )
 
   if (!res.success) {
-    return { success: false, error: res.error, needConfig: res.needConfig, fromAI: false }
+    return {
+      success: false,
+      error: res.error,
+      needConfig: res.needConfig,
+      quotaExceeded: res.quotaExceeded,
+      fromAI: false,
+    }
   }
 
   const data = parseJSON(res.content)
@@ -558,6 +582,8 @@ module.exports = {
   AI_CONFIG,
   setAIConfig,
   isAIReady,
+  isAIQuotaExceeded,
+  showAIQuotaTip,
   callAI,
   smartCombine,
   fridgeMatch,

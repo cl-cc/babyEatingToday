@@ -1,7 +1,7 @@
 const { CATEGORIES, groupByCategory } = require('../../utils/ingredients')
 const { getProfile, getAllergies, getFridge, saveFridge, getProfileReady } = require('../../utils/storage')
 const { getAgeMonths } = require('../../utils/foodData')
-const { smartCombine, fridgeMatch, isAIReady } = require('../../utils/ai')
+const { smartCombine, fridgeMatch, isAIReady, isAIQuotaExceeded, showAIQuotaTip } = require('../../utils/ai')
 const { normalizeCombineResult, normalizeFridgeResult } = require('../../utils/nutritionHelper')
 const { getCombinePick, setCombinePick, getCombineFridge, setCombineFridge } = require('../../utils/aiCache')
 const { guessFoodEmoji } = require('../../utils/foodEmoji')
@@ -302,6 +302,11 @@ Component({
         return
       }
 
+      if (isAIQuotaExceeded()) {
+        showAIQuotaTip()
+        return
+      }
+
       const profile = getProfile()
       const ageId = profile.ageId || '8-10'
       const allergies = getAllergies()
@@ -319,11 +324,13 @@ Component({
       if (mode === 'fridge') saveFridge(selected)
 
       if (!res.success || !res.data) {
-        wx.showToast({
-          title: (res.error || '搭配失败').slice(0, 20),
-          icon: 'none',
-          duration: 3000,
-        })
+        if (!res.quotaExceeded) {
+          wx.showToast({
+            title: (res.error || '搭配失败').slice(0, 20),
+            icon: 'none',
+            duration: 3000,
+          })
+        }
         this.setData({ loading: false })
         return
       }

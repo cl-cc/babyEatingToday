@@ -185,6 +185,7 @@
       <beam-button ext-class="refresh-btn" text="🔄 换一组" variant="pink" disabled="{{loading}}" bind:tap="onRefresh" />
     </view>
 
+    <!--
     <view class="bubble random-bubble">
       <view class="bubble-title bubble-title--pink">🎀 随机一天菜单</view>
       <view class="cute-divider cute-divider--pink"></view>
@@ -230,6 +231,7 @@
 
       <beam-button ext-class="random-btn" text="🎲 摇一摇" variant="outline" disabled="{{randomLoading}}" bind:tap="onRandomMenu" />
     </view>
+    -->
   </view>
 </scroll-view>
 <tab-bar id="tabBar"></tab-bar>

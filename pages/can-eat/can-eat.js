@@ -1,7 +1,7 @@
 const { AGE_GROUPS, getAgeMonths } = require('../../utils/foodData')
 const { getCanEatResult } = require('../../utils/canEatData')
 const { getProfile, getAllergies, getProfileReady } = require('../../utils/storage')
-const { canEatQuery, canEatHotTags, isAIReady } = require('../../utils/ai')
+const { canEatQuery, canEatHotTags, isAIReady, isAIQuotaExceeded, showAIQuotaTip } = require('../../utils/ai')
 const { normalizeCanEatResult } = require('../../utils/nutritionHelper')
 const echarts = require('../../components/ec-canvas/echarts')
 
@@ -222,7 +222,7 @@ Component({
 
       this.setData({ hotList: DEFAULT_HOT, hotLoading: true })
 
-      if (!isAIReady()) {
+      if (!isAIReady() || isAIQuotaExceeded()) {
         this.setData({ hotLoading: false })
         return
       }
@@ -290,6 +290,17 @@ Component({
       }
       if (this.data.loading) return
 
+      const cachedResult = getCanEatQuery(this.data.selectedAge, q)
+      if (cachedResult) {
+        this.applyResult(normalizeCanEatResult(cachedResult, q, this.data.selectedAge))
+        return
+      }
+
+      if (isAIQuotaExceeded()) {
+        showAIQuotaTip()
+        return
+      }
+
       this.disposeCharts()
       this.setData({ loading: true, result: null }, () => {
         this.fetchResult(q)
@@ -317,6 +328,11 @@ Component({
         if (res.success && res.data) {
           const result = normalizeCanEatResult(res.data, q, ageId)
           setCanEatQuery(ageId, q, result)
+          this.applyResult(result)
+          return
+        }
+        if (res.quotaExceeded) {
+          const result = normalizeCanEatResult(getCanEatResult(q, ageId), q, ageId)
           this.applyResult(result)
           return
         }

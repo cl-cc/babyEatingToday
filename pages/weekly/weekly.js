@@ -1,6 +1,6 @@
 const { getProfile, getAllergies, getFridge, getProfileReady } = require('../../utils/storage')
 const { normalizeWeeklyMenu } = require('../../utils/weeklyHelper')
-const { weeklyMenu, isAIReady } = require('../../utils/ai')
+const { weeklyMenu, isAIReady, isAIQuotaExceeded, showAIQuotaTip } = require('../../utils/ai')
 const { getWeeklyMenu, setWeeklyMenu } = require('../../utils/aiCache')
 const {
   renderWeeklyPoster,
@@ -162,6 +162,11 @@ Component({
         return
       }
 
+      if (isAIQuotaExceeded()) {
+        showAIQuotaTip()
+        return
+      }
+
       const profile = getProfile()
       const allergies = getAllergies()
       const fridge = getFridge()
@@ -172,11 +177,13 @@ Component({
       const res = await weeklyMenu(profile, allergies, fridge)
 
       if (!res.success || !res.data) {
-        wx.showToast({
-          title: (res.error || '生成失败').slice(0, 20),
-          icon: 'none',
-          duration: 3000,
-        })
+        if (!res.quotaExceeded) {
+          wx.showToast({
+            title: (res.error || '生成失败').slice(0, 20),
+            icon: 'none',
+            duration: 3000,
+          })
+        }
         this.setData({ loading: false })
         return
       }

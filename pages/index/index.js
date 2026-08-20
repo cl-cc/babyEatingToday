@@ -12,7 +12,7 @@ const {
   addTodayCheckIn,
   buildConfettiBurst,
 } = require('../../utils/checkIn')
-const { todayRecommend, todaySuggestion, randomDayMenu, isAIReady } = require('../../utils/ai')
+const { todayRecommend, todaySuggestion, randomDayMenu, isAIReady, isAIQuotaExceeded, showAIQuotaTip } = require('../../utils/ai')
 const { normalizeTodayRecommend, normalizeRandomMenu } = require('../../utils/nutritionHelper')
 const { normalizeTodaySuggestion, buildLocalSuggestion } = require('../../utils/foodNutrition')
 
@@ -279,7 +279,9 @@ Component({
       return this.selectComponent('#tabBar')
     },
 
-    showAIError(error) {
+    showAIError(res) {
+      if (res && res.quotaExceeded) return
+      const error = typeof res === 'string' ? res : res && res.error
       wx.showToast({
         title: (error || 'AI 请求失败').slice(0, 20),
         icon: 'none',
@@ -314,9 +316,15 @@ Component({
 
       this.setData({ suggestionLoading: true })
 
-      if (!isAIReady()) {
+      if (!isAIReady() || isAIQuotaExceeded()) {
+        if (isAIReady() && isAIQuotaExceeded() && this.data.dailySuggestion) {
+          this.setData({ suggestionLoading: false })
+          return
+        }
         const local = this.buildLocalDailySuggestion(ageId)
-        setTodaySuggestion(ageId, gender, local)
+        if (!isAIReady()) {
+          setTodaySuggestion(ageId, gender, local)
+        }
         this.applySuggestionData(local)
         return
       }
@@ -333,7 +341,13 @@ Component({
       }
 
       const local = this.buildLocalDailySuggestion(ageId)
-      setTodaySuggestion(ageId, gender, local)
+      if (aiRes.quotaExceeded && this.data.dailySuggestion) {
+        this.setData({ suggestionLoading: false })
+        return
+      }
+      if (!aiRes.quotaExceeded) {
+        setTodaySuggestion(ageId, gender, local)
+      }
       this.applySuggestionData(local)
     },
 
@@ -397,6 +411,17 @@ Component({
         return
       }
 
+      if (isAIQuotaExceeded()) {
+        showAIQuotaTip()
+        if (this.data.hasRecommend) {
+          this.setData({ loading: false })
+          return
+        }
+        const local = this.buildLocalRecommend(ageId)
+        this.applyRecommendData(local, ageId)
+        return
+      }
+
       this.setData({ loading: true })
 
       const aiRes = await todayRecommend(
@@ -410,9 +435,15 @@ Component({
         return
       }
 
-      this.showAIError(aiRes.error)
+      this.showAIError(aiRes)
+      if (aiRes.quotaExceeded && this.data.hasRecommend) {
+        this.setData({ loading: false })
+        return
+      }
       const local = this.buildLocalRecommend(ageId)
-      setTodayRecommend(ageId, local)
+      if (!aiRes.quotaExceeded) {
+        setTodayRecommend(ageId, local)
+      }
       this.applyRecommendData(local, ageId)
     },
 
@@ -449,6 +480,10 @@ Component({
 
     onRefresh() {
       if (this.data.loading) return
+      if (isAIQuotaExceeded()) {
+        showAIQuotaTip()
+        return
+      }
       clearTodayRecommend(this.data.selectedAge)
       this.loadRecommendation(this.data.selectedAge, true)
     },
@@ -469,17 +504,21 @@ Component({
       const ageId = this.data.selectedAge
       const ageMonths = getAgeMonths(ageId)
 
-      this.setData({ randomLoading: true, mealList: [] })
-
       if (!isAIReady()) {
         wx.showToast({ title: '请先配置 API Key', icon: 'none' })
-        this.setData({ randomLoading: false })
         return
       }
 
+      if (isAIQuotaExceeded()) {
+        showAIQuotaTip()
+        return
+      }
+
+      this.setData({ randomLoading: true, mealList: [] })
+
       const res = await randomDayMenu({ ...profile, ageId, ageMonths }, allergies)
       if (!res.success || !res.data) {
-        this.showAIError(res.error)
+        this.showAIError(res)
         this.setData({ randomLoading: false })
         return
       }

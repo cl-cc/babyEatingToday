@@ -8,7 +8,7 @@ const {
   getProfileReady,
   getProfile,
 } = require('../../utils/storage')
-const { allergySymptomsQuery, isAIReady } = require('../../utils/ai')
+const { allergySymptomsQuery, isAIReady, isAIQuotaExceeded, showAIQuotaTip } = require('../../utils/ai')
 
 const FILTERS = [
   { id: 'all', label: '全部' },
@@ -224,6 +224,11 @@ Component({
         return
       }
 
+      if (isAIQuotaExceeded()) {
+        showAIQuotaTip()
+        return
+      }
+
       const queryId = Date.now()
       this._symptomQueryId = queryId
 
@@ -244,7 +249,9 @@ Component({
         if (!res.success) {
           this.setData({
             sheetSymptomLoading: false,
-            sheetSymptomError: res.error || '查询失败，请稍后重试',
+            sheetSymptomError: res.quotaExceeded
+              ? '团子今天已经帮你想满 10 次啦～明天再来查症状哦 🍡'
+              : res.error || '查询失败，请稍后重试',
           })
           return
         }
