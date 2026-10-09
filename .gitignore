@@ -1,1 +1,5 @@
-config/ai-secret.js
+.DS_Store
+miniprogram/config/ai-secret.js
+backend/.env
+backend/.env.*
+!backend/.env.example
