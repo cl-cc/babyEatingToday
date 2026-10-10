@@ -246,10 +246,43 @@ function findFood(name) {
   return Object.assign({}, item, { categoryName: getCategoryName(item.categoryId) })
 }
 
+function listFoodsFrom(foods, categoryMap, categoryId, filter, allergyNames, eatenNames) {
+  const allergic = new Set(allergyNames || [])
+  const eaten = new Set(eatenNames || [])
+  let items = (foods || []).filter((f) => f.categoryId === categoryId)
+
+  if (filter === 'uneaten') {
+    items = items.filter((f) => !eaten.has(f.name))
+  } else if (filter === 'eaten') {
+    items = items.filter((f) => eaten.has(f.name))
+  } else if (filter === 'allergic') {
+    items = items.filter((f) => allergic.has(f.name))
+  }
+
+  return items.map((f) =>
+    Object.assign({}, f, {
+      categoryName: (categoryMap && categoryMap[f.categoryId]) || getCategoryName(f.categoryId),
+      allergic: allergic.has(f.name),
+      eaten: eaten.has(f.name),
+    })
+  )
+}
+
+function findFoodFrom(foods, categoryMap, name) {
+  const item = (foods || []).find((f) => f.name === name)
+  if (!item) return null
+  return Object.assign({}, item, {
+    categoryName: (categoryMap && categoryMap[item.categoryId]) || getCategoryName(item.categoryId),
+  })
+}
+
 module.exports = {
   CATEGORIES,
   FOODS,
+  CATEGORY_MAP,
   listFoods,
   findFood,
   getCategoryName,
+  listFoodsFrom,
+  findFoodFrom,
 }

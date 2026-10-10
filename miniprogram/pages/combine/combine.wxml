@@ -14,6 +14,13 @@
       <view class="tab-switch-item {{mode === 'fridge' ? 'tab-switch-item--on' : ''}}" bindtap="setMode" data-mode="fridge">🧊 冰箱有什么</view>
     </view> -->
 
+    <view wx:if="{{catalogLoading}}" class="catalog-banner catalog-banner--loading">正在加载云端食材…</view>
+    <view wx:if="{{catalogError}}" class="catalog-banner catalog-banner--error">
+      <text>{{catalogError}}</text>
+      <text class="catalog-retry" bindtap="onRetryCatalog">重试</text>
+    </view>
+    <view wx:if="{{catalogFromCache && catalogError}}" class="catalog-banner catalog-banner--warn">以下为本地缓存，可能不是最新数据</view>
+
     <scroll-view scroll-x class="cat-scroll">
       <view wx:for="{{categories}}" wx:key="*this" class="cat-chip {{activeCategory === item ? 'cat-chip--on' : ''}}" bindtap="onCategory" data-cat="{{item}}">{{item}}</view>
     </scroll-view>
@@ -34,6 +41,10 @@
         </view>
       </view>
     </block>
+
+    <view wx:if="{{!catalogLoading && !displayGroups.length && !catalogError}}" class="catalog-empty">
+      暂无云端食材，请先在管理后台初始化或新增食材
+    </view>
 
     <view wx:if="{{customFoods.length}}" class="food-group">
       <view class="food-group__head">

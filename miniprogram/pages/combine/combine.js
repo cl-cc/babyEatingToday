@@ -1,4 +1,5 @@
 const { CATEGORIES, groupByCategory } = require('../../utils/ingredients')
+const { fetchCatalog, deriveCategories, foodsToIngredients } = require('../../utils/catalog')
 const { getProfile, getAllergies, getFridge, saveFridge, getProfileReady } = require('../../utils/storage')
 const { getAgeMonths } = require('../../utils/foodData')
 const { smartCombine, fridgeMatch, isAIReady, isAIQuotaExceeded, showAIQuotaTip } = require('../../utils/ai')
@@ -9,7 +10,7 @@ const { guessFoodEmoji } = require('../../utils/foodEmoji')
 Component({
   data: {
     mode: 'pick',
-    categories: CATEGORIES,
+    categories: ['全部'],
     activeCategory: '全部',
     displayGroups: [],
     customFoods: [],
@@ -19,6 +20,11 @@ Component({
     loading: false,
     result: null,
     fromAI: false,
+    catalogLoading: true,
+    catalogError: '',
+    catalogFromCache: false,
+    catalogIngredients: [],
+    catalogCategoryOrder: [],
   },
 
   lifetimes: {
@@ -36,13 +42,66 @@ Component({
   methods: {
     async bootstrapPage() {
       await getProfileReady()
-      this.loadModeState(this.data.mode)
       this.getTabBar()?.setSelected(1)
+      await this.loadCatalog()
     },
 
     async reloadModeState() {
       await getProfileReady()
-      this.loadModeState(this.data.mode)
+      if (!this.data.catalogLoading && this.data.catalogIngredients.length) {
+        this.loadModeState(this.data.mode)
+        return
+      }
+      await this.loadCatalog(!this.data.catalogIngredients.length)
+    },
+
+    async loadCatalog(force) {
+      this.setData({ catalogLoading: true, catalogError: '' })
+      try {
+        const catalog = await fetchCatalog({ force })
+        const cloudCategories = deriveCategories(catalog.categories, catalog.foods)
+        const ingredients = foodsToIngredients(catalog.foods, cloudCategories)
+        const categoryOrder = cloudCategories.map((item) => item.name).filter(Boolean)
+        const categories = ['全部'].concat(categoryOrder)
+        this.setData({
+          catalogLoading: false,
+          catalogError: '',
+          catalogFromCache: catalog.fromCache,
+          catalogIngredients: ingredients,
+          catalogCategoryOrder: categoryOrder,
+          categories,
+        })
+        this.loadModeState(this.data.mode)
+      } catch (error) {
+        const cached = error && error.cached
+        if (cached) {
+          const ingredients = foodsToIngredients(cached.foods, cached.categories)
+          const categoryOrder = (cached.categories || []).map((item) => item.name).filter(Boolean)
+          this.setData({
+            catalogLoading: false,
+            catalogError: (error && error.message) || '云端食材加载失败，正在显示缓存',
+            catalogFromCache: true,
+            catalogIngredients: ingredients,
+            catalogCategoryOrder: categoryOrder,
+            categories: ['全部'].concat(categoryOrder),
+          })
+          this.loadModeState(this.data.mode)
+          return
+        }
+        this.setData({
+          catalogLoading: false,
+          catalogError: (error && error.message) || '云端食材加载失败，请稍后重试',
+          catalogFromCache: false,
+          catalogIngredients: [],
+          catalogCategoryOrder: [],
+          categories: CATEGORIES,
+          displayGroups: [],
+        })
+      }
+    },
+
+    onRetryCatalog() {
+      this.loadCatalog(true)
     },
 
     getTabBar() {
@@ -80,6 +139,8 @@ Component({
       return groupByCategory(activeCategory, {
         selectedNames,
         allergyNames: allergies,
+        ingredients: this.data.catalogIngredients,
+        categoryOrder: this.data.catalogCategoryOrder,
       })
     },
 

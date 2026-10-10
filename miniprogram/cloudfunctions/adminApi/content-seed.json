@@ -1,0 +1,1177 @@
+{
+  "knowledge": [
+    {
+      "id": "know_tip_0",
+      "kind": "tip",
+      "title": "🥣 今天也要好好吃饭呀～",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_1",
+      "kind": "tip",
+      "title": "🌱 每一口，都是成长。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_2",
+      "kind": "tip",
+      "title": "💕 今天也是认真带娃的一天。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_3",
+      "kind": "tip",
+      "title": "👶 陪宝宝吃好每一餐。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_4",
+      "kind": "tip",
+      "title": "🍀 营养一点点，成长一天天。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_5",
+      "kind": "tip",
+      "title": "🥗 用心做辅食，爱在每一口。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_6",
+      "kind": "tip",
+      "title": "🌸 宝宝的笑容，是最好的回报。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_7",
+      "kind": "tip",
+      "title": "🍼 少食多餐，肠胃更舒服。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_8",
+      "kind": "tip",
+      "title": "🥕 多样食材，小小美食家。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_9",
+      "kind": "tip",
+      "title": "☀️ 新的一天，从营养早餐开始。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_10",
+      "kind": "tip",
+      "title": "🌙 好好吃晚饭，睡得香香的。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_11",
+      "kind": "tip",
+      "title": "💪 吃好喝好，才能长高高。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_12",
+      "kind": "tip",
+      "title": "🧡 慢慢来，辅食路上不着急。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_13",
+      "kind": "tip",
+      "title": "🥄 一勺一勺，都是妈妈的温柔。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_14",
+      "kind": "tip",
+      "title": "🌈 吃得多样，宝宝身体棒棒的。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_15",
+      "kind": "tip",
+      "title": "🍎 新鲜食材，给宝贝最好的。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_16",
+      "kind": "tip",
+      "title": "✨ 今天你也很棒，继续加油呀～",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_17",
+      "kind": "tip",
+      "title": "🫶 好好吃饭，就是最好的陪伴。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_tip_18",
+      "kind": "tip",
+      "title": "🍲 热乎乎的一餐，满满都是爱。",
+      "source": "首页提示",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_0",
+      "kind": "nutrition",
+      "title": "🥚 鸡蛋不用天天吃。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_1",
+      "kind": "nutrition",
+      "title": "🥦 深色蔬菜更推荐。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_2",
+      "kind": "nutrition",
+      "title": "🐟 每周建议吃 2 次鱼。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_3",
+      "kind": "nutrition",
+      "title": "🥩 红肉补铁，搭配维 C 更好吸收。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_4",
+      "kind": "nutrition",
+      "title": "🍚 1 岁前少盐少糖，原味更健康。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_5",
+      "kind": "nutrition",
+      "title": "🥛 1 岁前不宜用鲜奶替代配方奶。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_6",
+      "kind": "nutrition",
+      "title": "🍠 粗粮要煮烂，小月龄宜细软。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_7",
+      "kind": "nutrition",
+      "title": "🥜 坚果要磨粉，勿整颗喂食。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_8",
+      "kind": "nutrition",
+      "title": "🍯 1 岁前请勿食用蜂蜜。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_9",
+      "kind": "nutrition",
+      "title": "🥬 新食材一次一种，观察 3-5 天。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_10",
+      "kind": "nutrition",
+      "title": "🍖 肉类先去筋膜，纤维细更好吞咽。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_11",
+      "kind": "nutrition",
+      "title": "🥕 根茎类宜蒸熟压泥，更易消化。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_12",
+      "kind": "nutrition",
+      "title": "🍊 果汁不如整果，营养更全面。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_13",
+      "kind": "nutrition",
+      "title": "🦐 海鲜首次少量，白天添加好观察。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_14",
+      "kind": "nutrition",
+      "title": "🧀 奶制品补钙，辅食里也能适量加。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_15",
+      "kind": "nutrition",
+      "title": "🫘 豆类提前浸泡，一定要煮透。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_16",
+      "kind": "nutrition",
+      "title": "🍲 辅食性状宜比月龄略细一点。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_17",
+      "kind": "nutrition",
+      "title": "🥗 每餐有菜有肉有主食，更均衡。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_18",
+      "kind": "nutrition",
+      "title": "💧 饭后适量饮水，别影响吃奶量。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_19",
+      "kind": "nutrition",
+      "title": "🌾 全麦谷物含纤维，有助宝宝排便。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_20",
+      "kind": "nutrition",
+      "title": "🥩 猪肝富铁，但不宜频繁大量食用。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_21",
+      "kind": "nutrition",
+      "title": "🍌 香蕉熟透了更软糯，适合小月龄。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_22",
+      "kind": "nutrition",
+      "title": "🥔 土豆淀粉高，可当部分主食替代。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_nutrition_23",
+      "kind": "nutrition",
+      "title": "🐔 鸡肉蛋白质高，是辅食入门好选择。",
+      "source": "营养知识",
+      "content": "",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_suggestion_0",
+      "kind": "suggestion",
+      "title": "青椒",
+      "source": "首页建议",
+      "content": "{\"leadText\":\"今天推荐\",\"actionText\":\"尝试\"}",
+      "emoji": "🫑",
+      "ageRange": "10-12,1-2,2-3,4-5,6-7",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_suggestion_1",
+      "kind": "suggestion",
+      "title": "三文鱼",
+      "source": "首页建议",
+      "content": "{\"leadText\":\"今天试试\",\"actionText\":\"\"}",
+      "emoji": "🐟",
+      "ageRange": "8-10,10-12,1-2,2-3,4-5,6-7",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_suggestion_2",
+      "kind": "suggestion",
+      "title": "西兰花",
+      "source": "首页建议",
+      "content": "{\"leadText\":\"今天推荐\",\"actionText\":\"尝试\"}",
+      "emoji": "🥦",
+      "ageRange": "6-8,8-10,10-12,1-2,2-3,4-5,6-7",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_suggestion_3",
+      "kind": "suggestion",
+      "title": "红薯",
+      "source": "首页建议",
+      "content": "{\"leadText\":\"今天试试\",\"actionText\":\"\"}",
+      "emoji": "🍠",
+      "ageRange": "6-8,8-10,10-12,1-2,2-3,4-5,6-7",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_suggestion_4",
+      "kind": "suggestion",
+      "title": "牛肉",
+      "source": "首页建议",
+      "content": "{\"leadText\":\"今天推荐\",\"actionText\":\"尝试\"}",
+      "emoji": "🥩",
+      "ageRange": "8-10,10-12,1-2,2-3,4-5,6-7",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_suggestion_5",
+      "kind": "suggestion",
+      "title": "牛油果",
+      "source": "首页建议",
+      "content": "{\"leadText\":\"今天试试\",\"actionText\":\"\"}",
+      "emoji": "🥑",
+      "ageRange": "6-8,8-10,10-12,1-2,2-3,4-5,6-7",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_suggestion_6",
+      "kind": "suggestion",
+      "title": "南瓜",
+      "source": "首页建议",
+      "content": "{\"leadText\":\"今天推荐\",\"actionText\":\"尝试\"}",
+      "emoji": "🎃",
+      "ageRange": "6-8,8-10,10-12,1-2,2-3,4-5,6-7",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_suggestion_7",
+      "kind": "suggestion",
+      "title": "虾仁",
+      "source": "首页建议",
+      "content": "{\"leadText\":\"今天试试\",\"actionText\":\"\"}",
+      "emoji": "🦐",
+      "ageRange": "10-12,1-2,2-3,4-5,6-7",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_hot_0",
+      "kind": "hot",
+      "title": "虾",
+      "source": "海鲜",
+      "content": "",
+      "emoji": "🦐",
+      "ageRange": "",
+      "extra": "海鲜",
+      "enabled": true
+    },
+    {
+      "id": "know_hot_1",
+      "kind": "hot",
+      "title": "蜂蜜",
+      "source": "调味",
+      "content": "",
+      "emoji": "🍯",
+      "ageRange": "",
+      "extra": "调味",
+      "enabled": true
+    },
+    {
+      "id": "know_hot_2",
+      "kind": "hot",
+      "title": "鸡蛋",
+      "source": "蛋奶",
+      "content": "",
+      "emoji": "🥚",
+      "ageRange": "",
+      "extra": "蛋奶",
+      "enabled": true
+    },
+    {
+      "id": "know_hot_3",
+      "kind": "hot",
+      "title": "牛奶",
+      "source": "蛋奶",
+      "content": "",
+      "emoji": "🥛",
+      "ageRange": "",
+      "extra": "蛋奶",
+      "enabled": true
+    },
+    {
+      "id": "know_hot_4",
+      "kind": "hot",
+      "title": "坚果",
+      "source": "其他",
+      "content": "",
+      "emoji": "🥜",
+      "ageRange": "",
+      "extra": "其他",
+      "enabled": true
+    },
+    {
+      "id": "know_hot_5",
+      "kind": "hot",
+      "title": "芒果",
+      "source": "水果",
+      "content": "",
+      "emoji": "🥭",
+      "ageRange": "",
+      "extra": "水果",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_0",
+      "kind": "can-eat",
+      "title": "虾",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":false,\"note\":\"6-8个月不建议，易引起过敏\",\"recommend\":[],\"avoid\":[\"所有海鲜\"]},\"8-10\":{\"can\":\"caution\",\"note\":\"可少量尝试，需观察过敏\",\"pairings\":[\"西兰花\",\"胡萝卜\",\"软米饭\"],\"seasonings\":[{\"name\":\"姜\",\"amount\":\"1片，约2克\"},{\"name\":\"植物油\",\"amount\":\"半茶匙，约2毫升\"}],\"methods\":[\"虾仁蒸熟剁成泥\",\"虾仁蔬菜软粥\"],\"avoid\":[\"整颗虾仁\",\"油炸\"]},\"10-12\":{\"can\":true,\"note\":\"可以尝试\",\"pairings\":[\"西兰花\",\"番茄\",\"米饭\"],\"seasonings\":[{\"name\":\"葱\",\"amount\":\"约2克\"},{\"name\":\"儿童酱油\",\"amount\":\"3滴，约0.5毫升\"}],\"methods\":[\"清蒸虾仁剁碎\",\"虾仁蛋羹\"],\"avoid\":[\"油炸\",\"整颗虾仁\"]},\"1-2\":{\"can\":true,\"note\":\"一岁以上可以适量吃\",\"pairings\":[\"西兰花\",\"玉米\",\"米饭\"],\"seasonings\":[{\"name\":\"姜\",\"amount\":\"1片，约2克\"},{\"name\":\"儿童酱油\",\"amount\":\"半勺，约3毫升\"}],\"methods\":[\"清炒虾仁\",\"虾仁蔬菜饭\"],\"avoid\":[\"油炸\",\"过量\"]}}",
+      "emoji": "🦐",
+      "ageRange": "",
+      "extra": "虾,虾仁,海鲜,螃蟹,贝类",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_1",
+      "kind": "can-eat",
+      "title": "蜂蜜",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":false,\"note\":\"一岁以内不建议，可能含肉毒杆菌\",\"recommend\":[],\"avoid\":[\"任何蜂蜜制品\"]},\"8-10\":{\"can\":false,\"note\":\"一岁以内不建议\",\"recommend\":[],\"avoid\":[\"任何蜂蜜制品\"]},\"10-12\":{\"can\":false,\"note\":\"一岁以内不建议\",\"recommend\":[],\"avoid\":[\"任何蜂蜜制品\"]},\"1-2\":{\"can\":true,\"note\":\"一岁以上可少量食用\",\"recommend\":[\"少量添加\"],\"avoid\":[\"过量\"]}}",
+      "emoji": "🍯",
+      "ageRange": "",
+      "extra": "蜂蜜",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_2",
+      "kind": "can-eat",
+      "title": "鸡蛋",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":\"caution\",\"note\":\"可先尝试蛋黄，观察过敏\",\"recommend\":[\"蛋黄泥\"],\"avoid\":[\"蛋白\",\"溏心蛋\"]},\"8-10\":{\"can\":true,\"note\":\"可尝试全蛋\",\"pairings\":[\"西兰花\",\"番茄\",\"软米饭\"],\"seasonings\":[{\"name\":\"亚麻籽油\",\"amount\":\"3滴，约0.5毫升\"}],\"methods\":[\"蒸蛋羹\",\"蛋黄泥拌粥\"],\"avoid\":[\"溏心蛋\",\"油炸\"]},\"10-12\":{\"can\":true,\"note\":\"可以吃\",\"pairings\":[\"青菜\",\"胡萝卜\",\"面条\"],\"seasonings\":[{\"name\":\"葱\",\"amount\":\"约2克\"},{\"name\":\"植物油\",\"amount\":\"半茶匙，约2毫升\"}],\"methods\":[\"水煮蛋碾碎\",\"蔬菜蛋花面\"],\"avoid\":[\"生蛋\",\"溏心\"]},\"1-2\":{\"can\":true,\"note\":\"完全可以\",\"pairings\":[\"番茄\",\"青菜\",\"米饭\"],\"seasonings\":[{\"name\":\"儿童酱油\",\"amount\":\"半勺，约3毫升\"},{\"name\":\"葱\",\"amount\":\"约3克\"}],\"methods\":[\"番茄炒蛋\",\"蒸蛋羹配饭\"],\"avoid\":[\"生蛋\"]}}",
+      "emoji": "🥚",
+      "ageRange": "",
+      "extra": "鸡蛋,蛋,蛋黄,蛋白",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_3",
+      "kind": "can-eat",
+      "title": "牛奶",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":false,\"note\":\"12个月前不建议喝鲜奶\",\"recommend\":[\"母乳或配方奶\"],\"avoid\":[\"纯牛奶\"]},\"8-10\":{\"can\":false,\"note\":\"12个月前不建议\",\"recommend\":[\"配方奶\"],\"avoid\":[\"纯牛奶\"]},\"10-12\":{\"can\":\"caution\",\"note\":\"接近1岁可少量尝试\",\"recommend\":[\"少量加温奶\"],\"avoid\":[\"大量饮用\"]},\"1-2\":{\"can\":true,\"note\":\"一岁以上可以喝\",\"recommend\":[\"温牛奶\",\"酸奶\"],\"avoid\":[\"冰牛奶过量\"]}}",
+      "emoji": "🥛",
+      "ageRange": "",
+      "extra": "牛奶,鲜奶",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_4",
+      "kind": "can-eat",
+      "title": "盐/调味品",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":false,\"note\":\"1岁前不建议额外加盐\",\"recommend\":[\"天然食材味道\"],\"avoid\":[\"盐\",\"酱油\",\"味精\"]},\"8-10\":{\"can\":false,\"note\":\"仍不建议加盐\",\"recommend\":[\"少油少盐\"],\"avoid\":[\"重口味调味\"]},\"10-12\":{\"can\":\"caution\",\"note\":\"可极少量\",\"recommend\":[\"清淡口味\"],\"avoid\":[\"重盐重油\"]},\"1-2\":{\"can\":true,\"note\":\"可少量调味\",\"recommend\":[\"少盐少糖\"],\"avoid\":[\"重口味\"]}}",
+      "emoji": "🧂",
+      "ageRange": "",
+      "extra": "盐,酱油,调味",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_5",
+      "kind": "can-eat",
+      "title": "坚果",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":false,\"note\":\"整颗坚果有窒息风险\",\"recommend\":[],\"avoid\":[\"整颗坚果\"]},\"8-10\":{\"can\":\"caution\",\"note\":\"可花生酱形式少量尝试\",\"recommend\":[\"花生酱（无颗粒）\"],\"avoid\":[\"整颗\",\"碎粒\"]},\"10-12\":{\"can\":\"caution\",\"note\":\"需磨碎或酱状\",\"recommend\":[\"坚果粉\",\"坚果酱\"],\"avoid\":[\"整颗\"]},\"1-2\":{\"can\":true,\"note\":\"可吃但需切碎\",\"recommend\":[\"磨碎\",\"坚果酱\"],\"avoid\":[\"整颗\"]}}",
+      "emoji": "🥜",
+      "ageRange": "",
+      "extra": "花生,坚果,核桃,杏仁",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_6",
+      "kind": "can-eat",
+      "title": "猕猴桃",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":true,\"note\":\"可作为水果引入\",\"recommend\":[\"果泥\"],\"avoid\":[\"整颗\",\"未熟\"]},\"8-10\":{\"can\":true,\"note\":\"可以吃\",\"recommend\":[\"果泥\",\"小块\"],\"avoid\":[\"未熟\",\"过量\"]},\"10-12\":{\"can\":true,\"note\":\"可以吃\",\"recommend\":[\"切块\",\"果泥\"],\"avoid\":[\"未熟\"]},\"1-2\":{\"can\":true,\"note\":\"完全可以\",\"recommend\":[\"鲜食\",\"果泥\"],\"avoid\":[\"未熟\"]}}",
+      "emoji": "🥝",
+      "ageRange": "",
+      "extra": "猕猴桃,奇异果",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_7",
+      "kind": "can-eat",
+      "title": "芒果",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":\"caution\",\"note\":\"易过敏，首次少量尝试\",\"recommend\":[\"芒果泥\"],\"avoid\":[\"大量\",\"未熟\"]},\"8-10\":{\"can\":true,\"note\":\"可尝试，观察过敏\",\"recommend\":[\"果泥\",\"小块\"],\"avoid\":[\"过量\"]},\"10-12\":{\"can\":true,\"note\":\"可以吃\",\"recommend\":[\"鲜食\",\"果泥\"],\"avoid\":[\"未熟\"]},\"1-2\":{\"can\":true,\"note\":\"完全可以\",\"recommend\":[\"鲜食\"],\"avoid\":[\"未熟\"]}}",
+      "emoji": "🥭",
+      "ageRange": "",
+      "extra": "芒果",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_8",
+      "kind": "can-eat",
+      "title": "菠菜",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":true,\"note\":\"焯水后食用，去草酸\",\"recommend\":[\"菠菜泥\"],\"avoid\":[\"生食\",\"未焯水\"]},\"8-10\":{\"can\":true,\"note\":\"焯水后食用\",\"recommend\":[\"碎菜\",\"菜泥\"],\"avoid\":[\"生食\"]},\"10-12\":{\"can\":true,\"note\":\"可以吃\",\"recommend\":[\"焯水炒\",\"煮汤\"],\"avoid\":[\"生食\"]},\"1-2\":{\"can\":true,\"note\":\"完全可以\",\"recommend\":[\"炒\",\"汤\",\"馅\"],\"avoid\":[\"生食\"]}}",
+      "emoji": "🥬",
+      "ageRange": "",
+      "extra": "菠菜",
+      "enabled": true
+    },
+    {
+      "id": "know_caneat_9",
+      "kind": "can-eat",
+      "title": "牛肉",
+      "source": "能不能吃",
+      "content": "{\"6-8\":{\"can\":true,\"note\":\"优质铁来源，推荐引入\",\"recommend\":[\"牛肉泥\",\"肉末\"],\"avoid\":[\"大块\",\"油炸\"]},\"8-10\":{\"can\":true,\"note\":\"可以吃\",\"pairings\":[\"西兰花\",\"胡萝卜\",\"土豆\"],\"seasonings\":[{\"name\":\"姜\",\"amount\":\"1片，约2克\"},{\"name\":\"植物油\",\"amount\":\"1茶匙，约5毫升\"}],\"methods\":[\"牛肉末蒸蛋\",\"牛肉蔬菜粥\"],\"avoid\":[\"大块\"]},\"10-12\":{\"can\":true,\"note\":\"可以吃\",\"pairings\":[\"番茄\",\"土豆\",\"米饭\"],\"seasonings\":[{\"name\":\"葱\",\"amount\":\"约2克\"},{\"name\":\"儿童酱油\",\"amount\":\"3滴，约0.5毫升\"}],\"methods\":[\"番茄牛肉碎\",\"牛肉软饭\"],\"avoid\":[\"油炸\"]},\"1-2\":{\"can\":true,\"note\":\"完全可以\",\"pairings\":[\"西兰花\",\"番茄\",\"米饭\"],\"seasonings\":[{\"name\":\"姜\",\"amount\":\"1片，约2克\"},{\"name\":\"儿童酱油\",\"amount\":\"半勺，约3毫升\"}],\"methods\":[\"番茄炖牛肉\",\"牛肉蔬菜烩饭\"],\"avoid\":[\"油炸\"]}}",
+      "emoji": "🥩",
+      "ageRange": "",
+      "extra": "牛肉",
+      "enabled": true
+    },
+    {
+      "id": "know_tag_0",
+      "kind": "tag",
+      "title": "高蛋白",
+      "source": "营养标签",
+      "content": "",
+      "emoji": "🥩",
+      "ageRange": "",
+      "extra": "牛肉,羊肉,猪肉,鸡肉,鸭肉,鱼,虾,蟹,蛋,豆腐,鳕鱼,三文鱼,带鱼",
+      "enabled": true
+    },
+    {
+      "id": "know_tag_1",
+      "kind": "tag",
+      "title": "高纤维",
+      "source": "营养标签",
+      "content": "",
+      "emoji": "🥦",
+      "ageRange": "",
+      "extra": "西兰花,菠菜,青菜,芹菜,燕麦,玉米,红薯,苹果,香蕉,猕猴桃,蓝莓",
+      "enabled": true
+    },
+    {
+      "id": "know_tag_2",
+      "kind": "tag",
+      "title": "高钙",
+      "source": "营养标签",
+      "content": "",
+      "emoji": "🦴",
+      "ageRange": "",
+      "extra": "牛奶,酸奶,奶酪,豆腐,虾皮,芝麻",
+      "enabled": true
+    },
+    {
+      "id": "know_tag_3",
+      "kind": "tag",
+      "title": "富铁",
+      "source": "营养标签",
+      "content": "",
+      "emoji": "🩸",
+      "ageRange": "",
+      "extra": "牛肉,猪肝,菠菜,红枣,蛋黄,黑木耳",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_honey",
+      "kind": "authority",
+      "title": "蜂蜜",
+      "source": "WHO/AAP",
+      "content": "{\"whoAdvice\":\"WHO 建议：12 个月以前不要给婴儿喂食蜂蜜，避免肉毒杆菌孢子带来的风险。\",\"aapAdvice\":\"AAP 建议：1 岁前避免蜂蜜及添加糖食品，此阶段以母乳或配方奶为主。\"}",
+      "emoji": "🍯",
+      "ageRange": "",
+      "extra": "蜂蜜",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_milk",
+      "kind": "authority",
+      "title": "牛奶",
+      "source": "WHO/AAP",
+      "content": "{\"whoAdvice\":\"WHO 建议：12 个月前以母乳或配方奶为主，不建议用鲜奶替代奶类主食。\",\"aapAdvice\":\"AAP 建议：满 1 岁后可引入牛奶，此前可在辅食中逐步尝试奶制品如酸奶。\"}",
+      "emoji": "🥛",
+      "ageRange": "",
+      "extra": "牛奶,鲜奶",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_seafood_no",
+      "kind": "authority",
+      "title": "海鲜-不建议",
+      "source": "WHO/AAP",
+      "content": "{\"can\":false,\"whoAdvice\":\"WHO 建议：${age}辅食应安全引入，高敏海鲜类宜在医生指导下延后添加。\",\"aapAdvice\":\"AAP 建议：常见过敏原如鱼虾需单独、少量尝试，并观察皮疹、呕吐等反应。\"}",
+      "emoji": "🦐",
+      "ageRange": "",
+      "extra": "虾,蟹,海鲜,贝,鱼",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_seafood",
+      "kind": "authority",
+      "title": "海鲜",
+      "source": "WHO/AAP",
+      "content": "{\"whoAdvice\":\"WHO 建议：${age}可逐步引入动物性食物，鱼虾需充分煮熟、质地细腻。\",\"aapAdvice\":\"AAP 建议：首次添加鱼虾应少量、单独进行，出现过敏症状需立即停止并就医。\"}",
+      "emoji": "🦐",
+      "ageRange": "",
+      "extra": "虾,蟹,海鲜,贝,鱼",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_egg",
+      "kind": "authority",
+      "title": "鸡蛋",
+      "source": "WHO/AAP",
+      "content": "{\"whoAdvice\":\"WHO 建议：${age}可将蛋类作为优质蛋白来源，从蛋黄或全蛋泥状开始引入。\",\"aapAdvice\":\"AAP 建议：鸡蛋是常见过敏原，首次添加需观察；确保完全煮熟，避免生蛋或溏心。\"}",
+      "emoji": "🥚",
+      "ageRange": "",
+      "extra": "鸡蛋,蛋",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_nut",
+      "kind": "authority",
+      "title": "坚果",
+      "source": "WHO/AAP",
+      "content": "{\"whoAdvice\":\"WHO 建议：${age}坚果类应磨粉或酱状添加，严禁整颗喂食以防窒息。\",\"aapAdvice\":\"AAP 建议：坚果是高敏食物且窒息风险高，仅提供细腻酱状或粉末，并密切看护进食。\"}",
+      "emoji": "🥜",
+      "ageRange": "",
+      "extra": "坚果,花生,核桃,杏仁",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_salt",
+      "kind": "authority",
+      "title": "盐/调味",
+      "source": "WHO/AAP",
+      "content": "{\"whoAdvice\":\"WHO 建议：12 个月前辅食不应额外加盐，避免养成重口味并保护肾脏。\",\"aapAdvice\":\"AAP 建议：1 岁前避免额外钠盐；之后也应少盐少糖，优先食材本味。\"}",
+      "emoji": "🧂",
+      "ageRange": "",
+      "extra": "盐,酱油,调味",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_default_no",
+      "kind": "authority",
+      "title": "默认-不建议",
+      "source": "WHO/AAP",
+      "content": "{\"can\":false,\"whoAdvice\":\"WHO 建议：${age}辅食应安全、足量、多样，当前月龄暂不建议引入该食材。\",\"aapAdvice\":\"AAP 建议：遵循分龄引入原则，不宜食用的食材应延后至推荐月龄再尝试。\"}",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_default_caution",
+      "kind": "authority",
+      "title": "默认-谨慎",
+      "source": "WHO/AAP",
+      "content": "{\"can\":\"caution\",\"whoAdvice\":\"WHO 建议：${age}添加新食材应一种一种进行，从少量泥状开始，连续观察 3-5 天。\",\"aapAdvice\":\"AAP 建议：谨慎尝试的食材宜在白天少量添加，留意皮疹、腹泻、呕吐等过敏信号。\"}",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    },
+    {
+      "id": "know_auth_default_yes",
+      "kind": "authority",
+      "title": "默认-可以",
+      "source": "WHO/AAP",
+      "content": "{\"can\":true,\"whoAdvice\":\"WHO 建议：${age}饮食应多样均衡、少盐少糖，优先天然食材与家庭自制辅食。\",\"aapAdvice\":\"AAP 建议：${age}可适量引入该食材，注意质地适合吞咽，避免整颗硬粒以防窒息。\"}",
+      "emoji": "",
+      "ageRange": "",
+      "extra": "",
+      "enabled": true
+    }
+  ],
+  "recipes": [
+    {
+      "id": "recipe_6_8_0",
+      "name": "牛肉泥 + 西兰花泥 + 米糊 + 蛋黄泥",
+      "mealType": "推荐套餐",
+      "ageRange": "6-8",
+      "content": "{\"foods\":[{\"emoji\":\"🥩\",\"name\":\"牛肉泥\"},{\"emoji\":\"🥦\",\"name\":\"西兰花泥\"},{\"emoji\":\"🍚\",\"name\":\"米糊\"},{\"emoji\":\"🥚\",\"name\":\"蛋黄泥\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_6_8_1",
+      "name": "鳕鱼泥 + 南瓜泥 + 苹果泥 + 胡萝卜泥",
+      "mealType": "推荐套餐",
+      "ageRange": "6-8",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"鳕鱼泥\"},{\"emoji\":\"🎃\",\"name\":\"南瓜泥\"},{\"emoji\":\"🍎\",\"name\":\"苹果泥\"},{\"emoji\":\"🥕\",\"name\":\"胡萝卜泥\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_6_8_2",
+      "name": "鸡肉泥 + 红薯泥 + 菠菜泥 + 香蕉泥",
+      "mealType": "推荐套餐",
+      "ageRange": "6-8",
+      "content": "{\"foods\":[{\"emoji\":\"🐔\",\"name\":\"鸡肉泥\"},{\"emoji\":\"🍠\",\"name\":\"红薯泥\"},{\"emoji\":\"🥬\",\"name\":\"菠菜泥\"},{\"emoji\":\"🍌\",\"name\":\"香蕉泥\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_8_10_0",
+      "name": "牛肉 + 西兰花 + 米饭 + 鸡蛋羹",
+      "mealType": "推荐套餐",
+      "ageRange": "8-10",
+      "content": "{\"foods\":[{\"emoji\":\"🥩\",\"name\":\"牛肉\"},{\"emoji\":\"🥦\",\"name\":\"西兰花\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🥚\",\"name\":\"鸡蛋羹\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_8_10_1",
+      "name": "三文鱼 + 番茄 + 面条 + 奶酪碎",
+      "mealType": "推荐套餐",
+      "ageRange": "8-10",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"三文鱼\"},{\"emoji\":\"🍅\",\"name\":\"番茄\"},{\"emoji\":\"🍜\",\"name\":\"面条\"},{\"emoji\":\"🧀\",\"name\":\"奶酪碎\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_8_10_2",
+      "name": "鸡肉丸 + 玉米 + 软米饭 + 土豆泥",
+      "mealType": "推荐套餐",
+      "ageRange": "8-10",
+      "content": "{\"foods\":[{\"emoji\":\"🐔\",\"name\":\"鸡肉丸\"},{\"emoji\":\"🌽\",\"name\":\"玉米\"},{\"emoji\":\"🍚\",\"name\":\"软米饭\"},{\"emoji\":\"🥔\",\"name\":\"土豆泥\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_8_10_3",
+      "name": "鳕鱼 + 南瓜 + 土豆 + 软米饭",
+      "mealType": "推荐套餐",
+      "ageRange": "8-10",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"鳕鱼\"},{\"emoji\":\"🎃\",\"name\":\"南瓜\"},{\"emoji\":\"🥔\",\"name\":\"土豆\"},{\"emoji\":\"🍚\",\"name\":\"软米饭\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_8_10_4",
+      "name": "豆腐 + 番茄 + 菠菜 + 面条",
+      "mealType": "推荐套餐",
+      "ageRange": "8-10",
+      "content": "{\"foods\":[{\"emoji\":\"🫘\",\"name\":\"豆腐\"},{\"emoji\":\"🍅\",\"name\":\"番茄\"},{\"emoji\":\"🥬\",\"name\":\"菠菜\"},{\"emoji\":\"🍜\",\"name\":\"面条\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_8_10_5",
+      "name": "蒸蛋 + 玉米粒 + 红薯泥 + 鸡肉松",
+      "mealType": "推荐套餐",
+      "ageRange": "8-10",
+      "content": "{\"foods\":[{\"emoji\":\"🥚\",\"name\":\"蒸蛋\"},{\"emoji\":\"🌽\",\"name\":\"玉米粒\"},{\"emoji\":\"🍠\",\"name\":\"红薯泥\"},{\"emoji\":\"🐔\",\"name\":\"鸡肉松\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_10_12_0",
+      "name": "牛肉碎 + 西兰花 + 杂粮饭 + 蒸蛋",
+      "mealType": "推荐套餐",
+      "ageRange": "10-12",
+      "content": "{\"foods\":[{\"emoji\":\"🥩\",\"name\":\"牛肉碎\"},{\"emoji\":\"🥦\",\"name\":\"西兰花\"},{\"emoji\":\"🍚\",\"name\":\"杂粮饭\"},{\"emoji\":\"🥚\",\"name\":\"蒸蛋\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_10_12_1",
+      "name": "虾仁 + 青菜 + 小米粥 + 香菇",
+      "mealType": "推荐套餐",
+      "ageRange": "10-12",
+      "content": "{\"foods\":[{\"emoji\":\"🦐\",\"name\":\"虾仁\"},{\"emoji\":\"🥬\",\"name\":\"青菜\"},{\"emoji\":\"🍲\",\"name\":\"小米粥\"},{\"emoji\":\"🍄\",\"name\":\"香菇\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_10_12_2",
+      "name": "鲈鱼 + 胡萝卜 + 米饭 + 豆腐",
+      "mealType": "推荐套餐",
+      "ageRange": "10-12",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"鲈鱼\"},{\"emoji\":\"🥕\",\"name\":\"胡萝卜\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🫘\",\"name\":\"豆腐\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_10_12_3",
+      "name": "鸡肉碎 + 番茄 + 软面条 + 菠菜",
+      "mealType": "推荐套餐",
+      "ageRange": "10-12",
+      "content": "{\"foods\":[{\"emoji\":\"🐔\",\"name\":\"鸡肉碎\"},{\"emoji\":\"🍅\",\"name\":\"番茄\"},{\"emoji\":\"🍜\",\"name\":\"软面条\"},{\"emoji\":\"🥬\",\"name\":\"菠菜\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_10_12_4",
+      "name": "豆腐 + 南瓜 + 小米饭 + 香菇",
+      "mealType": "推荐套餐",
+      "ageRange": "10-12",
+      "content": "{\"foods\":[{\"emoji\":\"🫘\",\"name\":\"豆腐\"},{\"emoji\":\"🎃\",\"name\":\"南瓜\"},{\"emoji\":\"🍚\",\"name\":\"小米饭\"},{\"emoji\":\"🍄\",\"name\":\"香菇\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_10_12_5",
+      "name": "蛋羹 + 玉米 + 鳕鱼 + 山药泥",
+      "mealType": "推荐套餐",
+      "ageRange": "10-12",
+      "content": "{\"foods\":[{\"emoji\":\"🥚\",\"name\":\"蛋羹\"},{\"emoji\":\"🌽\",\"name\":\"玉米\"},{\"emoji\":\"🐟\",\"name\":\"鳕鱼\"},{\"emoji\":\"🥔\",\"name\":\"山药泥\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_1_2_0",
+      "name": "牛肉 + 西兰花 + 米饭 + 鸡蛋羹",
+      "mealType": "推荐套餐",
+      "ageRange": "1-2",
+      "content": "{\"foods\":[{\"emoji\":\"🥩\",\"name\":\"牛肉\"},{\"emoji\":\"🥦\",\"name\":\"西兰花\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🥚\",\"name\":\"鸡蛋羹\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_1_2_1",
+      "name": "鸡腿肉 + 蔬菜沙拉 + 意面 + 牛奶",
+      "mealType": "推荐套餐",
+      "ageRange": "1-2",
+      "content": "{\"foods\":[{\"emoji\":\"🐔\",\"name\":\"鸡腿肉\"},{\"emoji\":\"🥗\",\"name\":\"蔬菜沙拉\"},{\"emoji\":\"🍝\",\"name\":\"意面\"},{\"emoji\":\"🥛\",\"name\":\"牛奶\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_1_2_2",
+      "name": "清蒸鱼 + 玉米排骨汤 + 米饭 + 小馄饨",
+      "mealType": "推荐套餐",
+      "ageRange": "1-2",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"清蒸鱼\"},{\"emoji\":\"🌽\",\"name\":\"玉米排骨汤\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🥟\",\"name\":\"小馄饨\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_1_2_3",
+      "name": "虾仁 + 鸡蛋 + 青菜 + 米饭",
+      "mealType": "推荐套餐",
+      "ageRange": "1-2",
+      "content": "{\"foods\":[{\"emoji\":\"🦐\",\"name\":\"虾仁\"},{\"emoji\":\"🍳\",\"name\":\"鸡蛋\"},{\"emoji\":\"🥬\",\"name\":\"青菜\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_1_2_4",
+      "name": "豆腐 + 番茄 + 意面 + 南瓜",
+      "mealType": "推荐套餐",
+      "ageRange": "1-2",
+      "content": "{\"foods\":[{\"emoji\":\"🫘\",\"name\":\"豆腐\"},{\"emoji\":\"🍅\",\"name\":\"番茄\"},{\"emoji\":\"🍝\",\"name\":\"意面\"},{\"emoji\":\"🎃\",\"name\":\"南瓜\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_1_2_5",
+      "name": "鳕鱼 + 土豆 + 西兰花 + 小米粥",
+      "mealType": "推荐套餐",
+      "ageRange": "1-2",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"鳕鱼\"},{\"emoji\":\"🥔\",\"name\":\"土豆\"},{\"emoji\":\"🥦\",\"name\":\"西兰花\"},{\"emoji\":\"🍲\",\"name\":\"小米粥\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_2_3_0",
+      "name": "番茄牛肉末 + 西兰花 + 软米饭 + 鸡蛋羹",
+      "mealType": "推荐套餐",
+      "ageRange": "2-3",
+      "content": "{\"foods\":[{\"emoji\":\"🥩\",\"name\":\"番茄牛肉末\"},{\"emoji\":\"🥦\",\"name\":\"西兰花\"},{\"emoji\":\"🍚\",\"name\":\"软米饭\"},{\"emoji\":\"🥚\",\"name\":\"鸡蛋羹\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_2_3_1",
+      "name": "鸡腿肉 + 土豆炖胡萝卜 + 青菜面条 + 苹果",
+      "mealType": "推荐套餐",
+      "ageRange": "2-3",
+      "content": "{\"foods\":[{\"emoji\":\"🐔\",\"name\":\"鸡腿肉\"},{\"emoji\":\"🥔\",\"name\":\"土豆炖胡萝卜\"},{\"emoji\":\"🍜\",\"name\":\"青菜面条\"},{\"emoji\":\"🍎\",\"name\":\"苹果\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_2_3_2",
+      "name": "虾仁炒蛋 + 青菜碎 + 米饭 + 肉末豆腐",
+      "mealType": "推荐套餐",
+      "ageRange": "2-3",
+      "content": "{\"foods\":[{\"emoji\":\"🦐\",\"name\":\"虾仁炒蛋\"},{\"emoji\":\"🥬\",\"name\":\"青菜碎\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🫘\",\"name\":\"肉末豆腐\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_2_3_3",
+      "name": "茄汁龙利鱼 + 土豆炖胡萝卜 + 米饭 + 清炒生菜",
+      "mealType": "推荐套餐",
+      "ageRange": "2-3",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"茄汁龙利鱼\"},{\"emoji\":\"🥔\",\"name\":\"土豆炖胡萝卜\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🥬\",\"name\":\"清炒生菜\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_2_3_4",
+      "name": "香菇鸡丁 + 玉米炒蛋 + 番茄意面 + 苹果块",
+      "mealType": "推荐套餐",
+      "ageRange": "2-3",
+      "content": "{\"foods\":[{\"emoji\":\"🐔\",\"name\":\"香菇鸡丁\"},{\"emoji\":\"🌽\",\"name\":\"玉米炒蛋\"},{\"emoji\":\"🍝\",\"name\":\"番茄意面\"},{\"emoji\":\"🍎\",\"name\":\"苹果块\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_2_3_5",
+      "name": "肉末豆腐 + 蒜蓉油麦菜 + 杂粮饭 + 菌菇汤",
+      "mealType": "推荐套餐",
+      "ageRange": "2-3",
+      "content": "{\"foods\":[{\"emoji\":\"🫘\",\"name\":\"肉末豆腐\"},{\"emoji\":\"🥬\",\"name\":\"蒜蓉油麦菜\"},{\"emoji\":\"🍚\",\"name\":\"杂粮饭\"},{\"emoji\":\"🍄\",\"name\":\"菌菇汤\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_4_5_0",
+      "name": "土豆牛肉 + 清炒西兰花 + 米饭 + 番茄蛋花汤",
+      "mealType": "推荐套餐",
+      "ageRange": "4-5",
+      "content": "{\"foods\":[{\"emoji\":\"🥩\",\"name\":\"土豆牛肉\"},{\"emoji\":\"🥦\",\"name\":\"清炒西兰花\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🍲\",\"name\":\"番茄蛋花汤\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_4_5_1",
+      "name": "香菇鸡丁 + 玉米炒蛋 + 意面 + 苹果块",
+      "mealType": "推荐套餐",
+      "ageRange": "4-5",
+      "content": "{\"foods\":[{\"emoji\":\"🐔\",\"name\":\"香菇鸡丁\"},{\"emoji\":\"🌽\",\"name\":\"玉米炒蛋\"},{\"emoji\":\"🍝\",\"name\":\"意面\"},{\"emoji\":\"🍎\",\"name\":\"苹果块\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_4_5_2",
+      "name": "茄汁龙利鱼 + 蒜蓉生菜 + 杂粮饭 + 菌菇豆腐汤",
+      "mealType": "推荐套餐",
+      "ageRange": "4-5",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"茄汁龙利鱼\"},{\"emoji\":\"🥬\",\"name\":\"蒜蓉生菜\"},{\"emoji\":\"🍚\",\"name\":\"杂粮饭\"},{\"emoji\":\"🍄\",\"name\":\"菌菇豆腐汤\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_4_5_3",
+      "name": "虾仁滑蛋 + 南瓜小米粥 + 土豆丝 + 雪梨",
+      "mealType": "推荐套餐",
+      "ageRange": "4-5",
+      "content": "{\"foods\":[{\"emoji\":\"🦐\",\"name\":\"虾仁滑蛋\"},{\"emoji\":\"🎃\",\"name\":\"南瓜小米粥\"},{\"emoji\":\"🥔\",\"name\":\"土豆丝\"},{\"emoji\":\"🍐\",\"name\":\"雪梨\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_6_7_0",
+      "name": "番茄牛腩 + 蒜蓉西兰花 + 杂粮饭 + 葱花炒蛋",
+      "mealType": "推荐套餐",
+      "ageRange": "6-7",
+      "content": "{\"foods\":[{\"emoji\":\"🥩\",\"name\":\"番茄牛腩\"},{\"emoji\":\"🥦\",\"name\":\"蒜蓉西兰花\"},{\"emoji\":\"🍚\",\"name\":\"杂粮饭\"},{\"emoji\":\"🥚\",\"name\":\"葱花炒蛋\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_6_7_1",
+      "name": "可乐鸡翅 + 土豆炖肉 + 青菜面条 + 苹果",
+      "mealType": "推荐套餐",
+      "ageRange": "6-7",
+      "content": "{\"foods\":[{\"emoji\":\"🐔\",\"name\":\"可乐鸡翅\"},{\"emoji\":\"🥔\",\"name\":\"土豆炖肉\"},{\"emoji\":\"🍜\",\"name\":\"青菜面条\"},{\"emoji\":\"🍎\",\"name\":\"苹果\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_6_7_2",
+      "name": "虾仁炒蛋 + 清炒时蔬 + 米饭 + 肉末豆腐",
+      "mealType": "推荐套餐",
+      "ageRange": "6-7",
+      "content": "{\"foods\":[{\"emoji\":\"🦐\",\"name\":\"虾仁炒蛋\"},{\"emoji\":\"🥬\",\"name\":\"清炒时蔬\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🫘\",\"name\":\"肉末豆腐\"}],\"seasonings\":[],\"stars\":5}",
+      "enabled": true
+    },
+    {
+      "id": "recipe_6_7_3",
+      "name": "红烧龙利鱼 + 玉米排骨汤 + 米饭 + 油麦菜",
+      "mealType": "推荐套餐",
+      "ageRange": "6-7",
+      "content": "{\"foods\":[{\"emoji\":\"🐟\",\"name\":\"红烧龙利鱼\"},{\"emoji\":\"🌽\",\"name\":\"玉米排骨汤\"},{\"emoji\":\"🍚\",\"name\":\"米饭\"},{\"emoji\":\"🥬\",\"name\":\"油麦菜\"}],\"seasonings\":[],\"stars\":4}",
+      "enabled": true
+    }
+  ]
+}

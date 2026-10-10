@@ -3,3 +3,6 @@ miniprogram/config/ai-secret.js
 backend/.env
 backend/.env.*
 !backend/.env.example
+backend/node_modules
+backend/dist
+miniprogram/cloudfunctions/**/node_modules

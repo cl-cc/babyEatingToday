@@ -1,4 +1,5 @@
 const { estimateCalories } = require('./nutritionHelper')
+const { getRecipeSets } = require('./cms')
 
 const AGE_GROUPS = [
   { id: '6-8', label: '6-8个月' },
@@ -357,7 +358,8 @@ function enrichSet(set, ageId) {
 }
 
 function pickRandomSet(ageId, excludeIndex = -1) {
-  const sets = FOOD_SETS[ageId] || FOOD_SETS['8-10']
+  const remote = getRecipeSets(ageId)
+  const sets = remote.length ? remote : FOOD_SETS[ageId] || FOOD_SETS['8-10']
   if (sets.length === 1) return { set: enrichSet(sets[0], ageId), index: 0 }
 
   let index

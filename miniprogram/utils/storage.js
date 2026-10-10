@@ -1,5 +1,6 @@
 const { DEFAULT_PROFILE, normalizeProfile } = require('./profileDefaults')
 const cloudProfile = require('./cloudProfile')
+const aiQuota = require('./aiQuota')
 
 const KEYS = {
   PROFILE: 'baby_profile',
@@ -102,7 +103,9 @@ async function initProfileFromCloud() {
     ])
 
     if (cloudData) {
-      profileCache = writeLocalProfile(cloudData)
+      if (cloudData.quota) aiQuota.applyCloudQuota(cloudData.quota)
+      profileCache = writeLocalProfile(cloudData.profile || cloudData)
+      aiQuota.syncQuotaToCloud()
       console.log('[cloud] 已从云端恢复用户数据', {
         allergies: profileCache.allergies.length,
         fridge: profileCache.fridge.length,
@@ -114,6 +117,7 @@ async function initProfileFromCloud() {
     if (hasLocalUserData()) {
       profileCache = writeLocalProfile(localData)
       await cloudProfile.upsertProfile(profileCache)
+      aiQuota.syncQuotaToCloud()
       console.log('[cloud] 已将本地用户数据迁移到云端', {
         allergies: profileCache.allergies.length,
         fridge: profileCache.fridge.length,
@@ -124,6 +128,7 @@ async function initProfileFromCloud() {
 
     profileCache = writeLocalProfile(DEFAULT_PROFILE)
     await cloudProfile.upsertProfile(profileCache)
+    aiQuota.syncQuotaToCloud()
     console.log('[cloud] 已创建默认用户数据')
     return profileCache
   } catch (err) {

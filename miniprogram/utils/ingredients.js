@@ -33,14 +33,20 @@ function filterByCategory(category) {
 }
 
 function groupByCategory(activeCategory, options) {
-  const { selectedNames = [], allergyNames = [] } = options || {}
+  const {
+    selectedNames = [],
+    allergyNames = [],
+    ingredients = INGREDIENTS,
+    categoryOrder = CATEGORY_ORDER,
+  } = options || {}
   const categories =
-    !activeCategory || activeCategory === '全部' ? CATEGORY_ORDER : [activeCategory]
+    !activeCategory || activeCategory === '全部' ? categoryOrder : [activeCategory]
 
   return categories
     .map((category) => ({
       category,
-      items: INGREDIENTS.filter((i) => i.category === category)
+      items: ingredients
+        .filter((i) => i.category === category)
         .filter((i) => !allergyNames.some((a) => i.name.includes(a)))
         .map((i) =>
           Object.assign({}, i, { selected: selectedNames.includes(i.name) })

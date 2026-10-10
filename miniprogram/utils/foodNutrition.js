@@ -1,3 +1,6 @@
+const { getSuggestionPool, getNutritionTags } = require('./cms')
+const { getAgePortions } = require('./recommendRules')
+
 const TAG_POOL = [
   { pattern: /牛肉|羊肉|猪肉|鸡肉|鸭肉|鱼|虾|蟹|蛋|豆腐|鳕鱼|三文鱼|带鱼/, emoji: '🥩', label: '高蛋白' },
   { pattern: /西兰花|菠菜|青菜|芹菜|燕麦|玉米|红薯|苹果|香蕉|猕猴桃|蓝莓/, emoji: '🥦', label: '高纤维' },
@@ -33,16 +36,33 @@ function getFoodCategory(name) {
 }
 
 function guessAmount(name, ageId) {
-  const cfg = AMOUNT_BY_AGE[ageId] || AMOUNT_BY_AGE['8-10']
+  const remote = getAgePortions(ageId)
+  const cfg = remote && (remote.meat || remote.default) ? remote : AMOUNT_BY_AGE[ageId] || AMOUNT_BY_AGE['8-10']
   const cat = getFoodCategory(name)
   return cfg[cat] || cfg.default
+}
+
+function currentTagPool() {
+  const remote = getNutritionTags()
+  if (remote.length) {
+    return remote.map((item) => ({
+      emoji: item.emoji || '🥗',
+      label: item.label,
+      test: (name) => (item.keywords || []).some((kw) => kw && String(name || '').includes(kw)),
+    }))
+  }
+  return TAG_POOL.map((rule) => ({
+    emoji: rule.emoji,
+    label: rule.label,
+    test: (name) => rule.pattern.test(name),
+  }))
 }
 
 function guessTags(name) {
   const tags = []
   const seen = new Set()
-  TAG_POOL.forEach((rule) => {
-    if (rule.pattern.test(name) && !seen.has(rule.label)) {
+  currentTagPool().forEach((rule) => {
+    if (rule.test(name) && !seen.has(rule.label)) {
       seen.add(rule.label)
       tags.push({ emoji: rule.emoji, label: rule.label })
     }
@@ -172,15 +192,21 @@ function normalizeTodaySuggestion(data) {
   return normalized
 }
 
+function currentSuggestionPool() {
+  const remote = getSuggestionPool()
+  return remote.length ? remote : SUGGESTION_POOL
+}
+
 function buildLocalSuggestion(ageId, allergies) {
   const allergyNames = (allergies || []).map((a) => a.name)
-  const pool = SUGGESTION_POOL.filter(
+  const source = currentSuggestionPool()
+  const pool = source.filter(
     (item) =>
       item.ages.includes(ageId) &&
       !allergyNames.some((a) => item.food.includes(a) || a.includes(item.food))
   )
-  const list = pool.length ? pool : SUGGESTION_POOL.filter((item) => item.ages.includes(ageId))
-  const pick = list[Math.floor(Math.random() * (list.length || 1))] || SUGGESTION_POOL[0]
+  const list = pool.length ? pool : source.filter((item) => item.ages.includes(ageId))
+  const pick = list[Math.floor(Math.random() * (list.length || 1))] || source[0]
   return normalizeTodaySuggestion(pick)
 }
 

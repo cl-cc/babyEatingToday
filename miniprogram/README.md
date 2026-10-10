@@ -123,7 +123,7 @@
 | 框架 | 微信小程序原生（Skyline / glass-easel；图表页使用 Webview） |
 | AI | [DeepSeek](https://www.deepseek.com/) Chat API，统一走 `utils/ai.js` |
 | 限流 | `utils/aiQuota.js`，本地按自然日计数，每天 10 次 |
-| 云能力 | 微信云开发，档案集合 `babies` |
+| 云能力 | 微信云开发：个人档案集合 `babies`；公共食材/分类集合 `foods` / `categories`，由云函数 `adminApi` 读写 |
 | 图表 | ECharts（`ec-canvas`：雷达图 / 饼图 / 柱状图） |
 | 存储 | 本地缓存 + 云端同步；AI 结果按日缓存 |
 
@@ -196,7 +196,7 @@ module.exports = {
 
 ### 3. 开通云开发
 
-在开发者工具开通云开发，创建数据库集合 `babies`。
+在开发者工具开通云开发，创建数据库集合 `babies`（仅用户个人档案）。公共食材目录使用 `categories` / `foods`，需部署云函数 `cloudfunctions/adminApi`，再由管理后台在空库时初始化。
 
 ### 4. 运行
 

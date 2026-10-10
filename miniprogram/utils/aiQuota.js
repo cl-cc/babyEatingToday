@@ -1,5 +1,5 @@
 const STORAGE_KEY = 'ai_daily_quota'
-const DAILY_LIMIT = 10
+const DAILY_LIMIT = 50
 
 const QUOTA_TITLE = '团子累趴了 🍡'
 const QUOTA_MESSAGE =
@@ -36,6 +36,26 @@ function writeQuota(quota) {
   }
 }
 
+function applyCloudQuota(cloudQuota) {
+  if (!cloudQuota || cloudQuota.date !== todayStr()) return
+  const local = readQuota()
+  const cloudCount = Number(cloudQuota.count) || 0
+  const nextCount = local.date === todayStr() ? Math.max(local.count, cloudCount) : cloudCount
+  writeQuota({ date: todayStr(), count: nextCount })
+}
+
+function syncQuotaToCloud() {
+  try {
+    const cloudProfile = require('./cloudProfile')
+    if (!cloudProfile.isCloudReady()) return
+    cloudProfile.patchQuota(readQuota()).catch((err) => {
+      console.warn('[cloud] AI 用量同步失败', err)
+    })
+  } catch (error) {
+    console.warn('[cloud] AI 用量同步失败', error)
+  }
+}
+
 function getQuotaCount() {
   return readQuota().count
 }
@@ -55,6 +75,7 @@ function consumeAIQuota() {
   }
   const next = { date: quota.date, count: quota.count + 1 }
   writeQuota(next)
+  syncQuotaToCloud()
   return {
     allowed: true,
     count: next.count,
@@ -84,5 +105,7 @@ module.exports = {
   getQuotaRemain,
   isAIQuotaExceeded,
   consumeAIQuota,
+  applyCloudQuota,
+  syncQuotaToCloud,
   showAIQuotaTip,
 }

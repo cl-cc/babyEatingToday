@@ -47,14 +47,22 @@ const NUTRITION_TIPS = [
   '🐔 鸡肉蛋白质高，是辅食入门好选择。',
 ]
 
+const { getTipTexts } = require('./cms')
+
 const ALL_TIPS = WARM_TIPS.concat(NUTRITION_TIPS)
 
+function currentTips() {
+  const remote = getTipTexts()
+  return remote.length ? remote : ALL_TIPS
+}
+
 function pickRandomWarmTip(current) {
-  if (!ALL_TIPS.length) return ''
-  if (ALL_TIPS.length === 1) return ALL_TIPS[0]
+  const tips = currentTips()
+  if (!tips.length) return ''
+  if (tips.length === 1) return tips[0]
   let next = current
   while (next === current) {
-    next = ALL_TIPS[Math.floor(Math.random() * ALL_TIPS.length)]
+    next = tips[Math.floor(Math.random() * tips.length)]
   }
   return next
 }

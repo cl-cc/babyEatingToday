@@ -9,6 +9,14 @@ function stripDoc(raw) {
   return normalizeProfile(raw)
 }
 
+function pickQuota(raw) {
+  if (!raw) return null
+  return {
+    date: String(raw.aiQuotaDate || ''),
+    count: Number(raw.aiQuotaCount) || 0,
+  }
+}
+
 function toCloudData(profile) {
   const db = getDB()
   const data = normalizeProfile(profile)
@@ -30,7 +38,10 @@ async function fetchProfile() {
   }
 
   docId = doc._id
-  return stripDoc(doc)
+  return {
+    profile: stripDoc(doc),
+    quota: pickQuota(doc),
+  }
 }
 
 async function upsertProfile(profile) {
@@ -55,6 +66,26 @@ async function upsertProfile(profile) {
   return normalizeProfile(profile)
 }
 
+async function patchQuota(quota) {
+  const db = getDB()
+  if (!db || !quota) return
+
+  const data = {
+    aiQuotaDate: String(quota.date || ''),
+    aiQuotaCount: Number(quota.count) || 0,
+  }
+
+  if (!docId) {
+    const existing = await db.collection(PROFILE_COLLECTION).limit(1).get()
+    if (existing.data && existing.data[0]) {
+      docId = existing.data[0]._id
+    }
+  }
+  if (!docId) return
+
+  await db.collection(PROFILE_COLLECTION).doc(docId).update({ data })
+}
+
 function resetDocId() {
   docId = null
 }
@@ -63,5 +94,6 @@ module.exports = {
   isCloudReady,
   fetchProfile,
   upsertProfile,
+  patchQuota,
   resetDocId,
 }

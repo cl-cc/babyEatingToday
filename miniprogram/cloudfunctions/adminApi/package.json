@@ -1,0 +1,9 @@
+{
+  "name": "adminApi",
+  "version": "1.0.0",
+  "description": "团子食光管理后台与小程序公共目录接口",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

@@ -13,6 +13,39 @@ page {
   box-sizing: border-box;
 }
 
+.catalog-banner {
+  margin: 0 20rpx 12rpx;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.catalog-banner--loading {
+  background: #F3ECFF;
+  color: #7A5BA8;
+}
+
+.catalog-banner--error {
+  background: #FFE8EE;
+  color: #C23B5A;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.catalog-banner--warn {
+  background: #FFF4E5;
+  color: #B26A00;
+}
+
+.catalog-retry {
+  flex-shrink: 0;
+  color: #E85A7A;
+  font-weight: 600;
+}
+
 .summary-strip {
   width: calc(100% - 40rpx);
   height: 120rpx;

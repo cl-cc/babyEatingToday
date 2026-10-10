@@ -1,6 +1,8 @@
 // app.js
 const { setAIConfig, isAIReady } = require('./utils/ai')
 const { initCloud } = require('./utils/cloud')
+const { loadRecommendRules } = require('./utils/recommendRules')
+const { loadCatalogContent } = require('./utils/cms')
 const { getProfileReady } = require('./utils/storage')
 
 let aiSecret = {}
@@ -14,6 +16,12 @@ App({
   onLaunch() {
     initCloud()
     this.globalData.profileReady = getProfileReady()
+    loadRecommendRules().catch((err) => {
+      console.warn('[cloud] 推荐规则加载失败，使用本地兜底', err)
+    })
+    loadCatalogContent().catch((err) => {
+      console.warn('[cloud] 喂养内容加载失败，使用本地兜底', err)
+    })
 
     setAIConfig(aiSecret)
     if (isAIReady()) {

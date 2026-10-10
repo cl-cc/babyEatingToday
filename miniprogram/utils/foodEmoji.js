@@ -1,5 +1,6 @@
 const { INGREDIENTS } = require('./ingredients')
-const { FOOD_DB } = require('./canEatData')
+const { getFoodDb } = require('./canEatData')
+const { readCache } = require('./catalog')
 
 const CATEGORY_RULES = [
   // 水果 — 多字词优先，避免「桃」误匹配「猕猴桃」
@@ -85,6 +86,16 @@ function guessFoodEmoji(name, options) {
 
   if (!text) return emptyDefault
 
+  const catalog = readCache()
+  const catalogFoods = ((catalog && catalog.foods) || []).filter((item) => item && item.name && item.emoji)
+  const exactCatalog = catalogFoods.find((item) => item.name === text)
+  if (exactCatalog) return exactCatalog.emoji
+  const partialCatalog = catalogFoods
+    .slice()
+    .sort((a, b) => String(b.name).length - String(a.name).length)
+    .find((item) => text.includes(item.name) || item.name.includes(text))
+  if (partialCatalog) return partialCatalog.emoji
+
   const exact = INGREDIENTS.find((item) => item.name === text)
   if (exact) return exact.emoji
 
@@ -92,8 +103,9 @@ function guessFoodEmoji(name, options) {
   const partial = byLength.find((item) => text.includes(item.name) || item.name.includes(text))
   if (partial) return partial.emoji
 
-  for (let i = 0; i < FOOD_DB.length; i++) {
-    const food = FOOD_DB[i]
+  const foodDb = getFoodDb()
+  for (let i = 0; i < foodDb.length; i++) {
+    const food = foodDb[i]
     if (food.keywords.some((kw) => text.includes(kw) || kw.includes(text))) {
       return food.emoji
     }

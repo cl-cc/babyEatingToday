@@ -11,6 +11,46 @@ page {
   padding-bottom: 10%;
 }
 
+.catalog-banner {
+  margin-bottom: 16rpx;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.catalog-banner--loading {
+  background: #FFF1E8;
+  color: #C06A2A;
+}
+
+.catalog-banner--error {
+  background: #FFE8EE;
+  color: #C23B5A;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.catalog-banner--warn {
+  background: #FFF4E5;
+  color: #B26A00;
+}
+
+.catalog-retry {
+  flex-shrink: 0;
+  color: #E85A7A;
+  font-weight: 600;
+}
+
+.catalog-empty {
+  padding: 48rpx 16rpx;
+  text-align: center;
+  color: #999;
+  font-size: 26rpx;
+}
+
 .tab-switch {
   display: flex;
   margin-bottom: 24rpx;

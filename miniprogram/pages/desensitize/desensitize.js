@@ -1,4 +1,5 @@
-const { CATEGORIES, listFoods, findFood } = require('../../utils/desensitizeFoods')
+const { CATEGORIES, findFood } = require('../../utils/desensitizeFoods')
+const { fetchCatalog, deriveCategories, listFoodsFrom, findFoodFrom } = require('../../utils/catalog')
 const {
   getAllergyNames,
   getEatenNames,
@@ -9,6 +10,7 @@ const {
   getProfile,
 } = require('../../utils/storage')
 const { allergySymptomsQuery, isAIReady, isAIQuotaExceeded, showAIQuotaTip } = require('../../utils/ai')
+const { DAILY_LIMIT } = require('../../utils/aiQuota')
 
 const FILTERS = [
   { id: 'all', label: '全部' },
@@ -94,7 +96,7 @@ function normalizeSymptomResult(data, food) {
 
 Component({
   data: {
-    categories: CATEGORIES,
+    categories: [],
     filters: FILTERS,
     activeCat: 'grain',
     activeFilter: 'all',
@@ -109,6 +111,12 @@ Component({
     sheetSymptomLoading: false,
     sheetSymptomResult: null,
     sheetSymptomError: '',
+    catalogLoading: true,
+    catalogError: '',
+    catalogFromCache: false,
+    catalogCategories: CATEGORIES,
+    catalogFoods: [],
+    catalogStatus: '',
   },
 
   lifetimes: {
@@ -127,12 +135,78 @@ Component({
     async bootstrapPage() {
       await getProfileReady()
       this.getTabBar()?.setSelected(3)
-      this.refreshFoods()
+      await this.loadCatalog()
     },
 
     async refreshFromCloud() {
       await getProfileReady()
-      this.refreshFoods()
+      if (this.data.catalogFoods.length && this.data.catalogCategories.length) {
+        this.refreshFoods()
+        return
+      }
+      await this.loadCatalog(true)
+    },
+
+    async loadCatalog(force) {
+      const requestId = Date.now()
+      this._catalogRequestId = requestId
+      this.setData({ catalogLoading: true, catalogError: '', catalogStatus: '正在请求云端目录…' })
+      try {
+        const catalog = await fetchCatalog({ force })
+        if (this._catalogRequestId !== requestId) return
+        const foods = catalog.foods || []
+        const categories = deriveCategories(catalog.categories, foods)
+        const nextCat = categories.some((item) => item.id === this.data.activeCat)
+          ? this.data.activeCat
+          : (categories[0] && categories[0].id) || ''
+        const emptyError = !foods.length
+          ? '云函数已连通，但没有可用食材。请到管理后台确认 foods 集合，或点击「初始化空库目录」。'
+          : ''
+        this.setData({
+          catalogLoading: false,
+          catalogError: emptyError,
+          catalogStatus: `云端分类 ${categories.length} · 食材 ${foods.length}`,
+          catalogFromCache: catalog.fromCache,
+          catalogCategories: categories,
+          catalogFoods: foods,
+          categories,
+          activeCat: nextCat,
+        })
+        this.refreshFoods()
+      } catch (error) {
+        if (this._catalogRequestId !== requestId) return
+        const cached = error && error.cached
+        if (cached) {
+          const categories = cached.categories && cached.categories.length
+            ? cached.categories
+            : CATEGORIES
+          this.setData({
+            catalogLoading: false,
+            catalogError: (error && error.message) || '云端食材加载失败，正在显示缓存',
+            catalogStatus: '',
+            catalogFromCache: true,
+            catalogCategories: categories,
+            catalogFoods: cached.foods,
+            categories,
+          })
+          this.refreshFoods()
+          return
+        }
+        this.setData({
+          catalogLoading: false,
+          catalogError: (error && error.message) || '云端食材加载失败，请稍后重试',
+          catalogStatus: '',
+          catalogFromCache: false,
+          catalogFoods: [],
+          foods: [],
+          summaryCards: [],
+          emptyTip: '',
+        })
+      }
+    },
+
+    onRetryCatalog() {
+      this.loadCatalog(true)
     },
 
     getTabBar() {
@@ -149,10 +223,17 @@ Component({
       })
     },
 
+    lookupFood(name) {
+      return findFoodFrom(this.data.catalogFoods, this.data.catalogCategories, name) || findFood(name)
+    },
+
     refreshFoods() {
+      if (this.data.catalogError && !this.data.catalogFoods.length) return
       const allergyNames = getAllergyNames()
       const eatenNames = getEatenNames()
-      const foods = listFoods(
+      const foods = listFoodsFrom(
+        this.data.catalogFoods,
+        this.data.catalogCategories,
         this.data.activeCat,
         this.data.activeFilter,
         allergyNames,
@@ -161,18 +242,20 @@ Component({
       this.setData({
         summaryCards: this.data.categories.map((category) => {
           const count = eatenNames.filter((name) => {
-            const food = findFood(name)
+            const food = this.lookupFood(name)
             return food && food.categoryId === category.id
           }).length
           return {
             id: category.id,
             name: category.name,
-            emoji: CATEGORY_EMOJIS[category.id] || '🥗',
+            emoji: category.emoji || CATEGORY_EMOJIS[category.id] || '🥗',
             eatenCount: count,
           }
         }),
         foods,
-        emptyTip: EMPTY_TIPS[this.data.activeFilter] || '',
+        emptyTip: !this.data.catalogCategories.length
+          ? '公共食材尚未初始化，请先在管理后台导入目录'
+          : EMPTY_TIPS[this.data.activeFilter] || '',
         allergyCount: allergyNames.length,
         eatenCount: eatenNames.length,
       })
@@ -194,7 +277,7 @@ Component({
 
     onFoodTap(e) {
       const name = e.currentTarget.dataset.name
-      const food = findFood(name)
+      const food = this.lookupFood(name)
       if (!food) return
       this._symptomQueryId = 0
       this.setData({
@@ -250,7 +333,7 @@ Component({
           this.setData({
             sheetSymptomLoading: false,
             sheetSymptomError: res.quotaExceeded
-              ? '团子今天已经帮你想满 10 次啦～明天再来查症状哦 🍡'
+              ? `团子今天已经帮你想满 ${DAILY_LIMIT} 次啦～明天再来查症状哦 🍡`
               : res.error || '查询失败，请稍后重试',
           })
           return

@@ -156,17 +156,10 @@ const METHODS_JSON_GUIDE = `methods 数组要求：
 2. 每条一步，简洁可执行，符合宝宝年龄段质地与安全要求
 3. 格式为字符串数组，如 ["鸡胸肉切小丁蒸熟", "西兰花焯水后切碎拌入"]`
 
+const { getAgeSeasoningRule } = require('./recommendRules')
+
 function getAgeSeasoningRules(ageId) {
-  const rules = {
-    '6-8': '以小月龄为主：尽量不加调料，必要时仅可用极少量植物油；禁止盐、糖、酱油、蜂蜜。',
-    '8-10': '仍以原味为主，可加极少量植物油；不建议盐、糖、酱油。',
-    '10-12': '可极少量盐或儿童酱油，可搭配葱姜去腥；不建议糖。',
-    '1-2': '可少量盐、儿童酱油、葱姜、植物油、芝麻等，根据菜品灵活搭配，每种注明克数或勺数。',
-    '2-3': '以幼儿餐为主：可少量盐、儿童酱油、葱姜、植物油等调味，口味仍宜清淡，注明具体克数或勺数。',
-    '4-5': '可参考儿童餐口味，允许少量盐、酱油、番茄、香醋等调味；避免辛辣重口，注明具体用量。',
-    '6-7': '接近学龄儿童，可做家庭餐简化版，少量盐和常见家常调味可用，但仍需控制油盐糖并注明具体用量。',
-  }
-  return rules[ageId] || rules['8-10']
+  return getAgeSeasoningRule(ageId)
 }
 
 function buildBabyContext(profile, allergies) {

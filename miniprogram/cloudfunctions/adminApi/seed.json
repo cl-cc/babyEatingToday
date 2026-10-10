@@ -1,0 +1,1565 @@
+{
+  "categories": [
+    {
+      "id": "grain",
+      "name": "谷物",
+      "emoji": "🌾",
+      "sort": 10,
+      "enabled": true,
+      "isSystem": true
+    },
+    {
+      "id": "veg",
+      "name": "蔬菜",
+      "emoji": "🥬",
+      "sort": 20,
+      "enabled": true,
+      "isSystem": true
+    },
+    {
+      "id": "fruit",
+      "name": "水果",
+      "emoji": "🍎",
+      "sort": 30,
+      "enabled": true,
+      "isSystem": true
+    },
+    {
+      "id": "meat",
+      "name": "肉类",
+      "emoji": "🥩",
+      "sort": 40,
+      "enabled": true,
+      "isSystem": true
+    },
+    {
+      "id": "seafood",
+      "name": "海鲜",
+      "emoji": "🦐",
+      "sort": 50,
+      "enabled": true,
+      "isSystem": true
+    },
+    {
+      "id": "egg_dairy",
+      "name": "蛋奶",
+      "emoji": "🥚",
+      "sort": 60,
+      "enabled": true,
+      "isSystem": true
+    },
+    {
+      "id": "bean",
+      "name": "豆&坚果",
+      "emoji": "🫘",
+      "sort": 70,
+      "enabled": true,
+      "isSystem": true
+    }
+  ],
+  "foods": [
+    {
+      "id": "food_001",
+      "name": "米饭",
+      "emoji": "🍚",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 10
+    },
+    {
+      "id": "food_002",
+      "name": "面条",
+      "emoji": "🍜",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 20
+    },
+    {
+      "id": "food_003",
+      "name": "挂面",
+      "emoji": "🍜",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 30
+    },
+    {
+      "id": "food_004",
+      "name": "馒头",
+      "emoji": "🥯",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 40
+    },
+    {
+      "id": "food_005",
+      "name": "包子",
+      "emoji": "🥟",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 50
+    },
+    {
+      "id": "food_006",
+      "name": "面包",
+      "emoji": "🍞",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 60
+    },
+    {
+      "id": "food_007",
+      "name": "花卷",
+      "emoji": "🥯",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 70
+    },
+    {
+      "id": "food_008",
+      "name": "饺子",
+      "emoji": "🥟",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 80
+    },
+    {
+      "id": "food_009",
+      "name": "馄饨",
+      "emoji": "🥟",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 90
+    },
+    {
+      "id": "food_010",
+      "name": "米粉",
+      "emoji": "🍚",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 100
+    },
+    {
+      "id": "food_011",
+      "name": "意面",
+      "emoji": "🍝",
+      "categoryId": "grain",
+      "subCategory": "主食",
+      "enabled": true,
+      "sort": 110
+    },
+    {
+      "id": "food_012",
+      "name": "燕麦",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 120
+    },
+    {
+      "id": "food_013",
+      "name": "小米",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 130
+    },
+    {
+      "id": "food_014",
+      "name": "玉米",
+      "emoji": "🌽",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 140
+    },
+    {
+      "id": "food_015",
+      "name": "藜麦",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 150
+    },
+    {
+      "id": "food_016",
+      "name": "黑米",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 160
+    },
+    {
+      "id": "food_017",
+      "name": "薏米",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 170
+    },
+    {
+      "id": "food_018",
+      "name": "荞麦",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 180
+    },
+    {
+      "id": "food_019",
+      "name": "糙米",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 190
+    },
+    {
+      "id": "food_020",
+      "name": "紫米",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 200
+    },
+    {
+      "id": "food_021",
+      "name": "高粱米",
+      "emoji": "🌾",
+      "categoryId": "grain",
+      "subCategory": "杂粮",
+      "enabled": true,
+      "sort": 210
+    },
+    {
+      "id": "food_022",
+      "name": "菠菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 220
+    },
+    {
+      "id": "food_023",
+      "name": "青菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 230
+    },
+    {
+      "id": "food_024",
+      "name": "生菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 240
+    },
+    {
+      "id": "food_025",
+      "name": "油菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 250
+    },
+    {
+      "id": "food_026",
+      "name": "小白菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 260
+    },
+    {
+      "id": "food_027",
+      "name": "空心菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 270
+    },
+    {
+      "id": "food_028",
+      "name": "芹菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 280
+    },
+    {
+      "id": "food_029",
+      "name": "苋菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 290
+    },
+    {
+      "id": "food_030",
+      "name": "芥蓝",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 300
+    },
+    {
+      "id": "food_031",
+      "name": "油麦菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "绿叶菜",
+      "enabled": true,
+      "sort": 310
+    },
+    {
+      "id": "food_032",
+      "name": "胡萝卜",
+      "emoji": "🥕",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 320
+    },
+    {
+      "id": "food_033",
+      "name": "土豆",
+      "emoji": "🥔",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 330
+    },
+    {
+      "id": "food_034",
+      "name": "红薯",
+      "emoji": "🍠",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 340
+    },
+    {
+      "id": "food_035",
+      "name": "白萝卜",
+      "emoji": "🥕",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 350
+    },
+    {
+      "id": "food_036",
+      "name": "莲藕",
+      "emoji": "🪷",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 360
+    },
+    {
+      "id": "food_037",
+      "name": "山药",
+      "emoji": "🍠",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 370
+    },
+    {
+      "id": "food_038",
+      "name": "芋头",
+      "emoji": "🍠",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 380
+    },
+    {
+      "id": "food_039",
+      "name": "莴笋",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 390
+    },
+    {
+      "id": "food_040",
+      "name": "洋葱",
+      "emoji": "🧅",
+      "categoryId": "veg",
+      "subCategory": "根茎类",
+      "enabled": true,
+      "sort": 400
+    },
+    {
+      "id": "food_041",
+      "name": "南瓜",
+      "emoji": "🎃",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 410
+    },
+    {
+      "id": "food_042",
+      "name": "黄瓜",
+      "emoji": "🥒",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 420
+    },
+    {
+      "id": "food_043",
+      "name": "番茄",
+      "emoji": "🍅",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 430
+    },
+    {
+      "id": "food_044",
+      "name": "冬瓜",
+      "emoji": "🥒",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 440
+    },
+    {
+      "id": "food_045",
+      "name": "茄子",
+      "emoji": "🍆",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 450
+    },
+    {
+      "id": "food_046",
+      "name": "青椒",
+      "emoji": "🫑",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 460
+    },
+    {
+      "id": "food_047",
+      "name": "彩椒",
+      "emoji": "🫑",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 470
+    },
+    {
+      "id": "food_048",
+      "name": "西葫芦",
+      "emoji": "🥒",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 480
+    },
+    {
+      "id": "food_049",
+      "name": "丝瓜",
+      "emoji": "🥒",
+      "categoryId": "veg",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 490
+    },
+    {
+      "id": "food_050",
+      "name": "西兰花",
+      "emoji": "🥦",
+      "categoryId": "veg",
+      "subCategory": "花菜类",
+      "enabled": true,
+      "sort": 500
+    },
+    {
+      "id": "food_051",
+      "name": "花菜",
+      "emoji": "🥦",
+      "categoryId": "veg",
+      "subCategory": "花菜类",
+      "enabled": true,
+      "sort": 510
+    },
+    {
+      "id": "food_052",
+      "name": "卷心菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "花菜类",
+      "enabled": true,
+      "sort": 520
+    },
+    {
+      "id": "food_053",
+      "name": "娃娃菜",
+      "emoji": "🥬",
+      "categoryId": "veg",
+      "subCategory": "花菜类",
+      "enabled": true,
+      "sort": 530
+    },
+    {
+      "id": "food_054",
+      "name": "香菇",
+      "emoji": "🍄",
+      "categoryId": "veg",
+      "subCategory": "菌菇",
+      "enabled": true,
+      "sort": 540
+    },
+    {
+      "id": "food_055",
+      "name": "木耳",
+      "emoji": "🍄",
+      "categoryId": "veg",
+      "subCategory": "菌菇",
+      "enabled": true,
+      "sort": 550
+    },
+    {
+      "id": "food_056",
+      "name": "金针菇",
+      "emoji": "🍄",
+      "categoryId": "veg",
+      "subCategory": "菌菇",
+      "enabled": true,
+      "sort": 560
+    },
+    {
+      "id": "food_057",
+      "name": "平菇",
+      "emoji": "🍄",
+      "categoryId": "veg",
+      "subCategory": "菌菇",
+      "enabled": true,
+      "sort": 570
+    },
+    {
+      "id": "food_058",
+      "name": "口蘑",
+      "emoji": "🍄",
+      "categoryId": "veg",
+      "subCategory": "菌菇",
+      "enabled": true,
+      "sort": 580
+    },
+    {
+      "id": "food_059",
+      "name": "豌豆",
+      "emoji": "🫛",
+      "categoryId": "veg",
+      "subCategory": "豆荚类",
+      "enabled": true,
+      "sort": 590
+    },
+    {
+      "id": "food_060",
+      "name": "毛豆",
+      "emoji": "🫛",
+      "categoryId": "veg",
+      "subCategory": "豆荚类",
+      "enabled": true,
+      "sort": 600
+    },
+    {
+      "id": "food_061",
+      "name": "四季豆",
+      "emoji": "🫛",
+      "categoryId": "veg",
+      "subCategory": "豆荚类",
+      "enabled": true,
+      "sort": 610
+    },
+    {
+      "id": "food_062",
+      "name": "荷兰豆",
+      "emoji": "🫛",
+      "categoryId": "veg",
+      "subCategory": "豆荚类",
+      "enabled": true,
+      "sort": 620
+    },
+    {
+      "id": "food_063",
+      "name": "苹果",
+      "emoji": "🍎",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 630
+    },
+    {
+      "id": "food_064",
+      "name": "香蕉",
+      "emoji": "🍌",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 640
+    },
+    {
+      "id": "food_065",
+      "name": "梨",
+      "emoji": "🍐",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 650
+    },
+    {
+      "id": "food_066",
+      "name": "葡萄",
+      "emoji": "🍇",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 660
+    },
+    {
+      "id": "food_067",
+      "name": "橙子",
+      "emoji": "🍊",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 670
+    },
+    {
+      "id": "food_068",
+      "name": "橘子",
+      "emoji": "🍊",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 680
+    },
+    {
+      "id": "food_069",
+      "name": "柚子",
+      "emoji": "🍊",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 690
+    },
+    {
+      "id": "food_070",
+      "name": "桃子",
+      "emoji": "🍑",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 700
+    },
+    {
+      "id": "food_071",
+      "name": "李子",
+      "emoji": "🍑",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 710
+    },
+    {
+      "id": "food_072",
+      "name": "杏",
+      "emoji": "🍑",
+      "categoryId": "fruit",
+      "subCategory": "常见水果",
+      "enabled": true,
+      "sort": 720
+    },
+    {
+      "id": "food_073",
+      "name": "蓝莓",
+      "emoji": "🫐",
+      "categoryId": "fruit",
+      "subCategory": "浆果",
+      "enabled": true,
+      "sort": 730
+    },
+    {
+      "id": "food_074",
+      "name": "草莓",
+      "emoji": "🍓",
+      "categoryId": "fruit",
+      "subCategory": "浆果",
+      "enabled": true,
+      "sort": 740
+    },
+    {
+      "id": "food_075",
+      "name": "猕猴桃",
+      "emoji": "🥝",
+      "categoryId": "fruit",
+      "subCategory": "浆果",
+      "enabled": true,
+      "sort": 750
+    },
+    {
+      "id": "food_076",
+      "name": "樱桃",
+      "emoji": "🍒",
+      "categoryId": "fruit",
+      "subCategory": "浆果",
+      "enabled": true,
+      "sort": 760
+    },
+    {
+      "id": "food_077",
+      "name": "杨梅",
+      "emoji": "🍒",
+      "categoryId": "fruit",
+      "subCategory": "浆果",
+      "enabled": true,
+      "sort": 770
+    },
+    {
+      "id": "food_078",
+      "name": "覆盆子",
+      "emoji": "🫐",
+      "categoryId": "fruit",
+      "subCategory": "浆果",
+      "enabled": true,
+      "sort": 780
+    },
+    {
+      "id": "food_079",
+      "name": "牛油果",
+      "emoji": "🥑",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 790
+    },
+    {
+      "id": "food_080",
+      "name": "芒果",
+      "emoji": "🥭",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 800
+    },
+    {
+      "id": "food_081",
+      "name": "菠萝",
+      "emoji": "🍍",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 810
+    },
+    {
+      "id": "food_082",
+      "name": "火龙果",
+      "emoji": "🐉",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 820
+    },
+    {
+      "id": "food_083",
+      "name": "榴莲",
+      "emoji": "🥭",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": false,
+      "sort": 830
+    },
+    {
+      "id": "food_084",
+      "name": "山竹",
+      "emoji": "🥭",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 840
+    },
+    {
+      "id": "food_085",
+      "name": "荔枝",
+      "emoji": "🍒",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 850
+    },
+    {
+      "id": "food_086",
+      "name": "龙眼",
+      "emoji": "🍒",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 860
+    },
+    {
+      "id": "food_087",
+      "name": "椰子",
+      "emoji": "🥥",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 870
+    },
+    {
+      "id": "food_088",
+      "name": "百香果",
+      "emoji": "🥭",
+      "categoryId": "fruit",
+      "subCategory": "热带水果",
+      "enabled": true,
+      "sort": 880
+    },
+    {
+      "id": "food_089",
+      "name": "西瓜",
+      "emoji": "🍉",
+      "categoryId": "fruit",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 890
+    },
+    {
+      "id": "food_090",
+      "name": "哈密瓜",
+      "emoji": "🍈",
+      "categoryId": "fruit",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 900
+    },
+    {
+      "id": "food_091",
+      "name": "小番茄",
+      "emoji": "🍅",
+      "categoryId": "fruit",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 910
+    },
+    {
+      "id": "food_092",
+      "name": "甜瓜",
+      "emoji": "🍈",
+      "categoryId": "fruit",
+      "subCategory": "瓜果类",
+      "enabled": true,
+      "sort": 920
+    },
+    {
+      "id": "food_093",
+      "name": "红枣",
+      "emoji": "🫒",
+      "categoryId": "fruit",
+      "subCategory": "干果",
+      "enabled": true,
+      "sort": 930
+    },
+    {
+      "id": "food_094",
+      "name": "葡萄干",
+      "emoji": "🍇",
+      "categoryId": "fruit",
+      "subCategory": "干果",
+      "enabled": true,
+      "sort": 940
+    },
+    {
+      "id": "food_095",
+      "name": "无花果",
+      "emoji": "🫒",
+      "categoryId": "fruit",
+      "subCategory": "干果",
+      "enabled": true,
+      "sort": 950
+    },
+    {
+      "id": "food_096",
+      "name": "山楂",
+      "emoji": "🍎",
+      "categoryId": "fruit",
+      "subCategory": "干果",
+      "enabled": true,
+      "sort": 960
+    },
+    {
+      "id": "food_097",
+      "name": "猪肉",
+      "emoji": "🥩",
+      "categoryId": "meat",
+      "subCategory": "红肉",
+      "enabled": true,
+      "sort": 970
+    },
+    {
+      "id": "food_098",
+      "name": "猪里脊",
+      "emoji": "🥩",
+      "categoryId": "meat",
+      "subCategory": "红肉",
+      "enabled": true,
+      "sort": 980
+    },
+    {
+      "id": "food_099",
+      "name": "排骨",
+      "emoji": "🍖",
+      "categoryId": "meat",
+      "subCategory": "红肉",
+      "enabled": true,
+      "sort": 990
+    },
+    {
+      "id": "food_100",
+      "name": "牛肉",
+      "emoji": "🥩",
+      "categoryId": "meat",
+      "subCategory": "红肉",
+      "enabled": true,
+      "sort": 1000
+    },
+    {
+      "id": "food_101",
+      "name": "牛排",
+      "emoji": "🥩",
+      "categoryId": "meat",
+      "subCategory": "红肉",
+      "enabled": true,
+      "sort": 1010
+    },
+    {
+      "id": "food_102",
+      "name": "羊肉",
+      "emoji": "🍖",
+      "categoryId": "meat",
+      "subCategory": "红肉",
+      "enabled": true,
+      "sort": 1020
+    },
+    {
+      "id": "food_103",
+      "name": "鸡肉",
+      "emoji": "🍗",
+      "categoryId": "meat",
+      "subCategory": "白肉",
+      "enabled": true,
+      "sort": 1030
+    },
+    {
+      "id": "food_104",
+      "name": "鸡胸肉",
+      "emoji": "🍗",
+      "categoryId": "meat",
+      "subCategory": "白肉",
+      "enabled": true,
+      "sort": 1040
+    },
+    {
+      "id": "food_105",
+      "name": "鸡翅",
+      "emoji": "🍗",
+      "categoryId": "meat",
+      "subCategory": "白肉",
+      "enabled": true,
+      "sort": 1050
+    },
+    {
+      "id": "food_106",
+      "name": "鸡腿",
+      "emoji": "🍗",
+      "categoryId": "meat",
+      "subCategory": "白肉",
+      "enabled": true,
+      "sort": 1060
+    },
+    {
+      "id": "food_107",
+      "name": "鸭肉",
+      "emoji": "🦆",
+      "categoryId": "meat",
+      "subCategory": "白肉",
+      "enabled": true,
+      "sort": 1070
+    },
+    {
+      "id": "food_108",
+      "name": "鸭腿",
+      "emoji": "🦆",
+      "categoryId": "meat",
+      "subCategory": "白肉",
+      "enabled": true,
+      "sort": 1080
+    },
+    {
+      "id": "food_109",
+      "name": "火鸡肉",
+      "emoji": "🦃",
+      "categoryId": "meat",
+      "subCategory": "白肉",
+      "enabled": true,
+      "sort": 1090
+    },
+    {
+      "id": "food_110",
+      "name": "猪肝",
+      "emoji": "🥩",
+      "categoryId": "meat",
+      "subCategory": "内脏",
+      "enabled": true,
+      "sort": 1100
+    },
+    {
+      "id": "food_111",
+      "name": "鸡肝",
+      "emoji": "🍗",
+      "categoryId": "meat",
+      "subCategory": "内脏",
+      "enabled": true,
+      "sort": 1110
+    },
+    {
+      "id": "food_112",
+      "name": "猪心",
+      "emoji": "🥩",
+      "categoryId": "meat",
+      "subCategory": "内脏",
+      "enabled": true,
+      "sort": 1120
+    },
+    {
+      "id": "food_113",
+      "name": "鳕鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1130
+    },
+    {
+      "id": "food_114",
+      "name": "三文鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1140
+    },
+    {
+      "id": "food_115",
+      "name": "带鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1150
+    },
+    {
+      "id": "food_116",
+      "name": "鲈鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1160
+    },
+    {
+      "id": "food_117",
+      "name": "黄花鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1170
+    },
+    {
+      "id": "food_118",
+      "name": "比目鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1180
+    },
+    {
+      "id": "food_119",
+      "name": "巴沙鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1190
+    },
+    {
+      "id": "food_120",
+      "name": "银鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1200
+    },
+    {
+      "id": "food_121",
+      "name": "龙利鱼",
+      "emoji": "🐟",
+      "categoryId": "seafood",
+      "subCategory": "鱼类",
+      "enabled": true,
+      "sort": 1210
+    },
+    {
+      "id": "food_122",
+      "name": "虾仁",
+      "emoji": "🦐",
+      "categoryId": "seafood",
+      "subCategory": "虾蟹",
+      "enabled": true,
+      "sort": 1220
+    },
+    {
+      "id": "food_123",
+      "name": "螃蟹",
+      "emoji": "🦀",
+      "categoryId": "seafood",
+      "subCategory": "虾蟹",
+      "enabled": true,
+      "sort": 1230
+    },
+    {
+      "id": "food_124",
+      "name": "龙虾",
+      "emoji": "🦞",
+      "categoryId": "seafood",
+      "subCategory": "虾蟹",
+      "enabled": true,
+      "sort": 1240
+    },
+    {
+      "id": "food_125",
+      "name": "基围虾",
+      "emoji": "🦐",
+      "categoryId": "seafood",
+      "subCategory": "虾蟹",
+      "enabled": true,
+      "sort": 1250
+    },
+    {
+      "id": "food_126",
+      "name": "扇贝",
+      "emoji": "🐚",
+      "categoryId": "seafood",
+      "subCategory": "贝类",
+      "enabled": true,
+      "sort": 1260
+    },
+    {
+      "id": "food_127",
+      "name": "蛤蜊",
+      "emoji": "🐚",
+      "categoryId": "seafood",
+      "subCategory": "贝类",
+      "enabled": true,
+      "sort": 1270
+    },
+    {
+      "id": "food_128",
+      "name": "牡蛎",
+      "emoji": "🦪",
+      "categoryId": "seafood",
+      "subCategory": "贝类",
+      "enabled": true,
+      "sort": 1280
+    },
+    {
+      "id": "food_129",
+      "name": "花甲",
+      "emoji": "🐚",
+      "categoryId": "seafood",
+      "subCategory": "贝类",
+      "enabled": true,
+      "sort": 1290
+    },
+    {
+      "id": "food_130",
+      "name": "鱿鱼",
+      "emoji": "🦑",
+      "categoryId": "seafood",
+      "subCategory": "其他海鲜",
+      "enabled": true,
+      "sort": 1300
+    },
+    {
+      "id": "food_131",
+      "name": "墨鱼",
+      "emoji": "🦑",
+      "categoryId": "seafood",
+      "subCategory": "其他海鲜",
+      "enabled": true,
+      "sort": 1310
+    },
+    {
+      "id": "food_132",
+      "name": "海参",
+      "emoji": "🥒",
+      "categoryId": "seafood",
+      "subCategory": "其他海鲜",
+      "enabled": true,
+      "sort": 1320
+    },
+    {
+      "id": "food_133",
+      "name": "海带",
+      "emoji": "🥬",
+      "categoryId": "seafood",
+      "subCategory": "其他海鲜",
+      "enabled": true,
+      "sort": 1330
+    },
+    {
+      "id": "food_134",
+      "name": "紫菜",
+      "emoji": "🥬",
+      "categoryId": "seafood",
+      "subCategory": "其他海鲜",
+      "enabled": true,
+      "sort": 1340
+    },
+    {
+      "id": "food_135",
+      "name": "鸡蛋",
+      "emoji": "🥚",
+      "categoryId": "egg_dairy",
+      "subCategory": "蛋类",
+      "enabled": true,
+      "sort": 1350
+    },
+    {
+      "id": "food_136",
+      "name": "鸭蛋",
+      "emoji": "🥚",
+      "categoryId": "egg_dairy",
+      "subCategory": "蛋类",
+      "enabled": true,
+      "sort": 1360
+    },
+    {
+      "id": "food_137",
+      "name": "鹌鹑蛋",
+      "emoji": "🥚",
+      "categoryId": "egg_dairy",
+      "subCategory": "蛋类",
+      "enabled": true,
+      "sort": 1370
+    },
+    {
+      "id": "food_138",
+      "name": "鸽子蛋",
+      "emoji": "🥚",
+      "categoryId": "egg_dairy",
+      "subCategory": "蛋类",
+      "enabled": true,
+      "sort": 1380
+    },
+    {
+      "id": "food_139",
+      "name": "牛奶",
+      "emoji": "🥛",
+      "categoryId": "egg_dairy",
+      "subCategory": "奶制品",
+      "enabled": true,
+      "sort": 1390
+    },
+    {
+      "id": "food_140",
+      "name": "酸奶",
+      "emoji": "🥛",
+      "categoryId": "egg_dairy",
+      "subCategory": "奶制品",
+      "enabled": true,
+      "sort": 1400
+    },
+    {
+      "id": "food_141",
+      "name": "奶酪",
+      "emoji": "🧀",
+      "categoryId": "egg_dairy",
+      "subCategory": "奶制品",
+      "enabled": true,
+      "sort": 1410
+    },
+    {
+      "id": "food_142",
+      "name": "配方奶",
+      "emoji": "🍼",
+      "categoryId": "egg_dairy",
+      "subCategory": "奶制品",
+      "enabled": true,
+      "sort": 1420
+    },
+    {
+      "id": "food_143",
+      "name": "黄油",
+      "emoji": "🧈",
+      "categoryId": "egg_dairy",
+      "subCategory": "奶制品",
+      "enabled": true,
+      "sort": 1430
+    },
+    {
+      "id": "food_144",
+      "name": "淡奶油",
+      "emoji": "🥛",
+      "categoryId": "egg_dairy",
+      "subCategory": "奶制品",
+      "enabled": true,
+      "sort": 1440
+    },
+    {
+      "id": "food_145",
+      "name": "豆腐",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆制品",
+      "enabled": true,
+      "sort": 1450
+    },
+    {
+      "id": "food_146",
+      "name": "豆浆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆制品",
+      "enabled": true,
+      "sort": 1460
+    },
+    {
+      "id": "food_147",
+      "name": "豆干",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆制品",
+      "enabled": true,
+      "sort": 1470
+    },
+    {
+      "id": "food_148",
+      "name": "腐竹",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆制品",
+      "enabled": true,
+      "sort": 1480
+    },
+    {
+      "id": "food_149",
+      "name": "豆腐皮",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆制品",
+      "enabled": true,
+      "sort": 1490
+    },
+    {
+      "id": "food_150",
+      "name": "纳豆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆制品",
+      "enabled": true,
+      "sort": 1500
+    },
+    {
+      "id": "food_151",
+      "name": "黄豆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆类",
+      "enabled": true,
+      "sort": 1510
+    },
+    {
+      "id": "food_152",
+      "name": "黑豆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆类",
+      "enabled": true,
+      "sort": 1520
+    },
+    {
+      "id": "food_153",
+      "name": "红豆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆类",
+      "enabled": true,
+      "sort": 1530
+    },
+    {
+      "id": "food_154",
+      "name": "绿豆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆类",
+      "enabled": true,
+      "sort": 1540
+    },
+    {
+      "id": "food_155",
+      "name": "芸豆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆类",
+      "enabled": true,
+      "sort": 1550
+    },
+    {
+      "id": "food_156",
+      "name": "鹰嘴豆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆类",
+      "enabled": true,
+      "sort": 1560
+    },
+    {
+      "id": "food_157",
+      "name": "扁豆",
+      "emoji": "🫘",
+      "categoryId": "bean",
+      "subCategory": "豆类",
+      "enabled": true,
+      "sort": 1570
+    },
+    {
+      "id": "food_158",
+      "name": "花生",
+      "emoji": "🥜",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": false,
+      "sort": 1580
+    },
+    {
+      "id": "food_159",
+      "name": "核桃",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1590
+    },
+    {
+      "id": "food_160",
+      "name": "杏仁",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1600
+    },
+    {
+      "id": "food_161",
+      "name": "腰果",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1610
+    },
+    {
+      "id": "food_162",
+      "name": "开心果",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1620
+    },
+    {
+      "id": "food_163",
+      "name": "松子",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1630
+    },
+    {
+      "id": "food_164",
+      "name": "夏威夷果",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1640
+    },
+    {
+      "id": "food_165",
+      "name": "板栗",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1650
+    },
+    {
+      "id": "food_166",
+      "name": "南瓜籽",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1660
+    },
+    {
+      "id": "food_167",
+      "name": "芝麻",
+      "emoji": "🌰",
+      "categoryId": "bean",
+      "subCategory": "坚果",
+      "enabled": true,
+      "sort": 1670
+    }
+  ]
+}

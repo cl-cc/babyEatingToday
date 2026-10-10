@@ -1,6 +1,16 @@
 <navigation-bar title="辅食排敏" back="{{false}}" color="#E85A7A" background="transparent"></navigation-bar>
 
 <view class="page-root">
+  <!--
+  <view wx:if="{{catalogLoading}}" class="catalog-banner catalog-banner--loading">正在加载云端食材…</view>
+  <view wx:if="{{catalogStatus && !catalogLoading && !catalogError}}" class="catalog-banner catalog-banner--loading">{{catalogStatus}}</view>
+  <view wx:if="{{catalogError}}" class="catalog-banner catalog-banner--error">
+    <text>{{catalogError}}</text>
+    <text class="catalog-retry" bindtap="onRetryCatalog">重试</text>
+  </view>
+  <view wx:if="{{catalogFromCache && catalogError}}" class="catalog-banner catalog-banner--warn">以下为本地缓存，可能不是最新数据</view>
+  -->
+
   <scroll-view class="summary-strip" wx:if="{{summaryCards.length}}" scroll-x show-scrollbar="{{false}}">
     <view
       wx:for="{{summaryCards}}"
@@ -47,9 +57,10 @@
           </view>
         </view>
 
-        <view wx:if="{{!foods.length}}" class="empty-tip">
+        <view wx:if="{{!catalogLoading && !foods.length && !catalogError}}" class="empty-tip">
           <text class="empty-tip__emoji">🥗</text>
           <text>{{emptyTip}}</text>
+          <text wx:if="{{!catalogCategories.length || !catalogFoods.length}}" class="catalog-retry" bindtap="onRetryCatalog">重新加载</text>
         </view>
       </scroll-view>
     </view>

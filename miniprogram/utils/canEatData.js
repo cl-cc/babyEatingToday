@@ -3,6 +3,8 @@
  * 后续可扩展或由 AI 补充
  */
 
+const { getCanEatItems } = require('./cms')
+
 const FOOD_DB = [
   {
     keywords: ['虾', '虾仁', '海鲜', '螃蟹', '贝类'],
@@ -203,10 +205,17 @@ const FOOD_DB = [
   },
 ]
 
+function getFoodDb() {
+  const remote = getCanEatItems()
+  if (!remote.length) return FOOD_DB
+  const names = new Set(remote.map((item) => item.name))
+  return remote.concat(FOOD_DB.filter((item) => !names.has(item.name)))
+}
+
 function searchFood(query) {
   const q = (query || '').trim().toLowerCase()
   if (!q) return null
-  return FOOD_DB.find((item) =>
+  return getFoodDb().find((item) =>
     item.keywords.some((kw) => kw.includes(q) || q.includes(kw)) ||
     item.name.includes(q)
   )
@@ -242,4 +251,4 @@ function getCanEatResult(query, ageId) {
   }
 }
 
-module.exports = { FOOD_DB, searchFood, getCanEatResult }
+module.exports = { FOOD_DB, getFoodDb, searchFood, getCanEatResult }

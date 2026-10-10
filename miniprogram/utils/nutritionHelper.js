@@ -42,6 +42,7 @@ const {
   buildMealRings,
   withRingStyle,
 } = require('./foodNutrition')
+const { getAgeSeasoningHints } = require('./recommendRules')
 
 function estimateCalories(name) {
   const n = name || ''
@@ -70,15 +71,19 @@ function calcTotalCalories(foods) {
   return enrichFoods(foods).reduce((sum, f) => sum + f.calories, 0)
 }
 
-/** 直接使用 AI 返回的调料列表，仅做格式清洗 */
-function normalizeSeasonings(seasonings) {
-  if (!Array.isArray(seasonings)) return []
-  return seasonings
+/** 直接使用 AI 返回的调料列表，仅做格式清洗；为空时回退月龄调味规则 */
+function normalizeSeasonings(seasonings, ageId) {
+  if (!Array.isArray(seasonings)) {
+    return ageId ? getAgeSeasoningHints(ageId) : []
+  }
+  const cleaned = seasonings
     .filter((s) => s && (s.name || s.label))
     .map((s) => ({
       name: String(s.name || s.label).trim(),
       amount: String(s.amount || s.dose || s.usage || '').trim() || '按年龄段少量使用',
     }))
+  if (cleaned.length) return cleaned
+  return ageId ? getAgeSeasoningHints(ageId) : []
 }
 
 function normalizeStringList(list) {
@@ -152,7 +157,7 @@ function buildTodayMethods(foods, ageId) {
 function normalizeTodayRecommend(data, ageId) {
   const age = ageId || data.ageId || '8-10'
   const foods = enrichTodayFoods(data.foods || [], age)
-  const seasonings = normalizeSeasonings(data.seasonings)
+  const seasonings = normalizeSeasonings(data.seasonings, age)
   const nutritionRings = withRingStyle(
     data.nutritionRings && data.nutritionRings.length
       ? data.nutritionRings
@@ -181,7 +186,7 @@ function normalizeMeal(meal) {
   const foods = enrichTodayFoods(meal.foods || meal, ageId)
   return {
     foods,
-    seasonings: normalizeSeasonings(meal.seasonings),
+    seasonings: normalizeSeasonings(meal.seasonings, ageId),
     mealTags: normalizePairings(meal.mealTags || []).map((item) => ({
       emoji: item.emoji,
       label: item.name,
@@ -222,7 +227,7 @@ function normalizeCombineResult(data) {
 
   return {
     dishes,
-    seasonings: normalizeSeasonings(data.seasonings),
+    seasonings: normalizeSeasonings(data.seasonings, data.ageId),
     methods: normalizeStringList(data.methods),
     totalCalories,
     reasons: data.reasons || [],
@@ -238,7 +243,7 @@ function normalizeFridgeResult(data) {
     label: m.label,
     name: m.name,
     calories: Number(m.calories) || estimateCalories(String(m.name).replace(/[^\u4e00-\u9fa5a-zA-Z]/g, '')),
-    seasonings: normalizeSeasonings(m.seasonings),
+    seasonings: normalizeSeasonings(m.seasonings, data.ageId),
     methods: normalizeStringList(m.methods),
   }))
 
@@ -265,6 +270,8 @@ function normalizePairings(pairings) {
     .filter((item) => item.name)
 }
 
+const { getAuthorityAdvice } = require('./cms')
+
 function getAgeLabelForAdvice(ageId) {
   const map = {
     '6-8': '6-8个月',
@@ -278,9 +285,37 @@ function getAgeLabelForAdvice(ageId) {
   return map[ageId] || '该月龄'
 }
 
+function matchAuthority(foodName, can) {
+  const name = String(foodName || '').trim()
+  const items = getAuthorityAdvice()
+  if (!name || !items.length) return null
+
+  const hits = items.filter((item) => {
+    if (!item.keywords.length) return false
+    return item.keywords.some((kw) => name.includes(kw) || kw.includes(name))
+  })
+  if (!hits.length) {
+    const defaults = items.filter((item) => !item.keywords.length)
+    const byCan = defaults.find((item) => String(item.can) === String(can))
+    return byCan || defaults.find((item) => item.can === '' || item.can == null) || null
+  }
+  return (
+    hits.find((item) => String(item.can) === String(can)) ||
+    hits.find((item) => item.can === '' || item.can == null) ||
+    hits[0]
+  )
+}
+
 function buildAuthorityAdvice(foodName, ageId, can) {
   const name = String(foodName || '').trim()
   const age = getAgeLabelForAdvice(ageId)
+  const remote = matchAuthority(name, can)
+  if (remote && (remote.whoAdvice || remote.aapAdvice)) {
+    return {
+      whoAdvice: String(remote.whoAdvice || '').replace(/\$\{age\}/g, age) || `WHO 建议：${age}饮食应多样均衡。`,
+      aapAdvice: String(remote.aapAdvice || '').replace(/\$\{age\}/g, age) || `AAP 建议：${age}注意质地与过敏观察。`,
+    }
+  }
 
   if (/蜂蜜/.test(name)) {
     return {
@@ -371,7 +406,7 @@ function normalizeCanEatResult(data, query, ageId) {
     whoAdvice: (data.whoAdvice || '').trim() || authority.whoAdvice,
     aapAdvice: (data.aapAdvice || '').trim() || authority.aapAdvice,
     pairings: normalizePairings(data.pairings || data.combineWith),
-    seasonings: normalizeSeasonings(data.seasonings),
+    seasonings: normalizeSeasonings(data.seasonings, ageId),
     methods,
     avoid: normalizeStringList(data.avoid),
   }

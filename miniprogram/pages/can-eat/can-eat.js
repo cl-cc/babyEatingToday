@@ -6,6 +6,7 @@ const { normalizeCanEatResult } = require('../../utils/nutritionHelper')
 const echarts = require('../../components/ec-canvas/echarts')
 
 const { getCanEatHot, setCanEatHot, getCanEatQuery, setCanEatQuery } = require('../../utils/aiCache')
+const { getHotTags } = require('../../utils/cms')
 
 const DEFAULT_HOT = [
   { name: '虾', emoji: '🦐', type: '海鲜' },
@@ -120,7 +121,7 @@ Component({
     ageLabels: AGE_GROUPS.map((a) => a.label),
     ageIndex: 1,
     selectedAge: '8-10',
-    hotList: DEFAULT_HOT,
+    hotList: getHotTags().length ? getHotTags() : DEFAULT_HOT,
     hotLoading: false,
     loading: false,
     result: null,
@@ -220,7 +221,8 @@ Component({
         return
       }
 
-      this.setData({ hotList: DEFAULT_HOT, hotLoading: true })
+      const fallbackHot = getHotTags().length ? getHotTags() : DEFAULT_HOT
+      this.setData({ hotList: fallbackHot, hotLoading: true })
 
       if (!isAIReady() || isAIQuotaExceeded()) {
         this.setData({ hotLoading: false })
